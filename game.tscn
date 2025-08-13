@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=4 uid="uid://b3fidr1gad2ck"]
+
+[ext_resource type="PackedScene" uid="uid://boha8k0f2845i" path="res://Player/Scenes/player.tscn" id="1_80nbo"]
+[ext_resource type="Texture2D" uid="uid://bx26p0pfgjryy" path="res://Assets/Sprite-0004-sheet.png" id="2_e2o6t"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_feb5d"]
+texture = ExtResource("2_e2o6t")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-31.9805, -31.9805, -32.0821, 31.9805, 31.9805, 32.1836, 31.879, -31.9805)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-31.9805, -31.9805, -32.0821, 31.9805, 31.9805, 32.1836, 31.879, -31.9805)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-31.9805, -31.9805, -32.0821, 31.9805, 31.9805, 32.1836, 31.879, -31.9805)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-31.9805, -31.9805, -32.0821, 31.9805, 31.9805, 32.1836, 31.879, -31.9805)
+
+[sub_resource type="TileSet" id="TileSet_fc0e3"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_feb5d")
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_80nbo")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD//wAAAQAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAACAP//AQABAAAAAAA=")
+tile_set = SubResource("TileSet_fc0e3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
