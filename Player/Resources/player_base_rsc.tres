@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PlayerBaseResource" load_steps=2 format=3 uid="uid://clkrpuoo460vj"]
+
+[ext_resource type="Script" uid="uid://8634mgw4e6lk" path="res://Player/Resources/player_base_rsc.gd" id="1_mqf3g"]
+
+[resource]
+script = ExtResource("1_mqf3g")
+speed = 170.0
+gravity = 15.0
+upside_down = false
+metadata/_custom_type_script = "uid://8634mgw4e6lk"

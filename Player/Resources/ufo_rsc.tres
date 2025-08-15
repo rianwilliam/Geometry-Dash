@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UfoResource" load_steps=2 format=3 uid="uid://ca2y0oe1bmyy6"]
+
+[ext_resource type="Script" uid="uid://cube82bal2q2v" path="res://Player/Resources/ufo_rsc.gd" id="1_x1qdl"]
+
+[resource]
+script = ExtResource("1_x1qdl")
+jump_height = -250.0
+speed = 170.0
+gravity = 15.0
+gravity_dir = 1
+metadata/_custom_type_script = "uid://cube82bal2q2v"

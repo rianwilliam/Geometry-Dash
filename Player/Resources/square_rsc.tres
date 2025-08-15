@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SquareResource" load_steps=2 format=3 uid="uid://dr6tiby56s34r"]
+
+[ext_resource type="Script" uid="uid://t2n5hllvasd8" path="res://Player/Resources/square_rsc.gd" id="1_rvpwp"]
+
+[resource]
+script = ExtResource("1_rvpwp")
+jump_height = -250.0
+speed = 170.0
+gravity = 15.0
+upside_down = false
+metadata/_custom_type_script = "uid://t2n5hllvasd8"
