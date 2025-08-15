@@ -1,31 +1,130 @@
-[gd_scene load_steps=5 format=4 uid="uid://b3fidr1gad2ck"]
+[gd_scene load_steps=15 format=4 uid="uid://b6dmle3sl63cf"]
 
-[ext_resource type="PackedScene" uid="uid://boha8k0f2845i" path="res://Player/Scenes/player.tscn" id="1_80nbo"]
-[ext_resource type="Texture2D" uid="uid://bx26p0pfgjryy" path="res://Assets/Sprite-0004-sheet.png" id="2_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://bj0cuuo00o3qu" path="res://Assets/Ground.png" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://vjn7j4c5jhnu" path="res://game.gd" id="1_eow3j"]
+[ext_resource type="Texture2D" uid="uid://s2b8qfa8fwtk" path="res://Assets/Spikes_2.png" id="1_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://d13lilcx02men" path="res://Assets/Platforms.png" id="1_feb5d"]
+[ext_resource type="PackedScene" uid="uid://c2chvkyy457fn" path="res://Player/Scenes/player.tscn" id="2_feb5d"]
+[ext_resource type="Texture2D" uid="uid://c5g1os7ucyc7x" path="res://Assets/Ground_mark.png" id="2_ryrav"]
+[ext_resource type="PackedScene" uid="uid://bf2s1uu8oblm0" path="res://Scenario/Portal/portal.tscn" id="6_ryrav"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_feb5d"]
-texture = ExtResource("2_e2o6t")
-texture_region_size = Vector2i(64, 64)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ryrav"]
+resource_name = "Spikes"
+texture = ExtResource("1_fc0e3")
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-31.9805, -31.9805, -32.0821, 31.9805, 31.9805, 32.1836, 31.879, -31.9805)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.8, -7.2, 0.8, -7.2, 8, 8, -8, 8)
 1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-31.9805, -31.9805, -32.0821, 31.9805, 31.9805, 32.1836, 31.879, -31.9805)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.8, -7.2, 0.8, -7.2, 8, 8, -8, 8)
 0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-31.9805, -31.9805, -32.0821, 31.9805, 31.9805, 32.1836, 31.879, -31.9805)
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.8, -7.2, 0.8, -7.2, 8, 8, -8, 8)
 1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-31.9805, -31.9805, -32.0821, 31.9805, 31.9805, 32.1836, 31.879, -31.9805)
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.8, -7.2, 0.8, -7.2, 8, 8, -8, 8)
 
-[sub_resource type="TileSet" id="TileSet_fc0e3"]
-tile_size = Vector2i(64, 64)
+[sub_resource type="TileSet" id="TileSet_eow3j"]
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_ryrav")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fc0e3"]
+resource_name = "Normal Ground"
+texture = ExtResource("2_ryrav")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -14.4, -16, -14.4)
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -14.4, 16, -14.4, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -14.4, -16, -14.4)
+1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -14.4, 16, -14.4, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -14.4, -16, -14.4)
+0:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -14.4, 16, -14.4, 16, 16, -16, 16)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -14.4, -16, -14.4)
+1:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -14.4, 16, -14.4, 16, 16, -16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eow3j"]
+resource_name = "Damage Ground"
+texture = ExtResource("1_e2o6t")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/0 = 0
+1:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_7jktm"]
+tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_feb5d")
+physics_layer_1/collision_layer = 2
+physics_layer_1/collision_mask = 0
+sources/1 = SubResource("TileSetAtlasSource_fc0e3")
+sources/7 = SubResource("TileSetAtlasSource_eow3j")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7jktm"]
+resource_name = "Platform"
+texture = ExtResource("1_feb5d")
+texture_region_size = Vector2i(32, 16)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, 16, -8, 16, -6.4, -16, -6.4)
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -5.6, 16, -5.6, 16, 8, -16, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, 16, -8, 16, -6.4, -16, -6.4)
+1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -5.6, 16, -5.6, 16, 8, -16, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, 16, -8, 16, -6.4, -16, -6.4)
+0:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -5.6, 16, -5.6, 16, 8, -16, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, 16, -8, 16, -6.4, -16, -6.4)
+1:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -5.6, 16, -5.6, 16, 8, -16, 8)
+
+[sub_resource type="TileSet" id="TileSet_ryrav"]
+tile_size = Vector2i(32, 16)
+physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 2
+physics_layer_1/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_7jktm")
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_eow3j")
 
-[node name="Player" parent="." instance=ExtResource("1_80nbo")]
+[node name="Obstacles" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_eow3j")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD//wAAAQAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAACAP//AQABAAAAAAA=")
-tile_set = SubResource("TileSet_fc0e3")
+[node name="Ground" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD+/wAAAQAAAAAAAAD//wAAAQAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAABwABAAAAAAAFAAAABwABAAAAAAAGAAAABwABAAAAAAAHAAAABwABAAAAAAAIAAAABwABAAAAAAAJAAAABwABAAAAAAAKAAAABwABAAAAAAALAAAABwABAAAAAAAMAAAABwABAAAAAAANAAAABwABAAAAAAAOAAAABwABAAAAAAAPAAAABwABAAAAAAAQAAAABwABAAAAAAARAAAABwABAAAAAAASAAAABwABAAAAAAATAAAABwABAAAAAAAUAAAABwABAAAAAAAVAAAABwABAAAAAAAWAAAABwABAAAAAAAXAAAABwABAAAAAAAYAAAABwABAAAAAAAZAAAABwABAAAAAAAaAAAABwABAAAAAAAbAAAABwABAAAAAAAcAAAABwABAAAAAAAdAAAABwABAAAAAAAeAAAABwABAAAAAAAEAPz/BwABAAAAAAAFAPz/BwABAAAAAAAGAPz/BwABAAAAAAAHAPz/BwABAAAAAAAIAPz/BwABAAAAAAAJAPz/BwABAAAAAAAKAPz/BwABAAAAAAALAPz/BwABAAAAAAAMAPz/BwABAAAAAAANAPz/BwABAAAAAAAOAPz/BwABAAAAAAAPAPz/BwABAAAAAAAQAPz/BwABAAAAAAARAPz/BwABAAAAAAASAPz/BwABAAAAAAATAPz/BwABAAAAAAAUAPz/BwABAAAAAAAVAPz/BwABAAAAAAAWAPz/BwABAAAAAAAXAPz/BwABAAAAAAAYAPz/BwABAAAAAAAZAPz/BwABAAAAAAAaAPz/BwABAAAAAAAbAPz/BwABAAAAAAAcAPz/BwABAAAAAAAdAPz/BwABAAAAAAAeAPz/BwABAAAAAAA=")
+tile_set = SubResource("TileSet_7jktm")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Platforms" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_ryrav")
+
+[node name="Player" parent="." instance=ExtResource("2_feb5d")]
+position = Vector2(-56, -8)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="PlayerElements" type="Node2D" parent="."]
+
+[node name="WaveTrial" type="Line2D" parent="PlayerElements"]
+unique_name_in_owner = true
+width = 2.0
+metadata/_edit_lock_ = true
+
+[node name="Spawn" type="Marker2D" parent="PlayerElements"]
+unique_name_in_owner = true
+position = Vector2(-56, -8)
+
+[node name="DieCounter" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -16.0
+offset_top = -96.0
+offset_right = 24.0
+offset_bottom = -73.0
+
+[node name="Portal" parent="." instance=ExtResource("6_ryrav")]
+transform_to = 1
