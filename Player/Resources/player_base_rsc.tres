@@ -6,5 +6,5 @@
 script = ExtResource("1_mqf3g")
 speed = 170.0
 gravity = 15.0
-upside_down = false
+gravity_dir = -1
 metadata/_custom_type_script = "uid://8634mgw4e6lk"

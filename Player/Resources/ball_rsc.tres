@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BallResource" load_steps=2 format=3 uid="uid://dbudyuua354hb"]
+
+[ext_resource type="Script" uid="uid://cr0ptw27flokm" path="res://Player/Resources/ball_rsc.gd" id="1_yi436"]
+
+[resource]
+script = ExtResource("1_yi436")
+speed = 170.0
+gravity = 15.0
+metadata/_custom_type_script = "uid://cr0ptw27flokm"

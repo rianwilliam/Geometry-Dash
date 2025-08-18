@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SpaceshipResource" load_steps=2 format=3 uid="uid://dytdpovfiqnuv"]
+
+[ext_resource type="Script" uid="uid://cocq5d323dr0p" path="res://Player/Resources/spaceship_rsc.gd" id="1_7uh1f"]
+
+[resource]
+script = ExtResource("1_7uh1f")
+speed = 170.0
+gravity = 15.0
+metadata/_custom_type_script = "uid://cocq5d323dr0p"
