@@ -68,4 +68,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_hqtel")
 }
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

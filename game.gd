@@ -15,4 +15,3 @@ func _on_player_die() -> void:
 	wave_trial.clear_points()
 	death_counter += 1
 	die_counter.text = text + " " + str(death_counter)
-	

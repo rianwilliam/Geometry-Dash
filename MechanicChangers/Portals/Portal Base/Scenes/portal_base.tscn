@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b53ljlp24j1ek"]
+
+[ext_resource type="Script" uid="uid://b8oy45lugyf2b" path="res://MechanicChangers/Portals/Portal Base/Scripts/portal_base.gd" id="1_h8rjj"]
+
+[node name="PortalBase" type="Area2D"]
+script = ExtResource("1_h8rjj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

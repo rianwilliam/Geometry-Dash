@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SquareResource" load_steps=2 format=3 uid="uid://dr6tiby56s34r"]
 
-[ext_resource type="Script" uid="uid://t2n5hllvasd8" path="res://Player/Resources/square_rsc.gd" id="1_rvpwp"]
+[ext_resource type="Script" uid="uid://t2n5hllvasd8" path="res://Player/Resources/Square/square_rsc.gd" id="1_rvpwp"]
 
 [resource]
 script = ExtResource("1_rvpwp")

@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="WaveResource" load_steps=2 format=3 uid="uid://dpb2cy5ac7i82"]
 
-[ext_resource type="Script" uid="uid://dg3tuqo4pvtei" path="res://Player/Resources/wave_rsc.gd" id="1_mvymv"]
+[ext_resource type="Script" uid="uid://dg3tuqo4pvtei" path="res://Player/Resources/Wave/wave_rsc.gd" id="1_25t5k"]
 
 [resource]
-script = ExtResource("1_mvymv")
-vertical_dir = 1
+script = ExtResource("1_25t5k")
+direction = 1
+vertical_speed = 200.0
 speed = 170.0
 gravity = 15.0
-upside_down = false
 metadata/_custom_type_script = "uid://dg3tuqo4pvtei"
