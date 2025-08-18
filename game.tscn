@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d13lilcx02men" path="res://Assets/Platforms.png" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://c2chvkyy457fn" path="res://Player/Scenes/player.tscn" id="2_feb5d"]
 [ext_resource type="Texture2D" uid="uid://c5g1os7ucyc7x" path="res://Assets/Ground_mark.png" id="2_ryrav"]
-[ext_resource type="PackedScene" uid="uid://bnt2ftx7usqym" path="res://MechanicChangers/Portals/ModeSwitcher/Scenes/mode_switcher.tscn" id="7_eow3j"]
+[ext_resource type="PackedScene" uid="uid://bnt2ftx7usqym" path="res://MechanicChangers/Portals/ModeSwitcher/Scenes/mode_switcher.tscn" id="8_j5wjh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ryrav"]
 resource_name = "Spikes"
@@ -90,27 +90,23 @@ sources/0 = SubResource("TileSetAtlasSource_7jktm")
 [node name="Game" type="Node2D"]
 script = ExtResource("1_eow3j")
 
-[node name="Obstacles" type="TileMapLayer" parent="."]
+[node name="LevelElements" type="TileMapLayer" parent="."]
+
+[node name="Obstacles" type="TileMapLayer" parent="LevelElements"]
 tile_set = SubResource("TileSet_eow3j")
 
-[node name="Ground" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD+/wAAAQAAAAAAAAAVAAAAAQAAAAAAAAAWAAAAAQAAAAAAAAAXAAAAAQAAAAAAAAAYAAAAAQAAAAAAAAAZAAAAAQAAAAAAAAAaAAAAAQAAAAAAAAAbAAAAAQAAAAAAAAAcAAAAAQAAAAAAAAAdAAAAAQAAAAAAAAAeAAAAAQAAAAAAAAAfAAAAAQAAAAAAAAAgAAAAAQAAAAAAAAD+//z/AQAAAAAAACAVAPz/AQAAAAAAACAWAPz/AQAAAAAAACAXAPz/AQAAAAAAACAYAPz/AQAAAAAAACAZAPz/AQAAAAAAACAaAPz/AQAAAAAAACAbAPz/AQAAAAAAACAcAPz/AQAAAAAAACAdAPz/AQAAAAAAACAeAPz/AQAAAAAAACAfAPz/AQAAAAAAACAgAPz/AQAAAAAAACD///z/AQAAAAAAACD//wAAAQAAAAAAAAAAAPz/AQAAAAAAACAAAAAAAQAAAAAAAAABAPz/AQAAAAAAACABAAAAAQAAAAAAAAAPAPz/AQAAAAAAACAPAAAAAQAAAAAAAAAQAPz/AQAAAAAAACAQAAAAAQAAAAAAAAARAPz/AQAAAAAAACARAAAAAQAAAAAAAAASAPz/AQAAAAAAACASAAAAAQAAAAAAAAATAPz/AQAAAAAAACATAAAAAQAAAAAAAAAUAPz/AQAAAAAAACAUAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAALAAAAAQAAAAAAAAAMAAAAAQAAAAAAAAANAAAAAQAAAAAAAAAOAAAAAQAAAAAAAAADAPz/AQAAAAAAACAEAPz/AQAAAAAAACAFAPz/AQAAAAAAACAGAPz/AQAAAAAAACAHAPz/AQAAAAAAACAIAPz/AQAAAAAAACAJAPz/AQAAAAAAACAKAPz/AQAAAAAAACALAPz/AQAAAAAAACAMAPz/AQAAAAAAACANAPz/AQAAAAAAACAOAPz/AQAAAAAAACACAPz/AQAAAAAAACA=")
+[node name="Ground" type="TileMapLayer" parent="LevelElements"]
+tile_map_data = PackedByteArray("AAAVAAAAAQAAAAAAAAAWAAAAAQAAAAAAAAAXAAAAAQAAAAAAAAAYAAAAAQAAAAAAAAAZAAAAAQAAAAAAAAAaAAAAAQAAAAAAAAAbAAAAAQAAAAAAAAAcAAAAAQAAAAAAAAAdAAAAAQAAAAAAAAAeAAAAAQAAAAAAAAAfAAAAAQAAAAAAAAAgAAAAAQAAAAAAAAD+//z/AQAAAAAAACAVAPz/AQAAAAAAACAWAPz/AQAAAAAAACAXAPz/AQAAAAAAACAYAPz/AQAAAAAAACAZAPz/AQAAAAAAACAaAPz/AQAAAAAAACAbAPz/AQAAAAAAACAcAPz/AQAAAAAAACAdAPz/AQAAAAAAACAeAPz/AQAAAAAAACAfAPz/AQAAAAAAACAgAPz/AQAAAAAAACD///z/AQAAAAAAACAAAAAAAQAAAAAAAAAQAPz/AQAAAAAAACAQAAAAAQAAAAAAAAARAPz/AQAAAAAAACARAAAAAQAAAAAAAAASAPz/AQAAAAAAACASAAAAAQAAAAAAAAATAPz/AQAAAAAAACATAAAAAQAAAAAAAAAUAPz/AQAAAAAAACAUAAAAAQAAAAAAAAAAAPz/AQAAAAAAACD+/wAAAQAAAAAAAAD//wAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAALAAAAAQAAAAAAAAAMAAAAAQAAAAAAAAANAAAAAQAAAAAAAAAOAAAAAQAAAAAAAAAPAAAAAQAAAAAAAAABAPz/AQAAAAAAACACAPz/AQAAAAAAACADAPz/AQAAAAAAACAEAPz/AQAAAAAAACAFAPz/AQAAAAAAACAGAPz/AQAAAAAAACAHAPz/AQAAAAAAACAIAPz/AQAAAAAAACAJAPz/AQAAAAAAACAKAPz/AQAAAAAAACALAPz/AQAAAAAAACAMAPz/AQAAAAAAACANAPz/AQAAAAAAACAOAPz/AQAAAAAAACAPAPz/AQAAAAAAACA=")
 tile_set = SubResource("TileSet_7jktm")
 
-[node name="Platforms" type="TileMapLayer" parent="."]
+[node name="Platforms" type="TileMapLayer" parent="LevelElements"]
 tile_set = SubResource("TileSet_ryrav")
 
 [node name="Player" parent="." instance=ExtResource("2_feb5d")]
 position = Vector2(-56, -8)
 
 [node name="PlayerElements" type="Node2D" parent="."]
-
-[node name="WaveTrial" type="Line2D" parent="PlayerElements"]
 unique_name_in_owner = true
-width = 2.0
-metadata/_edit_lock_ = true
-
-[node name="VisibleOnScreen" type="VisibleOnScreenNotifier2D" parent="PlayerElements/WaveTrial"]
 
 [node name="PlayerSpawn" type="Marker2D" parent="PlayerElements"]
 unique_name_in_owner = true
@@ -125,16 +121,14 @@ offset_bottom = -73.0
 
 [node name="MechanicChangers" type="Node2D" parent="."]
 
-[node name="ModeSwitcher" parent="MechanicChangers" instance=ExtResource("7_eow3j")]
+[node name="ModeSwitcher" parent="MechanicChangers" instance=ExtResource("8_j5wjh")]
 transform_to = 1
 
-[node name="ModeSwitcher2" parent="MechanicChangers" instance=ExtResource("7_eow3j")]
-position = Vector2(544, 0)
+[node name="ModeSwitcher2" parent="MechanicChangers" instance=ExtResource("8_j5wjh")]
+position = Vector2(344, 0)
 
-[node name="ModeSwitcher3" parent="MechanicChangers" instance=ExtResource("7_eow3j")]
-position = Vector2(968, 0)
+[node name="ModeSwitcher3" parent="MechanicChangers" instance=ExtResource("8_j5wjh")]
+position = Vector2(536, 0)
 transform_to = 1
 
 [node name="JumpMechanics" type="Node2D" parent="."]
-
-[connection signal="screen_exited" from="PlayerElements/WaveTrial/VisibleOnScreen" to="PlayerElements/WaveTrial" method="_on_visible_on_screen_screen_exited"]

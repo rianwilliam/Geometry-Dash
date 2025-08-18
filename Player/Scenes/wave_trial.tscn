@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bobe2qt34papm"]
+
+[ext_resource type="Script" uid="uid://bkxplcim4btaf" path="res://Player/Scripts/wave_trial.gd" id="1_pfx5g"]
+
+[node name="WaveTrial" type="Line2D"]
+width = 2.0
+script = ExtResource("1_pfx5g")
+
+[node name="VisibleOnScreen" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreen" to="." method="_on_visible_on_screen_screen_exited"]

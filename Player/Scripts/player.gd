@@ -5,15 +5,16 @@ class_name Player
 #TODO Provavelmente colocar um evento que determine que vai criar / destruir o trial
 
 @onready var hurt_box: Area2D = %HurtBox
-@onready var wave_trial: Line2D = %WaveTrial
 @onready var spawn: Marker2D = %PlayerSpawn
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var _gravity_dir: Enums.GRAVITY_DIR = Enums.GRAVITY_DIR.NORMAL
+@onready var player_elements: Node2D = %PlayerElements
 
 var _action_pressed: bool
 var _action_clicked: bool
 var _mode: Enums.PLAYER_MODE = Enums.PLAYER_MODE.SQUARE
+var _wave_trial: WaveTrial
 var _spaceship_vertical_vel: float = -15.0
 var is_on_orb: bool = false
 var _player_base_rsc: PlayerBaseResource = preload("res://Player/Resources/player_base_rsc.tres")
@@ -22,6 +23,8 @@ var _wave_rsc: WaveResource = preload("res://Player/Resources/Wave/wave_rsc.tres
 var _ufo_rsc: UfoResource = preload("res://Player/Resources/Ufo/ufo_rsc.tres")
 var _ball_rsc: BallResource = preload("res://Player/Resources/Ball/ball_rsc.tres")
 var _spaceship_rsc: SpaceshipResource = preload("res://Player/Resources/SpaceShip/spaceship_rsc.tres")
+
+const WAVE_TRIAL = preload("res://Player/Scenes/wave_trial.tscn")
 
 func _ready() -> void:
 	global_position = spawn.global_position
@@ -44,9 +47,11 @@ func _square_mode() -> void:
 	if not is_on_floor() or not is_on_ceiling():
 		_apply_gravity(_square_rsc)
 
-	if (_action_pressed and is_on_floor()) or \
-		(_action_pressed and is_on_ceiling()) or \
-		(_action_clicked and is_on_orb):
+	if (
+	_action_pressed and is_on_floor() or \
+	_action_pressed and is_on_ceiling() or \
+	_action_clicked and is_on_orb
+	):
 		jump()
 
 func jump() -> void:
@@ -55,6 +60,15 @@ func jump() -> void:
 
 func change_mode(new_mode: Enums.PLAYER_MODE) -> void:
 	_mode = new_mode
+	_on_mode_entered()
+
+func _on_mode_entered() -> void:
+	match _mode:
+		#Enums.PLAYER_MODE.SQUARE: _square_mode()
+		Enums.PLAYER_MODE.WAVE: _on_enter_wave_mode()
+		#Enums.PLAYER_MODE.BALL: _ball_mode()
+		#Enums.PLAYER_MODE.UFO: _ufo_mode()
+		#Enums.PLAYER_MODE.SPACESHIP: _spaceship_mode()
 
 func _apply_gravity(rsc: PlayerBaseResource) -> void:
 	velocity.y += rsc.gravity * _gravity_dir
@@ -73,6 +87,12 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 	_reset_player()
 
 #region Wave
+
+func _on_enter_wave_mode() -> void:
+	_wave_trial = WAVE_TRIAL.instantiate()
+	_wave_trial.global_position = global_position
+	player_elements.add_child(_wave_trial)
+
 func _wave_mode() -> void:
 	velocity.y = _wave_rsc.vertical_speed * _wave_rsc.direction * _gravity_dir
 	if _action_pressed:
@@ -81,9 +101,9 @@ func _wave_mode() -> void:
 	else:
 		_change_wave_direction(Enums.WAVE_DIR.DOWN)
 		_add_trial_point()
-
+	
 func _add_trial_point() -> void:
-	wave_trial.add_point(global_position)
+	_wave_trial.add_point(global_position)
 
 func _change_wave_direction(new_dir: Enums.WAVE_DIR) -> void:
 	_wave_rsc.direction = new_dir
