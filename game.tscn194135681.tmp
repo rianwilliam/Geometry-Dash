@@ -1,0 +1,142 @@
+[gd_scene load_steps=16 format=4 uid="uid://b6dmle3sl63cf"]
+
+[ext_resource type="Texture2D" uid="uid://bj0cuuo00o3qu" path="res://Assets/Ground.png" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://vjn7j4c5jhnu" path="res://game.gd" id="1_eow3j"]
+[ext_resource type="Texture2D" uid="uid://s2b8qfa8fwtk" path="res://Assets/Spikes_2.png" id="1_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://d13lilcx02men" path="res://Assets/Platforms.png" id="1_feb5d"]
+[ext_resource type="PackedScene" uid="uid://c2chvkyy457fn" path="res://Player/Scenes/player.tscn" id="2_feb5d"]
+[ext_resource type="Texture2D" uid="uid://c5g1os7ucyc7x" path="res://Assets/Ground_mark.png" id="2_ryrav"]
+[ext_resource type="PackedScene" uid="uid://bnt2ftx7usqym" path="res://MechanicChangers/Portals/ModeSwitcher/Scenes/mode_switcher.tscn" id="8_j5wjh"]
+[ext_resource type="PackedScene" uid="uid://4f17edh0oxm0" path="res://JumpMechanics/Orb/orb.tscn" id="8_vef74"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ryrav"]
+resource_name = "Spikes"
+texture = ExtResource("1_fc0e3")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.8, -7.2, 0.8, -7.2, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.8, -7.2, 0.8, -7.2, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.8, -7.2, 0.8, -7.2, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.8, -7.2, 0.8, -7.2, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_eow3j"]
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_ryrav")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fc0e3"]
+resource_name = "Normal Ground"
+texture = ExtResource("2_ryrav")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -14.4, -16, -14.4)
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -14.4, 16, -14.4, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -14.4, -16, -14.4)
+1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -14.4, 16, -14.4, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -14.4, -16, -14.4)
+0:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -14.4, 16, -14.4, 16, 16, -16, 16)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -14.4, -16, -14.4)
+1:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -14.4, 16, -14.4, 16, 16, -16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eow3j"]
+resource_name = "Damage Ground"
+texture = ExtResource("1_e2o6t")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/0 = 0
+1:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_7jktm"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 2
+physics_layer_1/collision_mask = 0
+sources/1 = SubResource("TileSetAtlasSource_fc0e3")
+sources/7 = SubResource("TileSetAtlasSource_eow3j")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7jktm"]
+resource_name = "Platform"
+texture = ExtResource("1_feb5d")
+texture_region_size = Vector2i(32, 16)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, 16, -8, 16, -6.4, -16, -6.4)
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -5.6, 16, -5.6, 16, 8, -16, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, 16, -8, 16, -6.4, -16, -6.4)
+1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -5.6, 16, -5.6, 16, 8, -16, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, 16, -8, 16, -6.4, -16, -6.4)
+0:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -5.6, 16, -5.6, 16, 8, -16, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -8, 16, -8, 16, -6.4, -16, -6.4)
+1:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -5.6, 16, -5.6, 16, 8, -16, 8)
+
+[sub_resource type="TileSet" id="TileSet_ryrav"]
+tile_size = Vector2i(32, 16)
+physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 2
+physics_layer_1/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_7jktm")
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_eow3j")
+
+[node name="LevelElements" type="TileMapLayer" parent="."]
+
+[node name="Obstacles" type="TileMapLayer" parent="LevelElements"]
+tile_set = SubResource("TileSet_eow3j")
+
+[node name="Ground" type="TileMapLayer" parent="LevelElements"]
+tile_map_data = PackedByteArray("AAAVAAAAAQAAAAAAAAAWAAAAAQAAAAAAAAAXAAAAAQAAAAAAAAAYAAAAAQAAAAAAAAAZAAAAAQAAAAAAAAAaAAAAAQAAAAAAAAAbAAAAAQAAAAAAAAAcAAAAAQAAAAAAAAAdAAAAAQAAAAAAAAAeAAAAAQAAAAAAAAAfAAAAAQAAAAAAAAAgAAAAAQAAAAAAAAD+//z/AQAAAAAAACAXAPz/AQAAAAAAACAYAPz/AQAAAAAAACAZAPz/AQAAAAAAACAaAPz/AQAAAAAAACAbAPz/AQAAAAAAACAcAPz/AQAAAAAAACAdAPz/AQAAAAAAACAeAPz/AQAAAAAAACAfAPz/AQAAAAAAACAgAPz/AQAAAAAAACD///z/AQAAAAAAACAAAAAAAQAAAAAAAAASAAAAAQAAAAAAAAATAAAAAQAAAAAAAAAUAAAAAQAAAAAAAAAAAPz/AQAAAAAAACD+/wAAAQAAAAAAAAD//wAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAABAPz/AQAAAAAAACACAPz/AQAAAAAAACADAPz/AQAAAAAAACAEAPz/AQAAAAAAACAFAPz/AQAAAAAAACAGAPz/AQAAAAAAACAHAPz/AQAAAAAAACAIAPz/AQAAAAAAACARAAAAAQAAAAAAAAA=")
+tile_set = SubResource("TileSet_7jktm")
+
+[node name="Platforms" type="TileMapLayer" parent="LevelElements"]
+tile_set = SubResource("TileSet_ryrav")
+
+[node name="Player" parent="." instance=ExtResource("2_feb5d")]
+position = Vector2(-56, -8)
+_gravity_dir = null
+_square_rsc = null
+
+[node name="PlayerElements" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="PlayerSpawn" type="Marker2D" parent="PlayerElements"]
+unique_name_in_owner = true
+position = Vector2(-56, -8)
+
+[node name="DieCounter" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -16.0
+offset_top = -96.0
+offset_right = 24.0
+offset_bottom = -73.0
+
+[node name="MechanicChangers" type="Node2D" parent="."]
+
+[node name="ModeSwitcher" parent="MechanicChangers" instance=ExtResource("8_j5wjh")]
+position = Vector2(64, 0)
+
+[node name="JumpMechanics" type="Node2D" parent="."]
+
+[node name="Orb" parent="JumpMechanics" instance=ExtResource("8_vef74")]
+position = Vector2(320, 32)
+
+[node name="Orb2" parent="JumpMechanics" instance=ExtResource("8_vef74")]
+position = Vector2(416, -16)
+
+[node name="Orb3" parent="JumpMechanics" instance=ExtResource("8_vef74")]
+position = Vector2(512, -64)
+
+[node name="Orb4" parent="JumpMechanics" instance=ExtResource("8_vef74")]
+position = Vector2(608, -112)
