@@ -1,5 +1,7 @@
 extends Node2D
 
+#TODO Colocar para limpar todos os filhos de PlayerElements assim que o jogador morrer
+
 @onready var die_counter: Label = %DieCounter
 
 var attemp_counter: int = 1

@@ -4,6 +4,8 @@
 
 [resource]
 script = ExtResource("1_7uh1f")
+vertical_vel = -10.0
 speed = 170.0
-gravity = 15.0
+gravity = 900.0
+jump_height = -250.0
 metadata/_custom_type_script = "uid://cocq5d323dr0p"

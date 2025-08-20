@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c2chvkyy457fn" path="res://Player/Scenes/player.tscn" id="2_feb5d"]
 [ext_resource type="Texture2D" uid="uid://c5g1os7ucyc7x" path="res://Assets/Ground_mark.png" id="2_ryrav"]
 [ext_resource type="PackedScene" uid="uid://bnt2ftx7usqym" path="res://MechanicChangers/Portals/ModeSwitcher/Scenes/mode_switcher.tscn" id="8_j5wjh"]
-[ext_resource type="PackedScene" uid="uid://4f17edh0oxm0" path="res://JumpMechanics/Orb/orb.tscn" id="8_vef74"]
+[ext_resource type="PackedScene" uid="uid://b5fyq8jepbes" path="res://PlayerModifiers/Orbs/JumpOrbs/YellowOrb/Scenes/yellow_orb.tscn" id="8_vef74"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ryrav"]
 resource_name = "Spikes"
@@ -97,7 +97,7 @@ script = ExtResource("1_eow3j")
 tile_set = SubResource("TileSet_eow3j")
 
 [node name="Ground" type="TileMapLayer" parent="LevelElements"]
-tile_map_data = PackedByteArray("AAAVAAAAAQAAAAAAAAAWAAAAAQAAAAAAAAAXAAAAAQAAAAAAAAAYAAAAAQAAAAAAAAAZAAAAAQAAAAAAAAAaAAAAAQAAAAAAAAAbAAAAAQAAAAAAAAAcAAAAAQAAAAAAAAAdAAAAAQAAAAAAAAAeAAAAAQAAAAAAAAAfAAAAAQAAAAAAAAAgAAAAAQAAAAAAAAD+//z/AQAAAAAAACAXAPz/AQAAAAAAACAYAPz/AQAAAAAAACAZAPz/AQAAAAAAACAaAPz/AQAAAAAAACAbAPz/AQAAAAAAACAcAPz/AQAAAAAAACAdAPz/AQAAAAAAACAeAPz/AQAAAAAAACAfAPz/AQAAAAAAACAgAPz/AQAAAAAAACD///z/AQAAAAAAACAAAAAAAQAAAAAAAAASAAAAAQAAAAAAAAATAAAAAQAAAAAAAAAUAAAAAQAAAAAAAAAAAPz/AQAAAAAAACD+/wAAAQAAAAAAAAD//wAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAABAPz/AQAAAAAAACACAPz/AQAAAAAAACADAPz/AQAAAAAAACAEAPz/AQAAAAAAACAFAPz/AQAAAAAAACAGAPz/AQAAAAAAACAHAPz/AQAAAAAAACAIAPz/AQAAAAAAACARAAAAAQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAVAAAAAQAAAAAAAAAWAAAAAQAAAAAAAAAXAAAAAQAAAAAAAAAYAAAAAQAAAAAAAAAZAAAAAQAAAAAAAAAaAAAAAQAAAAAAAAAbAAAAAQAAAAAAAAAcAAAAAQAAAAAAAAAdAAAAAQAAAAAAAAAeAAAAAQAAAAAAAAAfAAAAAQAAAAAAAAAgAAAAAQAAAAAAAAD+//z/AQAAAAAAACAXAPz/AQAAAAAAACAYAPz/AQAAAAAAACAZAPz/AQAAAAAAACAaAPz/AQAAAAAAACAbAPz/AQAAAAAAACAcAPz/AQAAAAAAACAdAPz/AQAAAAAAACAeAPz/AQAAAAAAACAfAPz/AQAAAAAAACAgAPz/AQAAAAAAACD///z/AQAAAAAAACAAAAAAAQAAAAAAAAASAAAAAQAAAAAAAAATAAAAAQAAAAAAAAAUAAAAAQAAAAAAAAAAAPz/AQAAAAAAACD+/wAAAQAAAAAAAAD//wAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAABAPz/AQAAAAAAACACAPz/AQAAAAAAACADAPz/AQAAAAAAACAEAPz/AQAAAAAAACAFAPz/AQAAAAAAACARAAAAAQAAAAAAAAAWAPz/AQAAAAAAACAVAPz/AQAAAAAAACAUAPz/AQAAAAAAACATAPz/AQAAAAAAACASAPz/AQAAAAAAACARAPz/AQAAAAAAACAQAPz/AQAAAAAAACAHAAEABwAAAAAAAAAIAAEABwAAAAAAAAAJAAEABwAAAAAAAAAKAAEABwAAAAAAAAALAAEABwAAAAAAAAAMAAEABwAAAAAAAAANAAEABwAAAAAAAAAOAAEABwAAAAAAAAAPAAEABwAAAAAAAAAQAAEABwAAAAAAAAA=")
 tile_set = SubResource("TileSet_7jktm")
 
 [node name="Platforms" type="TileMapLayer" parent="LevelElements"]
@@ -127,14 +127,8 @@ position = Vector2(64, 0)
 
 [node name="JumpMechanics" type="Node2D" parent="."]
 
-[node name="Orb" parent="JumpMechanics" instance=ExtResource("8_vef74")]
+[node name="YellowOrb" parent="JumpMechanics" instance=ExtResource("8_vef74")]
 position = Vector2(320, 32)
 
-[node name="Orb2" parent="JumpMechanics" instance=ExtResource("8_vef74")]
-position = Vector2(416, -16)
-
-[node name="Orb3" parent="JumpMechanics" instance=ExtResource("8_vef74")]
-position = Vector2(512, -64)
-
-[node name="Orb4" parent="JumpMechanics" instance=ExtResource("8_vef74")]
-position = Vector2(608, -112)
+[node name="YellowOrb3" parent="JumpMechanics" instance=ExtResource("8_vef74")]
+position = Vector2(384, 0)

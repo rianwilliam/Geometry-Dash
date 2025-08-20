@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://suo6vepedlk0"]
+
+[ext_resource type="PackedScene" uid="uid://clb76ayputa2x" path="res://PlayerModifiers/Orbs/OrbBase/Scenes/orb.tscn" id="1_fromn"]
+[ext_resource type="Script" uid="uid://do82qvyhhpvj1" path="res://PlayerModifiers/Orbs/JumpOrbs/JumpOrbBase/Scripts/jump_orb.gd" id="2_rfn3e"]
+
+[node name="JumpOrb" instance=ExtResource("1_fromn")]
+script = ExtResource("2_rfn3e")

@@ -92,5 +92,3 @@ position_smoothing_speed = 10.0
 shape = SubResource("RectangleShape2D_qo0kk")
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
-[connection signal="area_entered" from="OrbSensor" to="." method="_on_orb_sensor_area_entered"]
-[connection signal="area_exited" from="OrbSensor" to="." method="_on_orb_sensor_area_exited"]

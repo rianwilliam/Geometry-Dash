@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://clb76ayputa2x"]
+
+[ext_resource type="PackedScene" uid="uid://dm4l3bw11gg75" path="res://PlayerModifiers/BasePlayerModifier/Scenes/base_player_modifier.tscn" id="1_ijre4"]
+[ext_resource type="Texture2D" uid="uid://d2uponksm664l" path="res://Assets/Orb.png" id="1_ogqpy"]
+[ext_resource type="Script" uid="uid://c4ig4ex50yfk7" path="res://PlayerModifiers/Orbs/OrbBase/Scripts/orb.gd" id="1_xdlj8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cqcrr"]
+radius = 24.0
+
+[node name="Orb" instance=ExtResource("1_ijre4")]
+script = ExtResource("1_xdlj8")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -24)
+texture = ExtResource("1_ogqpy")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -24)
+shape = SubResource("CircleShape2D_cqcrr")

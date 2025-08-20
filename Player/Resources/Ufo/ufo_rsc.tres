@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_x1qdl")
-jump_height = -250.0
+impulse_height = -250.0
 speed = 170.0
-gravity = 15.0
-gravity_dir = 1
+gravity = 900.0
+jump_height = -250.0
 metadata/_custom_type_script = "uid://cube82bal2q2v"

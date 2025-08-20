@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5fyq8jepbes"]
+
+[ext_resource type="PackedScene" uid="uid://suo6vepedlk0" path="res://PlayerModifiers/Orbs/JumpOrbs/JumpOrbBase/Scenes/jump_orb.tscn" id="1_fwolc"]
+[ext_resource type="Script" uid="uid://bxg4yxjbqlaj1" path="res://PlayerModifiers/Orbs/JumpOrbs/YellowOrb/Scripts/yellow_orb.gd" id="2_rqvfk"]
+
+[node name="YellowOrb" instance=ExtResource("1_fwolc")]
+script = ExtResource("2_rqvfk")
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0.993407, 1, 0, 1)

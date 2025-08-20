@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm4l3bw11gg75"]
+
+[ext_resource type="Script" uid="uid://dq4syw764tj2f" path="res://PlayerModifiers/BasePlayerModifier/Scripts/base_player_modifier.gd" id="1_rac6c"]
+
+[node name="BaseJumpMechanic" type="Area2D"]
+script = ExtResource("1_rac6c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

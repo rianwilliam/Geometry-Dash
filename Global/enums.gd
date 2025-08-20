@@ -18,3 +18,17 @@ enum WAVE_DIR {
 	UP = -1,
 	DOWN = 1
 }
+
+enum JUMPS {
+	SMALL,
+	MEDIUM,
+	HIGH,
+}
+
+enum ORBS {
+	YELLOW,
+	BLUE,
+	PINK,
+	RED,
+	BLACK,
+}
