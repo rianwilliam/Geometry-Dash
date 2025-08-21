@@ -10,6 +10,7 @@ enum PLAYER_MODE {
 }
 
 enum GRAVITY_DIR {
+	FLIP = 0,
 	NORMAL = 1,
 	INVERTED = -1
 }
@@ -25,10 +26,8 @@ enum JUMPS {
 	HIGH,
 }
 
-enum ORBS {
-	YELLOW,
-	BLUE,
-	PINK,
-	RED,
-	BLACK,
+enum MODIFIERS {
+	JUMP = 1,
+	GRAVITY = 2,
+	DASH = 3
 }

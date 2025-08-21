@@ -86,11 +86,11 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
-[node name="OrbSensor" type="Area2D" parent="."]
+[node name="ModifierSensor" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OrbSensor"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ModifierSensor"]
 shape = SubResource("RectangleShape2D_qo0kk")
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
-[connection signal="area_entered" from="OrbSensor" to="." method="_on_orb_sensor_area_entered"]
-[connection signal="area_exited" from="OrbSensor" to="." method="_on_orb_sensor_area_exited"]
+[connection signal="area_entered" from="ModifierSensor" to="." method="_on_modifier_sensor_area_entered"]
+[connection signal="area_exited" from="ModifierSensor" to="." method="_on_modifier_sensor_area_exited"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfp6w8k6va5ca"]
+
+[ext_resource type="PackedScene" uid="uid://caxwh7f8wfnh2" path="res://PlayerModifiers/Orbs/GravityOrbs/GravityOrbBase/Scenes/gravity_orb.tscn" id="1_xpwox"]
+[ext_resource type="Script" uid="uid://bfffj22gagtro" path="res://PlayerModifiers/Orbs/GravityOrbs/BlueOrb/Scripts/blue_orb.gd" id="2_hguea"]
+
+[node name="BlueOrb" instance=ExtResource("1_xpwox")]
+script = ExtResource("2_hguea")
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0.222667, 0.0593736, 1, 1)

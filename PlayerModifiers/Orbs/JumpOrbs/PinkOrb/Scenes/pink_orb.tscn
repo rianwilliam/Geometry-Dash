@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://jmgyiq4b767m"]
+
+[ext_resource type="PackedScene" uid="uid://suo6vepedlk0" path="res://PlayerModifiers/Orbs/JumpOrbs/JumpOrbBase/Scenes/jump_orb.tscn" id="1_ymngv"]
+[ext_resource type="Script" uid="uid://caq04yhuk7a62" path="res://PlayerModifiers/Orbs/JumpOrbs/PinkOrb/Scripts/pink_orb.gd" id="2_y0wd8"]
+
+[node name="PinkOrb" instance=ExtResource("1_ymngv")]
+script = ExtResource("2_y0wd8")
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(1, 0.19748, 0.680307, 1)

@@ -1,8 +1,13 @@
 extends Area2D
 class_name PlayerModifier
 
-var effect: Array[Variant]
+var _effect: Array[Variant]
+var _type: Enums.MODIFIERS
 
 func get_effect() -> Variant:
-	assert(effect)
-	return effect
+	assert(_effect)
+	return _effect
+	
+func get_type() -> Enums.MODIFIERS:
+	assert(_type)
+	return _type

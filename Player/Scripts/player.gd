@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+#TODO Colocar jump() como _jump()
+
 @onready var hurt_box: Area2D = %HurtBox
 @onready var spawn: Marker2D = %PlayerSpawn
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
@@ -16,7 +18,10 @@ class_name Player
 
 var _is_on_orb: bool = false
 var _is_on_pad: bool = false
-var _orb_effect: Variant
+var _modifier_used: bool = false
+var _modifier_effect: Variant
+var _modifier_type: Enums.MODIFIERS
+
 var _can_action: bool = true
 var _action_pressed: bool
 var _action_clicked: bool
@@ -50,17 +55,29 @@ func _physics_process(delta: float) -> void:
 		Enums.PLAYER_MODE.UFO: _ufo_mode(delta)
 		Enums.PLAYER_MODE.SPACESHIP: _spaceship_mode(delta)
 	
-	if _orb_jump() or _pad_jump():
-		if not _orb_effect: return
-		for effect in _orb_effect:
-			match effect:
-				Enums.JUMPS.MEDIUM: jump()
-				Enums.JUMPS.SMALL: jump(Enums.JUMPS.SMALL)
-				Enums.JUMPS.HIGH: jump(Enums.JUMPS.HIGH)
-				Enums.GRAVITY_DIR.INVERTED: _set_gravity(Enums.GRAVITY_DIR.INVERTED)
-				Enums.GRAVITY_DIR.NORMAL: _set_gravity(Enums.GRAVITY_DIR.NORMAL)
+	if (_orb_jump() or _pad_jump()) and not _modifier_used:
+		if not _modifier_effect or not _modifier_type: return
+		match _modifier_type:
+			Enums.MODIFIERS.JUMP: _jump_modifiers_actions()
+			Enums.MODIFIERS.GRAVITY: _gravity_modifiers_actions()
+			Enums.MODIFIERS.DASH: pass
+		_modifier_used = true
 
 	move_and_slide()
+
+func _jump_modifiers_actions() -> void:
+	for effect in _modifier_effect:
+		match effect:
+			Enums.JUMPS.MEDIUM: jump()
+			Enums.JUMPS.SMALL: jump(Enums.JUMPS.SMALL)
+			Enums.JUMPS.HIGH: jump(Enums.JUMPS.HIGH)
+
+func _gravity_modifiers_actions() -> void:
+	for effect in _modifier_effect:
+		match effect:
+			Enums.GRAVITY_DIR.FLIP: _invert_gravity()
+			Enums.GRAVITY_DIR.INVERTED: _set_gravity(Enums.GRAVITY_DIR.INVERTED)
+			Enums.GRAVITY_DIR.NORMAL: _set_gravity(Enums.GRAVITY_DIR.NORMAL)
 
 func _set_active_resource() -> void:
 	_active_rsc = _player_resources.get(_mode)
@@ -90,6 +107,7 @@ func _play_jump_anim() -> void:
 	animation_player.play("rotate")
 
 #endregion
+
 func jump(jump_size: Enums.JUMPS = Enums.JUMPS.MEDIUM) -> void:
 	match jump_size:
 		Enums.JUMPS.SMALL: velocity.y = (_active_rsc.jump_height * _gravity_dir) / 1.5
@@ -113,11 +131,8 @@ func _on_mode_entered() -> void:
 func _apply_gravity(delta: float) -> void:
 	velocity.y += _active_rsc.gravity * _gravity_dir * delta
 
-func invert_gravity() -> void:
-	if _gravity_dir == Enums.GRAVITY_DIR.NORMAL:
-		_gravity_dir = Enums.GRAVITY_DIR.INVERTED
-	else:
-		_gravity_dir = Enums.GRAVITY_DIR.NORMAL
+func _invert_gravity() -> void:
+	_gravity_dir *= -1
 
 func _set_gravity(new_dir: Enums.GRAVITY_DIR) -> void:
 	_gravity_dir = new_dir
@@ -155,8 +170,8 @@ func _change_wave_direction(new_dir: Enums.WAVE_DIR) -> void:
 func _ball_mode(delta: float) -> void:
 	_apply_gravity(delta)
 	if not _can_action: return
-	if _action_clicked and is_on_ceiling() : invert_gravity()
-	elif _action_clicked and is_on_floor(): invert_gravity()
+	if _action_clicked and is_on_ceiling() : _invert_gravity()
+	elif _action_clicked and is_on_floor(): _invert_gravity()
 #endregion
 
 #region Ufo
@@ -181,13 +196,16 @@ func _spaceship_mode(delta: float) -> void:
 		_apply_gravity(delta)
 #endregion
 
-func _on_orb_sensor_area_entered(area: Area2D) -> void:
-	if not area is Orb: return
-	_is_on_orb = true
+func _on_modifier_sensor_area_entered(area: Area2D) -> void:
+	if not area is PlayerModifier: return
+	if area is Orb:
+		_is_on_orb = true
 	_can_action = false
-	_orb_effect = area.get_effect()
+	_modifier_effect = area.get_effect()
+	_modifier_type = area.get_type()
 
-func _on_orb_sensor_area_exited(area: Area2D) -> void:
-	if not area is Orb: return
+func _on_modifier_sensor_area_exited(area: Area2D) -> void:
+	if not area is PlayerModifier: return
 	_is_on_orb = false
 	_can_action = true
+	_modifier_used = false

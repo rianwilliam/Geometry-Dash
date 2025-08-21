@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://caxwh7f8wfnh2"]
+
+[ext_resource type="PackedScene" uid="uid://clb76ayputa2x" path="res://PlayerModifiers/Orbs/OrbBase/Scenes/orb.tscn" id="1_38dhn"]
+[ext_resource type="Script" uid="uid://cf7e2uloq2ejp" path="res://PlayerModifiers/Orbs/GravityOrbs/GravityOrbBase/Scripts/gravity_orb.gd" id="2_788jk"]
+
+[node name="GravityOrb" instance=ExtResource("1_38dhn")]
+script = ExtResource("2_788jk")

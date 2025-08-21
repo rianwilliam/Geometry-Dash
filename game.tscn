@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://b6dmle3sl63cf"]
+[gd_scene load_steps=17 format=4 uid="uid://b6dmle3sl63cf"]
 
 [ext_resource type="Texture2D" uid="uid://bj0cuuo00o3qu" path="res://Assets/Ground.png" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://vjn7j4c5jhnu" path="res://game.gd" id="1_eow3j"]
@@ -7,24 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://c2chvkyy457fn" path="res://Player/Scenes/player.tscn" id="2_feb5d"]
 [ext_resource type="Texture2D" uid="uid://c5g1os7ucyc7x" path="res://Assets/Ground_mark.png" id="2_ryrav"]
 [ext_resource type="PackedScene" uid="uid://bnt2ftx7usqym" path="res://MechanicChangers/Portals/ModeSwitcher/Scenes/mode_switcher.tscn" id="8_j5wjh"]
-[ext_resource type="PackedScene" uid="uid://b5fyq8jepbes" path="res://PlayerModifiers/Orbs/JumpOrbs/YellowOrb/Scenes/yellow_orb.tscn" id="8_vef74"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ryrav"]
-resource_name = "Spikes"
-texture = ExtResource("1_fc0e3")
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.8, -7.2, 0.8, -7.2, 8, 8, -8, 8)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.8, -7.2, 0.8, -7.2, 8, 8, -8, 8)
-0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.8, -7.2, 0.8, -7.2, 8, 8, -8, 8)
-1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.8, -7.2, 0.8, -7.2, 8, 8, -8, 8)
-
-[sub_resource type="TileSet" id="TileSet_eow3j"]
-physics_layer_0/collision_layer = 2
-physics_layer_0/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_ryrav")
+[ext_resource type="PackedScene" uid="uid://jmgyiq4b767m" path="res://PlayerModifiers/Orbs/JumpOrbs/PinkOrb/Scenes/pink_orb.tscn" id="8_vef74"]
+[ext_resource type="PackedScene" uid="uid://cfp6w8k6va5ca" path="res://PlayerModifiers/Orbs/GravityOrbs/BlueOrb/Scenes/blue_orb.tscn" id="9_vef74"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fc0e3"]
 resource_name = "Normal Ground"
@@ -64,6 +48,23 @@ physics_layer_1/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_fc0e3")
 sources/7 = SubResource("TileSetAtlasSource_eow3j")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ryrav"]
+resource_name = "Spikes"
+texture = ExtResource("1_fc0e3")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.8, -7.2, 0.8, -7.2, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.8, -7.2, 0.8, -7.2, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.8, -7.2, 0.8, -7.2, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.8, -7.2, 0.8, -7.2, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_eow3j"]
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_ryrav")
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7jktm"]
 resource_name = "Platform"
 texture = ExtResource("1_feb5d")
@@ -93,12 +94,14 @@ script = ExtResource("1_eow3j")
 
 [node name="LevelElements" type="TileMapLayer" parent="."]
 
-[node name="Obstacles" type="TileMapLayer" parent="LevelElements"]
-tile_set = SubResource("TileSet_eow3j")
-
 [node name="Ground" type="TileMapLayer" parent="LevelElements"]
-tile_map_data = PackedByteArray("AAAVAAAAAQAAAAAAAAAWAAAAAQAAAAAAAAAXAAAAAQAAAAAAAAAYAAAAAQAAAAAAAAAZAAAAAQAAAAAAAAAaAAAAAQAAAAAAAAAbAAAAAQAAAAAAAAAcAAAAAQAAAAAAAAAdAAAAAQAAAAAAAAAeAAAAAQAAAAAAAAAfAAAAAQAAAAAAAAAgAAAAAQAAAAAAAAD+//z/AQAAAAAAACAXAPz/AQAAAAAAACAYAPz/AQAAAAAAACAZAPz/AQAAAAAAACAaAPz/AQAAAAAAACAbAPz/AQAAAAAAACAcAPz/AQAAAAAAACAdAPz/AQAAAAAAACAeAPz/AQAAAAAAACAfAPz/AQAAAAAAACAgAPz/AQAAAAAAACD///z/AQAAAAAAACAAAAAAAQAAAAAAAAASAAAAAQAAAAAAAAATAAAAAQAAAAAAAAAUAAAAAQAAAAAAAAAAAPz/AQAAAAAAACD+/wAAAQAAAAAAAAD//wAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAABAPz/AQAAAAAAACACAPz/AQAAAAAAACADAPz/AQAAAAAAACAEAPz/AQAAAAAAACAFAPz/AQAAAAAAACARAAAAAQAAAAAAAAAWAPz/AQAAAAAAACAVAPz/AQAAAAAAACAUAPz/AQAAAAAAACATAPz/AQAAAAAAACASAPz/AQAAAAAAACARAPz/AQAAAAAAACAQAPz/AQAAAAAAACAHAAEABwAAAAAAAAAIAAEABwAAAAAAAAAJAAEABwAAAAAAAAAKAAEABwAAAAAAAAALAAEABwAAAAAAAAAMAAEABwAAAAAAAAANAAEABwAAAAAAAAAOAAEABwAAAAAAAAAPAAEABwAAAAAAAAAQAAEABwAAAAAAAAA=")
+position = Vector2(-32, 0)
+tile_map_data = PackedByteArray("AAD+//z/AQAAAAAAACAYAPz/AQAAAAAAACAZAPz/AQAAAAAAACD///z/AQAAAAAAACAAAAAAAQAAAAAAAAAAAPz/AQAAAAAAACD+/wAAAQAAAAAAAAD//wAAAQAAAAAAAAAEAAAAAQAAAAAAAAABAPz/AQAAAAAAACACAPz/AQAAAAAAACADAPz/AQAAAAAAACAEAPz/AQAAAAAAACAFAPz/AQAAAAAAACABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAANAPz/AQAAAAAAACAOAPz/AQAAAAAAACAMAPz/AQAAAAAAACALAPz/AQAAAAAAACAKAPz/AQAAAAAAACAJAPz/AQAAAAAAACAIAPz/AQAAAAAAACAHAPz/AQAAAAAAACAGAPz/AQAAAAAAACAEAAIABwAAAAAAAAAFAAIABwAAAAAAAAAGAAIABwAAAAAAAAAHAAIABwAAAAAAAAAIAAIABwAAAAAAAAAJAAIABwAAAAAAAAAKAAIABwAAAAAAAAALAAIABwAAAAAAAAAEAAEABwAAAAAAAAALAAMABwAAAAAAAAAMAAMABwAAAAAAAAANAAMABwAAAAAAAAAOAAMABwAAAAAAAAAPAAMABwAAAAAAAAAQAAMABwAAAAAAAAAPAPz/AQAAAAAAACAQAPz/AQAAAAAAACARAPz/AQAAAAAAACASAPz/AQAAAAAAACATAPz/AQAAAAAAACAUAPz/AQAAAAAAACAVAPz/AQAAAAAAACAXAPz/AQAAAAAAACAWAPz/AQAAAAAAACAbAAEAAQAAAAAAAAAcAAEAAQAAAAAAAAAdAAEAAQAAAAAAAAAeAAEAAQAAAAAAAAAfAAEAAQAAAAAAAAAgAAEAAQAAAAAAAAAhAAEAAQAAAAAAAAAiAAEAAQAAAAAAAAAjAAEAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_7jktm")
+
+[node name="Obstacles" type="TileMapLayer" parent="LevelElements"]
+tile_map_data = PackedByteArray("AAAIAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAALAAMAAAAAAAAAAAAMAAMAAAAAAAAAAAANAAMAAAAAAAAAAAAOAAMAAAAAAAAAAAAPAAMAAAAAAAAAAAAQAAMAAAAAAAAAAAARAAMAAAAAAAAAAAASAAMAAAAAAAAAAAATAAMAAAAAAAAAAAAUAAMAAAAAAAAAAAAVAAMAAAAAAAAAAAAWAAQAAAAAAAAAAFAWAAUAAAAAAAAAAFAXAAUAAAAAAAAAAAAYAAUAAAAAAAAAAAAZAAUAAAAAAAAAAAAaAAUAAAAAAAAAAAAbAAUAAAAAAAAAAAAcAAUAAAAAAAAAAAAdAAUAAAAAAAAAAAAeAAUAAAAAAAAAAAAfAAUAAAAAAAAAAAAmAPr/AAAAAAAAACAnAPr/AAAAAAAAACAoAPr/AAAAAAAAACA=")
+tile_set = SubResource("TileSet_eow3j")
 
 [node name="Platforms" type="TileMapLayer" parent="LevelElements"]
 tile_set = SubResource("TileSet_ryrav")
@@ -125,10 +128,19 @@ offset_bottom = -73.0
 [node name="ModeSwitcher" parent="MechanicChangers" instance=ExtResource("8_j5wjh")]
 position = Vector2(64, 0)
 
-[node name="JumpMechanics" type="Node2D" parent="."]
+[node name="PadsAndOrbs" type="Node2D" parent="."]
 
-[node name="YellowOrb" parent="JumpMechanics" instance=ExtResource("8_vef74")]
+[node name="PinkOrb" parent="PadsAndOrbs" instance=ExtResource("8_vef74")]
+position = Vector2(192, 32)
+
+[node name="PinkOrb2" parent="PadsAndOrbs" instance=ExtResource("8_vef74")]
+position = Vector2(256, 32)
+
+[node name="PinkOrb3" parent="PadsAndOrbs" instance=ExtResource("8_vef74")]
 position = Vector2(320, 32)
 
-[node name="YellowOrb3" parent="JumpMechanics" instance=ExtResource("8_vef74")]
-position = Vector2(384, 0)
+[node name="BlueOrb" parent="PadsAndOrbs" instance=ExtResource("9_vef74")]
+position = Vector2(384, 32)
+
+[node name="BlueOrb2" parent="PadsAndOrbs" instance=ExtResource("9_vef74")]
+position = Vector2(800, -32)

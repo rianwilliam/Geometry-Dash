@@ -1,6 +1,6 @@
 extends JumpOrb
-class_name YellowOrb
+class_name PinkOrb
 
 func _ready() -> void:
 	super._ready()
-	_effect = [Enums.JUMPS.MEDIUM]
+	_effect = [Enums.JUMPS.SMALL]
