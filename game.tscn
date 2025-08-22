@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://b6dmle3sl63cf"]
+[gd_scene load_steps=19 format=4 uid="uid://b6dmle3sl63cf"]
 
 [ext_resource type="Texture2D" uid="uid://bj0cuuo00o3qu" path="res://Assets/Ground.png" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://vjn7j4c5jhnu" path="res://game.gd" id="1_eow3j"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bnt2ftx7usqym" path="res://MechanicChangers/Portals/ModeSwitcher/Scenes/mode_switcher.tscn" id="8_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://jmgyiq4b767m" path="res://PlayerModifiers/Orbs/JumpOrbs/PinkOrb/Scenes/pink_orb.tscn" id="8_vef74"]
 [ext_resource type="PackedScene" uid="uid://cfp6w8k6va5ca" path="res://PlayerModifiers/Orbs/GravityOrbs/BlueOrb/Scenes/blue_orb.tscn" id="9_vef74"]
+[ext_resource type="PackedScene" uid="uid://b5fyq8jepbes" path="res://PlayerModifiers/Orbs/JumpOrbs/YellowOrb/Scenes/yellow_orb.tscn" id="10_hve3p"]
+[ext_resource type="PackedScene" uid="uid://c2gqpy2dfcd7d" path="res://PlayerModifiers/Pads/YellowPad/Scenes/yellow_pad.tscn" id="11_mfdv2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fc0e3"]
 resource_name = "Normal Ground"
@@ -140,7 +142,13 @@ position = Vector2(256, 32)
 position = Vector2(320, 32)
 
 [node name="BlueOrb" parent="PadsAndOrbs" instance=ExtResource("9_vef74")]
-position = Vector2(384, 32)
+position = Vector2(512, 32)
 
 [node name="BlueOrb2" parent="PadsAndOrbs" instance=ExtResource("9_vef74")]
 position = Vector2(800, -32)
+
+[node name="YellowOrb" parent="PadsAndOrbs" instance=ExtResource("10_hve3p")]
+position = Vector2(384, 32)
+
+[node name="YellowPad" parent="PadsAndOrbs" instance=ExtResource("11_mfdv2")]
+position = Vector2(96, 0)

@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcrj7b82ytawt"]
+
+[ext_resource type="PackedScene" uid="uid://dm4l3bw11gg75" path="res://PlayerModifiers/BasePlayerModifier/Scenes/base_player_modifier.tscn" id="1_je8cq"]
+[ext_resource type="Script" uid="uid://chnb066qwosvp" path="res://PlayerModifiers/Pads/PadBase/Scripts/pad.gd" id="2_ovnvp"]
+[ext_resource type="Texture2D" uid="uid://d2uponksm664l" path="res://Assets/Orb.png" id="3_ovnvp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aaa0x"]
+size = Vector2(18, 4)
+
+[node name="Pad" instance=ExtResource("1_je8cq")]
+script = ExtResource("2_ovnvp")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -3)
+texture = ExtResource("3_ovnvp")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 6)
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_aaa0x")

@@ -1,5 +1,5 @@
-extends JumpOrb
-class_name YellowOrb
+extends Pad
+class_name YellowPad
 
 func _ready() -> void:
 	_effect = {

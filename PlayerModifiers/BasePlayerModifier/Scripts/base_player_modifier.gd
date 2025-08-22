@@ -1,7 +1,7 @@
 extends Area2D
 class_name PlayerModifier
 
-var _effect: Array[Variant]
+var _effect: Dictionary[int, int]
 var _type: Enums.MODIFIERS
 
 func get_effect() -> Variant:

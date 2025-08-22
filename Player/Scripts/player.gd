@@ -20,7 +20,6 @@ var _is_on_orb: bool = false
 var _is_on_pad: bool = false
 var _modifier_used: bool = false
 var _modifier_effect: Variant
-var _modifier_type: Enums.MODIFIERS
 
 var _can_action: bool = true
 var _action_pressed: bool
@@ -56,28 +55,31 @@ func _physics_process(delta: float) -> void:
 		Enums.PLAYER_MODE.SPACESHIP: _spaceship_mode(delta)
 	
 	if (_orb_jump() or _pad_jump()) and not _modifier_used:
-		if not _modifier_effect or not _modifier_type: return
-		match _modifier_type:
-			Enums.MODIFIERS.JUMP: _jump_modifiers_actions()
-			Enums.MODIFIERS.GRAVITY: _gravity_modifiers_actions()
-			Enums.MODIFIERS.DASH: pass
+		if not _modifier_effect: return
+
+		var _jump_effect = _modifier_effect.get(Enums.MODIFIERS.JUMP)
+		var _gravity_effect = _modifier_effect.get(Enums.MODIFIERS.GRAVITY)
+		var _dash_effect = _modifier_effect.get(Enums.MODIFIERS.DASH)
+
+		if _jump_effect != null: _jump_modifiers_actions(_jump_effect)
+		if _gravity_effect != null: _gravity_modifiers_actions(_gravity_effect)
+		if _dash_effect != null: pass
+
 		_modifier_used = true
 
 	move_and_slide()
 
-func _jump_modifiers_actions() -> void:
-	for effect in _modifier_effect:
-		match effect:
-			Enums.JUMPS.MEDIUM: jump()
-			Enums.JUMPS.SMALL: jump(Enums.JUMPS.SMALL)
-			Enums.JUMPS.HIGH: jump(Enums.JUMPS.HIGH)
+func _jump_modifiers_actions(effect: Enums.JUMPS) -> void:
+	match effect:
+		Enums.JUMPS.MEDIUM: jump()
+		Enums.JUMPS.SMALL: jump(Enums.JUMPS.SMALL)
+		Enums.JUMPS.HIGH: jump(Enums.JUMPS.HIGH)
 
-func _gravity_modifiers_actions() -> void:
-	for effect in _modifier_effect:
-		match effect:
-			Enums.GRAVITY_DIR.FLIP: _invert_gravity()
-			Enums.GRAVITY_DIR.INVERTED: _set_gravity(Enums.GRAVITY_DIR.INVERTED)
-			Enums.GRAVITY_DIR.NORMAL: _set_gravity(Enums.GRAVITY_DIR.NORMAL)
+func _gravity_modifiers_actions(effect: Enums.GRAVITY_DIR) -> void:
+	match effect:
+		Enums.GRAVITY_DIR.FLIP: _invert_gravity()
+		Enums.GRAVITY_DIR.INVERTED: _set_gravity(Enums.GRAVITY_DIR.INVERTED)
+		Enums.GRAVITY_DIR.NORMAL: _set_gravity(Enums.GRAVITY_DIR.NORMAL)
 
 func _set_active_resource() -> void:
 	_active_rsc = _player_resources.get(_mode)
@@ -185,6 +187,7 @@ func _ufo_mode(delta: float) -> void:
 #region Reset
 func _reset_player() -> void:
 	global_position = spawn.global_position
+	_gravity_dir = Enums.GRAVITY_DIR.NORMAL
 	change_mode(Enums.PLAYER_MODE.SQUARE)
 #endregion
 
@@ -198,14 +201,14 @@ func _spaceship_mode(delta: float) -> void:
 
 func _on_modifier_sensor_area_entered(area: Area2D) -> void:
 	if not area is PlayerModifier: return
-	if area is Orb:
-		_is_on_orb = true
+	if area is Orb: _is_on_orb = true
+	if area is Pad: _is_on_pad = true
 	_can_action = false
 	_modifier_effect = area.get_effect()
-	_modifier_type = area.get_type()
 
 func _on_modifier_sensor_area_exited(area: Area2D) -> void:
 	if not area is PlayerModifier: return
 	_is_on_orb = false
+	_is_on_pad = false
 	_can_action = true
 	_modifier_used = false

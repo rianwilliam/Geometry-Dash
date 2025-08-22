@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2gqpy2dfcd7d"]
+
+[ext_resource type="PackedScene" uid="uid://dcrj7b82ytawt" path="res://PlayerModifiers/Pads/PadBase/Scenes/pad.tscn" id="1_w6l15"]
+[ext_resource type="Script" uid="uid://bt0i7vsrv6ffe" path="res://PlayerModifiers/Pads/YellowPad/Scripts/yellow_pad.gd" id="2_by5hq"]
+
+[node name="YellowPad" instance=ExtResource("1_w6l15")]
+script = ExtResource("2_by5hq")
