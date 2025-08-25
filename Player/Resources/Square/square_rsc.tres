@@ -6,5 +6,5 @@
 script = ExtResource("1_rvpwp")
 speed = 170.0
 gravity = 900.0
-jump_height = -250.0
+jump_height = -240.0
 metadata/_custom_type_script = "uid://t2n5hllvasd8"

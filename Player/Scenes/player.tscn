@@ -1,12 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://c2chvkyy457fn"]
+[gd_scene load_steps=9 format=3 uid="uid://c2chvkyy457fn"]
 
 [ext_resource type="Texture2D" uid="uid://ddeb5q3uhisg8" path="res://Player/Assets/Player.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://chfam0xfy4w5b" path="res://Player/Scripts/player.gd" id="1_onrkg"]
-[ext_resource type="Resource" uid="uid://dr6tiby56s34r" path="res://Player/Resources/Square/square_rsc.tres" id="2_omv0o"]
-[ext_resource type="Resource" uid="uid://dpb2cy5ac7i82" path="res://Player/Resources/Wave/wave_rsc.tres" id="3_bw35f"]
-[ext_resource type="Resource" uid="uid://ca2y0oe1bmyy6" path="res://Player/Resources/Ufo/ufo_rsc.tres" id="4_qo0kk"]
-[ext_resource type="Resource" uid="uid://dbudyuua354hb" path="res://Player/Resources/Ball/ball_rsc.tres" id="5_2hb64"]
-[ext_resource type="Resource" uid="uid://dytdpovfiqnuv" path="res://Player/Resources/SpaceShip/spaceship_rsc.tres" id="6_qsune"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(16, 16)
@@ -56,11 +51,6 @@ size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_onrkg")
-_square_rsc = ExtResource("2_omv0o")
-_wave_rsc = ExtResource("3_bw35f")
-_ufo_rsc = ExtResource("4_qo0kk")
-_ball_rsc = ExtResource("5_2hb64")
-_spaceship_rsc = ExtResource("6_qsune")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_4flbx")

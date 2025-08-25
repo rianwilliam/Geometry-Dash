@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwm6yd6g4jhjn"]
+
+[ext_resource type="PackedScene" uid="uid://dcrj7b82ytawt" path="res://PlayerModifiers/Pads/PadBase/Scenes/pad.tscn" id="1_ddnhp"]
+[ext_resource type="Script" uid="uid://0vm7psx02lg5" path="res://PlayerModifiers/Pads/BluePad/Scripts/blue_pad.gd" id="2_4twnp"]
+
+[node name="BluePad" instance=ExtResource("1_ddnhp")]
+script = ExtResource("2_4twnp")

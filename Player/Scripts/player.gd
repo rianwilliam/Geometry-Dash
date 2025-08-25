@@ -10,16 +10,18 @@ class_name Player
 @onready var player_elements: Node2D = %PlayerElements
 
 @export var _gravity_dir: Enums.GRAVITY_DIR = Enums.GRAVITY_DIR.NORMAL
-@export var _square_rsc: SquareResource
-@export var _wave_rsc: WaveResource
-@export var _ufo_rsc: UfoResource
-@export var _ball_rsc: BallResource
-@export var _spaceship_rsc: SpaceshipResource
+var _square_rsc: SquareResource = SquareResource.new()
+var _wave_rsc: WaveResource = WaveResource.new()
+var _ufo_rsc: UfoResource = UfoResource.new()
+var _ball_rsc: BallResource = BallResource.new()
+var _spaceship_rsc: SpaceshipResource = SpaceshipResource.new()
 
 var _is_on_orb: bool = false
 var _is_on_pad: bool = false
 var _modifier_used: bool = false
 var _modifier_effect: Variant
+var _old_x_position: float
+var _position_verified: bool = false
 
 var _can_action: bool = true
 var _action_pressed: bool
@@ -43,6 +45,17 @@ func _ready() -> void:
 	_set_active_resource()
 
 func _physics_process(delta: float) -> void:
+	if not _position_verified:
+		_old_x_position = position.x
+		_position_verified = true
+	else:
+		if position.x == _old_x_position:
+			Events.emit_signal("player_died")
+			_reset_player()
+		else:
+			_old_x_position = 0
+		_position_verified = false
+
 	_action_pressed = Input.is_action_pressed("Action")
 	_action_clicked = Input.is_action_just_pressed("Action")
 	velocity.x = _active_rsc.speed
