@@ -45,6 +45,7 @@ func _ready() -> void:
 	_set_active_resource()
 
 func _physics_process(delta: float) -> void:
+	Events.emit_signal("player_pos", global_position)
 	if not _position_verified:
 		_old_x_position = position.x
 		_position_verified = true
@@ -202,6 +203,7 @@ func _reset_player() -> void:
 	global_position = spawn.global_position
 	_gravity_dir = Enums.GRAVITY_DIR.NORMAL
 	change_mode(Enums.PLAYER_MODE.SQUARE)
+	velocity = Vector2.ZERO
 #endregion
 
 #region Spaceship

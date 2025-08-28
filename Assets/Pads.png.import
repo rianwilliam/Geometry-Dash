@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5g1os7ucyc7x"
-path="res://.godot/imported/Ground_mark.png-cd53fccd2c05846ccb2946349a961213.ctex"
+uid="uid://bbfr7prwd633q"
+path="res://.godot/imported/Pads.png-ca69748e161f47ec71441f923319814f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Ground_mark.png"
-dest_files=["res://.godot/imported/Ground_mark.png-cd53fccd2c05846ccb2946349a961213.ctex"]
+source_file="res://Assets/Pads.png"
+dest_files=["res://.godot/imported/Pads.png-ca69748e161f47ec71441f923319814f.ctex"]
 
 [params]
 

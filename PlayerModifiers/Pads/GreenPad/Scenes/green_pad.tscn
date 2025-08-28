@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://clb5yi125peyg"]
+
+[ext_resource type="PackedScene" uid="uid://dcrj7b82ytawt" path="res://PlayerModifiers/Pads/PadBase/Scenes/pad.tscn" id="1_dhcke"]
+[ext_resource type="Texture2D" uid="uid://bbfr7prwd633q" path="res://Assets/Pads.png" id="2_2injr"]
+[ext_resource type="Script" uid="uid://uh6uq8t7qg1s" path="res://PlayerModifiers/Pads/GreenPad/Scripts/green_pad.gd" id="2_3d613"]
+
+[node name="GreenPad" instance=ExtResource("1_dhcke")]
+script = ExtResource("2_3d613")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_2injr")
+region_rect = Rect2(64, 11, 16, 5)
+
+[node name="CPUParticles2D" parent="." index="2"]
+color = Color(0.415686, 0.745098, 0.188235, 1)

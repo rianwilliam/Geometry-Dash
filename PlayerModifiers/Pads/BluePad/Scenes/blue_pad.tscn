@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwm6yd6g4jhjn"]
+[gd_scene load_steps=4 format=3 uid="uid://cwm6yd6g4jhjn"]
 
 [ext_resource type="PackedScene" uid="uid://dcrj7b82ytawt" path="res://PlayerModifiers/Pads/PadBase/Scenes/pad.tscn" id="1_ddnhp"]
 [ext_resource type="Script" uid="uid://0vm7psx02lg5" path="res://PlayerModifiers/Pads/BluePad/Scripts/blue_pad.gd" id="2_4twnp"]
+[ext_resource type="Texture2D" uid="uid://bbfr7prwd633q" path="res://Assets/Pads.png" id="3_3kb7u"]
 
 [node name="BluePad" instance=ExtResource("1_ddnhp")]
 script = ExtResource("2_4twnp")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_3kb7u")
+region_rect = Rect2(16, 11, 16, 5)
+
+[node name="CPUParticles2D" parent="." index="2"]
+color = Color(0.356863, 0.431373, 0.882353, 1)

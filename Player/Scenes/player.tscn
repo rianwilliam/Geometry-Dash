@@ -71,11 +71,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_hqtel")
 }
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0
-
 [node name="ModifierSensor" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ModifierSensor"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dl8vgj16lfx51"]
+
+[ext_resource type="PackedScene" uid="uid://dcrj7b82ytawt" path="res://PlayerModifiers/Pads/PadBase/Scenes/pad.tscn" id="1_xe3n6"]
+[ext_resource type="Script" uid="uid://bfxy0j374i7s2" path="res://PlayerModifiers/Pads/RedPad/Scripts/red_pad.gd" id="2_k8je6"]
+[ext_resource type="Texture2D" uid="uid://bbfr7prwd633q" path="res://Assets/Pads.png" id="3_2yx24"]
+
+[node name="RedPad" instance=ExtResource("1_xe3n6")]
+script = ExtResource("2_k8je6")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_2yx24")
+region_rect = Rect2(48, 11, 16, 5)
+
+[node name="CPUParticles2D" parent="." index="2"]
+color = Color(0.772549, 0, 0, 1)

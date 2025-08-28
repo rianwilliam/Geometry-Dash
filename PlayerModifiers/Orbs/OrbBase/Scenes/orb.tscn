@@ -17,3 +17,13 @@ texture = ExtResource("1_ogqpy")
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, -24)
 shape = SubResource("CircleShape2D_cqcrr")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="2"]
+position = Vector2(0, -24)
+amount = 50
+emission_shape = 1
+emission_sphere_radius = 40.0
+spread = 120.17
+gravity = Vector2(0, 0)
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.2
