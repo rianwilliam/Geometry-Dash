@@ -52,10 +52,10 @@ size = Vector2(16, 16)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_onrkg")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_4flbx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="HurtBox" type="Area2D" parent="."]
@@ -66,7 +66,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("RectangleShape2D_i3pqv")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_hqtel")
 }
@@ -75,6 +75,10 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ModifierSensor"]
 shape = SubResource("RectangleShape2D_qo0kk")
+
+[node name="Robot" type="Node2D" parent="."]
+
+[node name="FlyTimer" type="Timer" parent="Robot"]
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="area_entered" from="ModifierSensor" to="." method="_on_modifier_sensor_area_entered"]

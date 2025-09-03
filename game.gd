@@ -3,7 +3,6 @@ extends Node2D
 #TODO Colocar para limpar todos os filhos de PlayerElements assim que o jogador morrer
 
 @onready var die_counter: Label = %DieCounter
-@onready var test: TileMapLayer = $LevelElements/Test
 @onready var camera_2d: Camera2D = %Camera
 
 var attemp_counter: int = 1

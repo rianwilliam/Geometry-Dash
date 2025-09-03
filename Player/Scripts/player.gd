@@ -4,19 +4,23 @@ class_name Player
 #TODO Colocar jump() como _jump()
 #TODO Recortar o sprite do player, fazer uma animação dele despedaçando e saindo partículas
 # Fazer uma função que recebe os nós dos sprites, assim funcionando para qualquer elemento
+#TODO Portal que inverte a direção do jogador
+#TODO Portal que teleporta o jogador
+#TODO Criar função para logica de pulo
+#TODO Criar função que verifica se o jogador está parado
 
 @onready var hurt_box: Area2D = %HurtBox
 @onready var spawn: Marker2D = %PlayerSpawn
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_player: AnimationPlayer = $AnimPlayer
 @onready var player_elements: Node2D = %PlayerElements
 
 @export var _gravity_dir: Enums.GRAVITY_DIR = Enums.GRAVITY_DIR.NORMAL
-var _square_rsc: SquareResource = SquareResource.new()
-var _wave_rsc: WaveResource = WaveResource.new()
-var _ufo_rsc: UfoResource = UfoResource.new()
-var _ball_rsc: BallResource = BallResource.new()
-var _spaceship_rsc: SpaceshipResource = SpaceshipResource.new()
+var _square_rsc: SquareResource = preload("res://Player/Resources/Square/square_rsc.tres")
+var _wave_rsc: WaveResource = preload("res://Player/Resources/Wave/wave_rsc.tres")
+var _ufo_rsc: UfoResource = preload("res://Player/Resources/Ufo/ufo_rsc.tres")
+var _ball_rsc: BallResource = preload("res://Player/Resources/Ball/ball_rsc.tres")
+var _spaceship_rsc: SpaceshipResource = preload("res://Player/Resources/SpaceShip/spaceship_rsc.tres")
 
 var _is_on_orb: bool = false
 var _is_on_pad: bool = false
@@ -29,9 +33,9 @@ var _gravity_force_multiplier: Enums.GRAVITY_FORCE = Enums.GRAVITY_FORCE.NORMAL
 var _can_action: bool = true
 var _action_pressed: bool
 var _action_clicked: bool
-var _mode: Enums.PLAYER_MODE = Enums.PLAYER_MODE.SQUARE
 var _active_rsc: PlayerBaseResource
 var _wave_trial: WaveTrial
+var _mode: Enums.PLAYER_MODE = Enums.PLAYER_MODE.SQUARE
 var _player_resources: Dictionary[Enums.PLAYER_MODE, PlayerBaseResource]
 
 const _WAVE_TRIAL_SCENE_PATH: String = "res://Player/Scenes/wave_trial.tscn"
@@ -240,6 +244,14 @@ func _spaceship_mode(delta: float) -> void:
 		velocity.y += _active_rsc.vertical_vel * _gravity_dir
 	else:
 		_apply_gravity(delta)
+#endregion
+
+#region Robot
+func _robot_mode() -> void:
+	pass
+
+func _on_enter_robot_mode() -> void:
+	pass
 #endregion
 
 func _on_modifier_sensor_area_entered(area: Area2D) -> void:
