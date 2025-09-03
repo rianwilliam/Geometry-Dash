@@ -1,29 +1,195 @@
-[gd_scene load_steps=5 format=3 uid="uid://clb76ayputa2x"]
+[gd_scene load_steps=14 format=3 uid="uid://clb76ayputa2x"]
 
 [ext_resource type="PackedScene" uid="uid://dm4l3bw11gg75" path="res://PlayerModifiers/BasePlayerModifier/Scenes/base_player_modifier.tscn" id="1_ijre4"]
 [ext_resource type="Texture2D" uid="uid://d2uponksm664l" path="res://Assets/Orb.png" id="1_ogqpy"]
 [ext_resource type="Script" uid="uid://c4ig4ex50yfk7" path="res://PlayerModifiers/Orbs/OrbBase/Scripts/orb.gd" id="1_xdlj8"]
+[ext_resource type="Script" uid="uid://bppeyfdsjx8hs" path="res://PlayerModifiers/Orbs/OrbBase/Scripts/orb_layers.gd" id="3_jnywl"]
+[ext_resource type="Script" uid="uid://dm3tmqpuapy0c" path="res://PlayerModifiers/Orbs/OrbBase/Scripts/external_layer.gd" id="5_0ng1g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqcrr"]
-radius = 24.0
+radius = 23.0217
+
+[sub_resource type="Animation" id="Animation_of2de"]
+resource_name = "MiddleRotation"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_jnywl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0ng1g"]
+_data = {
+&"MiddleRotation": SubResource("Animation_of2de"),
+&"RESET": SubResource("Animation_jnywl")
+}
+
+[sub_resource type="Animation" id="Animation_iptxf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OrbLayers/ExternalLayer:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OrbLayers/ExternalLayer:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8dd3i"]
+resource_name = "ExternalRotation"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OrbLayers/ExternalLayer:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_ldruq"]
+resource_name = "Pop"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OrbLayers/ExternalLayer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1e-05),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kensq"]
+_data = {
+&"RESET": SubResource("Animation_iptxf"),
+&"external_rotation": SubResource("Animation_8dd3i"),
+&"pop": SubResource("Animation_ldruq")
+}
 
 [node name="Orb" instance=ExtResource("1_ijre4")]
 script = ExtResource("1_xdlj8")
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(0, -24)
-texture = ExtResource("1_ogqpy")
+position = Vector2(0, -23)
+region_enabled = true
+region_rect = Rect2(1, 1, 30, 30)
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, -24)
+position = Vector2(0, -23)
 shape = SubResource("CircleShape2D_cqcrr")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." index="2"]
-position = Vector2(0, -24)
+position = Vector2(0, -23)
 amount = 50
 emission_shape = 1
-emission_sphere_radius = 40.0
+emission_sphere_radius = 15.0
 spread = 120.17
 gravity = Vector2(0, 0)
 orbit_velocity_min = 0.1
 orbit_velocity_max = 0.2
+
+[node name="OrbLayers" type="Marker2D" parent="." index="3"]
+position = Vector2(0, -23)
+script = ExtResource("3_jnywl")
+
+[node name="MiddleLayer" type="Marker2D" parent="OrbLayers" index="0"]
+
+[node name="Sprite2D" type="Sprite2D" parent="OrbLayers/MiddleLayer" index="0"]
+texture = ExtResource("1_ogqpy")
+region_enabled = true
+region_rect = Rect2(132, 4, 24, 24)
+
+[node name="Sprite2D2" type="Sprite2D" parent="OrbLayers/MiddleLayer" index="1"]
+texture = ExtResource("1_ogqpy")
+region_enabled = true
+region_rect = Rect2(103, 7, 18, 18)
+
+[node name="Spheres" type="Marker2D" parent="OrbLayers/MiddleLayer" index="2"]
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="OrbLayers/MiddleLayer/Spheres" index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_0ng1g")
+}
+autoplay = "MiddleRotation"
+
+[node name="Sphere_1" type="Sprite2D" parent="OrbLayers/MiddleLayer/Spheres" index="1"]
+position = Vector2(-8, -8)
+texture = ExtResource("1_ogqpy")
+region_enabled = true
+region_rect = Rect2(66, 14, 5, 5)
+
+[node name="Sphere_2" type="Sprite2D" parent="OrbLayers/MiddleLayer/Spheres" index="2"]
+position = Vector2(8, 7)
+texture = ExtResource("1_ogqpy")
+region_enabled = true
+region_rect = Rect2(72, 13, 6, 6)
+
+[node name="ExternalLayer" type="Marker2D" parent="OrbLayers" index="1"]
+script = ExtResource("5_0ng1g")
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="OrbLayers/ExternalLayer" index="0"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_kensq")
+}
+autoplay = "external_rotation"
+
+[node name="Sprite2D" type="Sprite2D" parent="OrbLayers/ExternalLayer" index="1"]
+texture = ExtResource("1_ogqpy")
+region_enabled = true
+region_rect = Rect2(1, 1, 30, 30)
+
+[node name="CenterLayer" type="Marker2D" parent="OrbLayers" index="2"]
+
+[node name="Sprite2D" type="Sprite2D" parent="OrbLayers/CenterLayer" index="0"]
+texture = ExtResource("1_ogqpy")
+region_enabled = true
+region_rect = Rect2(42, 10, 12, 12)

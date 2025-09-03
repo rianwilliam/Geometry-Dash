@@ -15,6 +15,11 @@ enum GRAVITY_DIR {
 	INVERTED = -1
 }
 
+enum GRAVITY_FORCE {
+	NORMAL = 1,
+	STRONG = 3
+}
+
 enum WAVE_DIR {
 	UP = -1,
 	DOWN = 1
@@ -29,5 +34,6 @@ enum JUMPS {
 enum MODIFIERS {
 	JUMP = 1,
 	GRAVITY = 2,
-	DASH = 3
+	G_FORCE = 3,
+	DASH = 4,
 }

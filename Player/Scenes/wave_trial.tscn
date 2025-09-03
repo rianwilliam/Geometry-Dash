@@ -3,7 +3,10 @@
 [ext_resource type="Script" uid="uid://bkxplcim4btaf" path="res://Player/Scripts/wave_trial.gd" id="1_pfx5g"]
 
 [node name="WaveTrial" type="Line2D"]
-width = 2.0
+width = 1.5
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 script = ExtResource("1_pfx5g")
 
 [node name="VisibleOnScreen" type="VisibleOnScreenNotifier2D" parent="."]

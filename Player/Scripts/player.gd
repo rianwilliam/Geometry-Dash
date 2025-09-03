@@ -2,6 +2,8 @@ extends CharacterBody2D
 class_name Player
 
 #TODO Colocar jump() como _jump()
+#TODO Recortar o sprite do player, fazer uma animação dele despedaçando e saindo partículas
+# Fazer uma função que recebe os nós dos sprites, assim funcionando para qualquer elemento
 
 @onready var hurt_box: Area2D = %HurtBox
 @onready var spawn: Marker2D = %PlayerSpawn
@@ -22,6 +24,7 @@ var _modifier_used: bool = false
 var _modifier_effect: Variant
 var _old_x_position: float
 var _position_verified: bool = false
+var _gravity_force_multiplier: Enums.GRAVITY_FORCE = Enums.GRAVITY_FORCE.NORMAL
 
 var _can_action: bool = true
 var _action_pressed: bool
@@ -31,7 +34,8 @@ var _active_rsc: PlayerBaseResource
 var _wave_trial: WaveTrial
 var _player_resources: Dictionary[Enums.PLAYER_MODE, PlayerBaseResource]
 
-const _WAVE_TRIAL_SCENE = preload("res://Player/Scenes/wave_trial.tscn")
+const _WAVE_TRIAL_SCENE_PATH: String = "res://Player/Scenes/wave_trial.tscn"
+const _WAVE_TRIAL_SCENE = preload(_WAVE_TRIAL_SCENE_PATH)
 
 func _ready() -> void:
 	_player_resources = {
@@ -46,6 +50,9 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	Events.emit_signal("player_pos", global_position)
+	_reset_gravity_force_if_on_surface()
+
+	# Put this into a function
 	if not _position_verified:
 		_old_x_position = position.x
 		_position_verified = true
@@ -68,18 +75,24 @@ func _physics_process(delta: float) -> void:
 		Enums.PLAYER_MODE.UFO: _ufo_mode(delta)
 		Enums.PLAYER_MODE.SPACESHIP: _spaceship_mode(delta)
 	
+	# Put this into a function
 	if (_orb_jump() or _pad_jump()) and not _modifier_used:
 		if not _modifier_effect: return
 
 		var _jump_effect = _modifier_effect.get(Enums.MODIFIERS.JUMP)
 		var _gravity_effect = _modifier_effect.get(Enums.MODIFIERS.GRAVITY)
+		var _gravity_force_effect = _modifier_effect.get(Enums.MODIFIERS.G_FORCE)
 		var _dash_effect = _modifier_effect.get(Enums.MODIFIERS.DASH)
 
 		if _jump_effect != null: _jump_modifiers_actions(_jump_effect)
 		if _gravity_effect != null: _gravity_modifiers_actions(_gravity_effect)
+		if _gravity_force_effect != null: _gravity_force_modifiers_actions(_gravity_force_effect)
 		if _dash_effect != null: pass
 
 		_modifier_used = true
+		
+		if _orb_jump():
+			Events.emit_signal("player_use_orb")
 
 	move_and_slide()
 
@@ -92,8 +105,13 @@ func _jump_modifiers_actions(effect: Enums.JUMPS) -> void:
 func _gravity_modifiers_actions(effect: Enums.GRAVITY_DIR) -> void:
 	match effect:
 		Enums.GRAVITY_DIR.FLIP: _invert_gravity()
-		Enums.GRAVITY_DIR.INVERTED: _set_gravity(Enums.GRAVITY_DIR.INVERTED)
-		Enums.GRAVITY_DIR.NORMAL: _set_gravity(Enums.GRAVITY_DIR.NORMAL)
+		Enums.GRAVITY_DIR.INVERTED: _set_gravity_dir(Enums.GRAVITY_DIR.INVERTED)
+		Enums.GRAVITY_DIR.NORMAL: _set_gravity_dir(Enums.GRAVITY_DIR.NORMAL)
+
+func _gravity_force_modifiers_actions(effect: Enums.GRAVITY_FORCE) -> void:
+	match effect:
+		Enums.GRAVITY_FORCE.NORMAL: _set_gravity_force()
+		Enums.GRAVITY_FORCE.STRONG: _set_gravity_force(Enums.GRAVITY_FORCE.STRONG)
 
 func _set_active_resource() -> void:
 	_active_rsc = _player_resources.get(_mode)
@@ -145,13 +163,20 @@ func _on_mode_entered() -> void:
 
 #region Gravity
 func _apply_gravity(delta: float) -> void:
-	velocity.y += _active_rsc.gravity * _gravity_dir * delta
+	velocity.y += _active_rsc.gravity * _gravity_dir * delta * _gravity_force_multiplier
 
 func _invert_gravity() -> void:
 	_gravity_dir *= -1
 
-func _set_gravity(new_dir: Enums.GRAVITY_DIR) -> void:
+func _set_gravity_dir(new_dir: Enums.GRAVITY_DIR) -> void:
 	_gravity_dir = new_dir
+
+func _reset_gravity_force_if_on_surface() -> void:
+	if is_on_floor() or is_on_ceiling(): _set_gravity_force()
+	
+func _set_gravity_force(force: Enums.GRAVITY_FORCE = Enums.GRAVITY_FORCE.NORMAL) -> void:
+	_gravity_force_multiplier = force
+
 #endregion
 
 func _on_hurt_box_body_entered(_body: Node2D) -> void:
@@ -176,7 +201,8 @@ func _wave_mode(_delta: float) -> void:
 	
 func _add_trial_point() -> void:
 	if not _wave_trial: return
-	_wave_trial.add_point(global_position)
+	var _local_pos = _wave_trial.to_local(global_position)
+	_wave_trial.add_point(_local_pos)
 
 func _change_wave_direction(new_dir: Enums.WAVE_DIR) -> void:
 	_active_rsc.direction = new_dir
@@ -204,6 +230,8 @@ func _reset_player() -> void:
 	_gravity_dir = Enums.GRAVITY_DIR.NORMAL
 	change_mode(Enums.PLAYER_MODE.SQUARE)
 	velocity = Vector2.ZERO
+	if player_elements.has_node(_WAVE_TRIAL_SCENE_PATH): 
+		player_elements.remove_child(_wave_trial)
 #endregion
 
 #region Spaceship

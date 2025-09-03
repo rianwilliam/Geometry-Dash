@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgn8e7bxmw8ji"]
+
+[ext_resource type="PackedScene" uid="uid://clb76ayputa2x" path="res://PlayerModifiers/Orbs/OrbBase/Scenes/orb.tscn" id="1_pl5lf"]
+[ext_resource type="Script" uid="uid://tylfi1i1n42o" path="res://PlayerModifiers/Orbs/GravityOrbs/BlackOrb/Scripts/black_orb.gd" id="2_mycc0"]
+
+[node name="BlackOrb" instance=ExtResource("1_pl5lf")]
+script = ExtResource("2_mycc0")
+
+[node name="CPUParticles2D" parent="." index="2"]
+color = Color(0.301961, 0.301961, 0.301961, 1)
+
+[node name="Sprite2D" parent="OrbLayers/MiddleLayer" index="0"]
+modulate = Color(0.0784314, 0.0784314, 0.0784314, 0.541176)
+
+[node name="Sprite2D2" parent="OrbLayers/MiddleLayer" index="1"]
+modulate = Color(0.0784314, 0.0784314, 0.0784314, 0.541176)
+
+[node name="Sphere_1" parent="OrbLayers/MiddleLayer/Spheres" index="1"]
+modulate = Color(0.303129, 0.303129, 0.303129, 1)
+
+[node name="Sphere_2" parent="OrbLayers/MiddleLayer/Spheres" index="2"]
+modulate = Color(0.303129, 0.303129, 0.303129, 1)
+
+[node name="Sprite2D" parent="OrbLayers/ExternalLayer" index="1"]
+modulate = Color(0.0784314, 0.0784314, 0.0784314, 1)
+
+[node name="Sprite2D" parent="OrbLayers/CenterLayer" index="0"]
+modulate = Color(0.0791031, 0.0791031, 0.0791031, 1)

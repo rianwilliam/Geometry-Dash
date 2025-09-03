@@ -4,10 +4,10 @@ extends Node2D
 
 @onready var die_counter: Label = %DieCounter
 @onready var test: TileMapLayer = $LevelElements/Test
-@onready var camera_2d: Camera2D = %Camera2D
+@onready var camera_2d: Camera2D = %Camera
 
 var attemp_counter: int = 1
-var text: String = "Attemp"
+var attemp_text: String = "Attemp"
 var player_pos: Vector2
 
 func _process(delta: float) -> void:
@@ -16,11 +16,14 @@ func _process(delta: float) -> void:
 func _ready() -> void:
 	Events.connect("player_died", _on_player_die)
 	Events.connect("player_pos", _on_player_pos)
-	die_counter.text = text + " " + str(attemp_counter)
+	_refresh_attemp_text()
 	
 func _on_player_die() -> void:
 	attemp_counter += 1
-	die_counter.text = text + " " + str(attemp_counter)
+	_refresh_attemp_text()
+
+func _refresh_attemp_text() -> void:
+	die_counter.text = attemp_text + " " + str(attemp_counter)
 
 func _on_player_pos(pos: Vector2) -> void:
 	player_pos = pos

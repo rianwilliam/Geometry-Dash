@@ -8,3 +8,24 @@ script = ExtResource("2_aosf3")
 
 [node name="Sprite2D" parent="." index="0"]
 modulate = Color(1, 0.118562, 0.118562, 1)
+
+[node name="CPUParticles2D" parent="." index="2"]
+color = Color(1, 0.239216, 0.239216, 1)
+
+[node name="Sprite2D" parent="OrbLayers/MiddleLayer" index="0"]
+modulate = Color(1, 0.361893, 0.361893, 0.470588)
+
+[node name="Sprite2D2" parent="OrbLayers/MiddleLayer" index="1"]
+modulate = Color(1, 0.361893, 0.361893, 0.470588)
+
+[node name="Sphere_1" parent="OrbLayers/MiddleLayer/Spheres" index="1"]
+modulate = Color(1, 0.223786, 0.223786, 1)
+
+[node name="Sphere_2" parent="OrbLayers/MiddleLayer/Spheres" index="2"]
+modulate = Color(1, 0.223786, 0.223786, 1)
+
+[node name="Sprite2D" parent="OrbLayers/ExternalLayer" index="1"]
+modulate = Color(0.772549, 0, 0, 1)
+
+[node name="Sprite2D" parent="OrbLayers/CenterLayer" index="0"]
+modulate = Color(0.772549, 0, 0, 1)
