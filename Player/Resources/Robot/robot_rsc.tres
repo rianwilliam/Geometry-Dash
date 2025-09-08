@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RobotResource" load_steps=2 format=3 uid="uid://5gko2w7b3rfw"]
+
+[ext_resource type="Script" uid="uid://cdgrv502pk2jw" path="res://Player/Resources/Robot/robot_rsc.gd" id="1_ddm1t"]
+
+[resource]
+script = ExtResource("1_ddm1t")
+fly_time = 1.0
+can_fly = true
+speed = 0.0
+gravity = 0.0
+jump_height = 0.0
+metadata/_custom_type_script = "uid://cdgrv502pk2jw"

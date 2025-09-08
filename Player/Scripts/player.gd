@@ -21,6 +21,7 @@ var _wave_rsc: WaveResource = preload("res://Player/Resources/Wave/wave_rsc.tres
 var _ufo_rsc: UfoResource = preload("res://Player/Resources/Ufo/ufo_rsc.tres")
 var _ball_rsc: BallResource = preload("res://Player/Resources/Ball/ball_rsc.tres")
 var _spaceship_rsc: SpaceshipResource = preload("res://Player/Resources/SpaceShip/spaceship_rsc.tres")
+var _robot_rsc: RobotResource = preload("res://Player/Resources/Robot/robot_rsc.tres")
 
 var _is_on_orb: bool = false
 var _is_on_pad: bool = false
@@ -47,7 +48,8 @@ func _ready() -> void:
 		Enums.PLAYER_MODE.WAVE: _wave_rsc,
 		Enums.PLAYER_MODE.UFO: _ufo_rsc,
 		Enums.PLAYER_MODE.BALL: _ball_rsc,
-		Enums.PLAYER_MODE.SPACESHIP: _spaceship_rsc
+		Enums.PLAYER_MODE.SPACESHIP: _spaceship_rsc,
+		Enums.PLAYER_MODE.ROBOT: _robot_rsc
 	}
 	global_position = spawn.global_position
 	_set_active_resource()
@@ -78,6 +80,7 @@ func _physics_process(delta: float) -> void:
 		Enums.PLAYER_MODE.BALL: _ball_mode(delta)
 		Enums.PLAYER_MODE.UFO: _ufo_mode(delta)
 		Enums.PLAYER_MODE.SPACESHIP: _spaceship_mode(delta)
+		Enums.PLAYER_MODE.ROBOT: _robot_mode(delta)
 	
 	# Put this into a function
 	if (_orb_jump() or _pad_jump()) and not _modifier_used:
@@ -247,8 +250,10 @@ func _spaceship_mode(delta: float) -> void:
 #endregion
 
 #region Robot
-func _robot_mode() -> void:
-	pass
+func _robot_mode(delta: float) -> void:
+	_apply_gravity(delta)
+	if _action_pressed and _robot_rsc.can_fly:
+		pass
 
 func _on_enter_robot_mode() -> void:
 	pass
