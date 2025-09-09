@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://b6dmle3sl63cf"]
+[gd_scene load_steps=12 format=4 uid="uid://b6dmle3sl63cf"]
 
 [ext_resource type="Script" uid="uid://vjn7j4c5jhnu" path="res://game.gd" id="1_eow3j"]
 [ext_resource type="PackedScene" uid="uid://c2chvkyy457fn" path="res://Player/Scenes/player.tscn" id="2_feb5d"]
 [ext_resource type="PackedScene" uid="uid://dl8vgj16lfx51" path="res://PlayerModifiers/Pads/RedPad/Scenes/red_pad.tscn" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://c2gqpy2dfcd7d" path="res://PlayerModifiers/Pads/YellowPad/Scenes/yellow_pad.tscn" id="5_7jktm"]
+[ext_resource type="PackedScene" uid="uid://bnt2ftx7usqym" path="res://MechanicChangers/Portals/ModeSwitcher/Scenes/mode_switcher.tscn" id="5_vef74"]
 [ext_resource type="Texture2D" uid="uid://bu5riygluo31a" path="res://Assets/SpriteSheet.png" id="6_iotsf"]
 [ext_resource type="Texture2D" uid="uid://bmj0v06xqhbnw" path="res://Assets/Background - 1.png" id="7_eow3j"]
 [ext_resource type="PackedScene" uid="uid://b5fyq8jepbes" path="res://PlayerModifiers/Orbs/JumpOrbs/YellowOrb/Scenes/yellow_orb.tscn" id="8_j5wjh"]
@@ -192,6 +193,10 @@ offset_bottom = 167.0
 
 [node name="MechanicChangers" type="Node2D" parent="."]
 position = Vector2(352, 240)
+
+[node name="ModeSwitcher" parent="MechanicChangers" instance=ExtResource("5_vef74")]
+position = Vector2(-208, 16)
+transform_to = 4
 
 [node name="PadsAndOrbs" type="Node2D" parent="."]
 position = Vector2(352, 240)

@@ -76,9 +76,9 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ModifierSensor"]
 shape = SubResource("RectangleShape2D_qo0kk")
 
-[node name="Robot" type="Node2D" parent="."]
+[node name="RobotNodes" type="Node2D" parent="."]
 
-[node name="FlyTimer" type="Timer" parent="Robot"]
+[node name="FlyTimer" type="Timer" parent="RobotNodes"]
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="area_entered" from="ModifierSensor" to="." method="_on_modifier_sensor_area_entered"]
