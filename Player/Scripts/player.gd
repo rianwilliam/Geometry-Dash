@@ -12,6 +12,7 @@ class_name Player
 @onready var spawn: Marker2D = %PlayerSpawn
 @onready var animation_player: AnimationPlayer = $AnimPlayer
 @onready var player_elements: Node2D = %PlayerElements
+@onready var robot_nodes: Robot = $RobotNodes
 
 @export var _gravity_dir: Enums.GRAVITY_DIR = Enums.GRAVITY_DIR.NORMAL
 
@@ -259,11 +260,17 @@ func _spaceship_mode(delta: float) -> void:
 func _robot_mode(delta: float) -> void:
 	if is_on_floor() or is_on_ceiling():
 		_active_rsc.can_fly = true
+	if not is_on_floor() and _action_released:
+		_active_rsc.can_fly = false
 
 	if _action_pressed and _active_rsc.can_fly:
 		velocity.y += _active_rsc.boost_force
+		robot_nodes.start_fly_timer()
 	else:
 		_apply_gravity(delta)
+
+func _on_robot_fly_timer_timeout() -> void:
+	_active_rsc.can_fly = false
 
 func _on_enter_robot_mode() -> void:
 	pass
@@ -273,10 +280,16 @@ func _on_enter_robot_mode() -> void:
 
 #region Reset
 func _reset_player() -> void:
+	# Position
 	global_position = spawn.global_position
+
+	# Gravity
 	_gravity_dir = Enums.GRAVITY_DIR.NORMAL
+	
+	# Modes
 	change_mode(Enums.PLAYER_MODE.SQUARE)
 	velocity = Vector2.ZERO
+	robot_nodes.reset_fly_timer()
 	if player_elements.has_node(_WAVE_TRIAL_SCENE_PATH): 
 		player_elements.remove_child(_wave_trial)
 #endregion

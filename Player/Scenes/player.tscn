@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c2chvkyy457fn"]
+[gd_scene load_steps=10 format=3 uid="uid://c2chvkyy457fn"]
 
 [ext_resource type="Texture2D" uid="uid://ddeb5q3uhisg8" path="res://Player/Assets/Player.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://chfam0xfy4w5b" path="res://Player/Scripts/player.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://bigue4b0pt5le" path="res://Player/Scripts/robot.gd" id="3_52sos"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(16, 16)
@@ -77,9 +78,13 @@ libraries = {
 shape = SubResource("RectangleShape2D_qo0kk")
 
 [node name="RobotNodes" type="Node2D" parent="."]
+script = ExtResource("3_52sos")
 
 [node name="FlyTimer" type="Timer" parent="RobotNodes"]
+wait_time = 0.3
+one_shot = true
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="area_entered" from="ModifierSensor" to="." method="_on_modifier_sensor_area_entered"]
 [connection signal="area_exited" from="ModifierSensor" to="." method="_on_modifier_sensor_area_exited"]
+[connection signal="timeout" from="RobotNodes/FlyTimer" to="." method="_on_robot_fly_timer_timeout"]
