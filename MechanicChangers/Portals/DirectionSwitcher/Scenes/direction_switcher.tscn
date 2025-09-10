@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmcsvr3jfodjs"]
+
+[ext_resource type="PackedScene" uid="uid://b53ljlp24j1ek" path="res://MechanicChangers/Portals/Portal Base/Scenes/portal_base.tscn" id="1_0lxay"]
+[ext_resource type="Script" uid="uid://be0xtvmdb4qrc" path="res://MechanicChangers/Portals/DirectionSwitcher/Scripts/direction_switcher.gd" id="2_pokvc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pokvc"]
+size = Vector2(4, 40)
+
+[node name="DirectionSwitcher" instance=ExtResource("1_0lxay")]
+script = ExtResource("2_pokvc")
+switch_to = 1
+
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_pokvc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

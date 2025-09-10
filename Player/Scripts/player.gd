@@ -3,18 +3,16 @@ class_name Player
 
 #TODO Recortar o sprite do player, fazer uma animação dele despedaçando e saindo partículas
 # Fazer uma função que recebe os nós dos sprites, assim funcionando para qualquer elemento
-#TODO Portal que inverte a direção do jogador
 #TODO Portal que teleporta o jogador
-#TODO Criar função para logica de pulo
-#TODO Criar função que verifica se o jogador está parado
 
 @onready var hurt_box: Area2D = %HurtBox
 @onready var spawn: Marker2D = %PlayerSpawn
-@onready var animation_player: AnimationPlayer = $AnimPlayer
 @onready var player_elements: Node2D = %PlayerElements
 @onready var robot_nodes: Robot = $RobotNodes
+@onready var player_visuals: PlayerVisuals = $PlayerVisuals
 
 @export var _gravity_dir: Enums.GRAVITY_DIR = Enums.GRAVITY_DIR.NORMAL
+@export var _player_skin: Enums.SKIN_IDS
 
 #TODO Usando o preload, os valores nao eram atualizados quando mudava na base
 #var _square_rsc: SquareResource = preload("res://Player/Resources/Square/square_rsc.tres")
@@ -23,6 +21,7 @@ class_name Player
 #var _ball_rsc: BallResource = preload("res://Player/Resources/Ball/ball_rsc.tres")
 #var _spaceship_rsc: SpaceshipResource = preload("res://Player/Resources/SpaceShip/spaceship_rsc.tres")
 #var _robot_rsc: RobotResource = preload("res://Player/Resources/Robot/robot_rsc.tres")
+
 var _square_rsc: SquareResource = SquareResource.new()
 var _wave_rsc: WaveResource = WaveResource.new()
 var _ufo_rsc: UfoResource = UfoResource.new()
@@ -33,8 +32,8 @@ var _robot_rsc: RobotResource = RobotResource.new()
 var _is_on_orb: bool = false
 var _is_on_pad: bool = false
 var _modifier_used: bool = false
-var _modifier_effect: Variant
-var _old_x_position: float
+var _modifier_effect: Variant # Can be ENUM.(JUMP/GRAVITY/DASH)
+var _old_x_position: int
 var _position_verified: bool = false
 var _gravity_force_multiplier: Enums.GRAVITY_FORCE = Enums.GRAVITY_FORCE.NORMAL
 
@@ -46,6 +45,7 @@ var _active_rsc: PlayerBaseResource
 var _wave_trial: WaveTrial
 var _mode: Enums.PLAYER_MODE = Enums.PLAYER_MODE.SQUARE
 var _player_resources: Dictionary[Enums.PLAYER_MODE, PlayerBaseResource]
+var _player_direction: Enums.PLAYER_DIRECTION = Enums.PLAYER_DIRECTION.RIGHT
 
 const _WAVE_TRIAL_SCENE_PATH: String = "res://Player/Scenes/wave_trial.tscn"
 const _WAVE_TRIAL_SCENE = preload(_WAVE_TRIAL_SCENE_PATH)
@@ -61,6 +61,7 @@ func _ready() -> void:
 	}
 	global_position = spawn.global_position
 	_set_active_resource()
+	player_visuals.set_skin(_player_skin)
 
 func _physics_process(delta: float) -> void:
 	_action_pressed = Input.is_action_pressed("Action")
@@ -80,9 +81,10 @@ func _physics_process(delta: float) -> void:
 		Enums.PLAYER_MODE.SPACESHIP: _spaceship_mode(delta)
 		Enums.PLAYER_MODE.ROBOT: _robot_mode(delta)
 	
-	velocity.x = _active_rsc.speed
+	velocity.x = _active_rsc.speed * _player_direction
 	move_and_slide()
 
+#region ModifiersActions
 func _is_inside_player_modifier() -> void:
 	if (_orb_jump() or _pad_jump()) and not _modifier_used:
 		if not _modifier_effect: return
@@ -101,17 +103,25 @@ func _is_inside_player_modifier() -> void:
 		
 		if _orb_jump():
 			Events.emit_signal("player_use_orb")
+#endregion
 
+#region Resources
 func _set_active_resource() -> void:
 	_active_rsc = _player_resources.get(_mode)
+#endregion
+
+#region DirectionSetter
+func set_direction(new_dir: Enums.PLAYER_DIRECTION = Enums.PLAYER_DIRECTION.RIGHT) -> void:
+	_player_direction = new_dir
+#endregion
 
 #region DieFunctions
 func _kill_on_idle() -> void:
 	if not _position_verified:
-		_old_x_position = position.x
+		_old_x_position = int(position.x)
 		_position_verified = true
 	else:
-		if position.x == _old_x_position:
+		if int(position.x) == _old_x_position:
 			_died()
 		else:
 			_old_x_position = 0
@@ -162,6 +172,7 @@ func _apply_gravity(delta: float) -> void:
 	velocity.y += _active_rsc.gravity * _gravity_dir * delta * _gravity_force_multiplier
 
 func _invert_gravity() -> void:
+	#TODO Colocar if que verifica o tipo de gravidade e inverte
 	_gravity_dir *= -1
 
 func _set_gravity_dir(new_dir: Enums.GRAVITY_DIR) -> void:
@@ -203,7 +214,7 @@ func _square_mode(delta: float) -> void:
 		_play_jump_anim()
 
 func _play_jump_anim() -> void:
-	animation_player.play("rotate")
+	player_visuals.play_jump_anim()
 
 #endregion
 

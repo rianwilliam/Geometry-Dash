@@ -9,6 +9,11 @@ enum PLAYER_MODE {
 	SPACESHIP,
 }
 
+enum PLAYER_DIRECTION {
+	RIGHT = 1,
+	LEFT = -1
+}
+
 enum GRAVITY_DIR {
 	FLIP = 0,
 	NORMAL = 1,
@@ -36,4 +41,12 @@ enum MODIFIERS {
 	GRAVITY = 2,
 	G_FORCE = 3,
 	DASH = 4,
+}
+
+enum SKIN_IDS {
+	ID_0,
+	ID_1,
+	ID_2,
+	ID_3,
+	ID_4,
 }
