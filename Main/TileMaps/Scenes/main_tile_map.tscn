@@ -1,9 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://sxtdhwcpawbj"]
+[gd_scene load_steps=5 format=3 uid="uid://sxtdhwcpawbj"]
 
-[ext_resource type="Texture2D" uid="uid://bu5riygluo31a" path="res://Assets/SpriteSheet.png" id="1_erqp4"]
+[ext_resource type="Texture2D" uid="uid://bu5riygluo31a" path="res://Assets/SpriteSheet.png" id="1_8e0jw"]
+[ext_resource type="Script" uid="uid://60ye1qsm1du6" path="res://Main/TileMaps/Scripts/main_tile_map.gd" id="2_0jrq6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ehiqe"]
-texture = ExtResource("1_erqp4")
+texture = ExtResource("1_8e0jw")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
@@ -204,13 +205,13 @@ texture = ExtResource("1_erqp4")
 5:2/0 = 0
 6:2/0 = 0
 7:2/0 = 0
-7:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-0.8, -8, 0.8, -8, 8, 8, -8, 8)
+7:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-0.8, -6.4, 0.8, -6.4, 8, 8, -8, 8)
 8:2/0 = 0
-8:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-0.8, 8, 0.8, 8, 8, -8, -8, -8)
+8:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(0.8, 6.4, -0.8, 6.4, -8, -8, 8, -8)
 9:2/0 = 0
-9:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, 0.8, -8, -0.8, 8, -8, 8, 8)
+9:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-6.4, 0.8, -6.4, -0.8, 8, -8, 8, 8)
 10:2/0 = 0
-10:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(8, 0.8, 8, -0.8, -8, -8, -8, 8)
+10:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(6.4, -0.8, 6.4, 0.8, -8, 8, -8, -8)
 10:1/0 = 0
 9:1/0 = 0
 8:1/0 = 0
@@ -256,5 +257,6 @@ terrain_set_0/terrain_2/name = "Ground 1"
 terrain_set_0/terrain_2/color = Color(0.5, 0.4375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_ehiqe")
 
-[node name="MainTileSet" type="TileMapLayer"]
+[node name="MainTileMap" type="TileMapLayer"]
 tile_set = SubResource("TileSet_xehp6")
+script = ExtResource("2_0jrq6")

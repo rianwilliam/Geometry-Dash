@@ -174,14 +174,14 @@ _data = {
 script = ExtResource("1_mjcin")
 
 [node name="BodySprites" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.0871582, 0.12007, 0.929688, 1)
+modulate = Color(1, 0.0273438, 0.072937, 1)
 sprite_frames = SubResource("SpriteFrames_t863f")
-animation = &"0"
+animation = &"3"
 
 [node name="DetailsSprites" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.00346375, 0.762511, 0.886719, 1)
+modulate = Color(0.859375, 0.980225, 1, 1)
 sprite_frames = SubResource("SpriteFrames_jsifx")
-animation = &"0"
+animation = &"3"
 
 [node name="AnimPlayer" type="AnimationPlayer" parent="."]
 libraries = {
