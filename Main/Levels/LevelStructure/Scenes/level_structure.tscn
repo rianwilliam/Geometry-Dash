@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5ki3qigdi27q"]
+
+[ext_resource type="PackedScene" uid="uid://sxtdhwcpawbj" path="res://Main/TileMaps/Scenes/main_tile_set.tscn" id="1_4nr2x"]
+
+[node name="LevelStructure" type="TileMapLayer"]
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Blocks" parent="Ground" instance=ExtResource("1_4nr2x")]
+modulate = Color(7.74096e-05, 0.418536, 0.0931462, 1)
+
+[node name="Borders" parent="Ground" instance=ExtResource("1_4nr2x")]
+
+[node name="Spikes" type="Node2D" parent="."]
+
+[node name="Blocks" parent="Spikes" instance=ExtResource("1_4nr2x")]
+
+[node name="Border" parent="Spikes" instance=ExtResource("1_4nr2x")]
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Blocks" parent="Platforms" instance=ExtResource("1_4nr2x")]
+modulate = Color(0.513577, 0.381049, 0.0879112, 1)
+
+[node name="Border" parent="Platforms" instance=ExtResource("1_4nr2x")]
+
+[node name="ColorChangers" type="Node2D" parent="."]

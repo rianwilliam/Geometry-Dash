@@ -144,6 +144,9 @@ tracks/0/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_mjcin"]
+resource_name = "death"
+
 [sub_resource type="Animation" id="Animation_onrkg"]
 resource_name = "jump"
 length = 0.3
@@ -159,9 +162,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0, 3.14159]
 }
-
-[sub_resource type="Animation" id="Animation_mjcin"]
-resource_name = "death"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hqtel"]
 _data = {
