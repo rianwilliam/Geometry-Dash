@@ -49,8 +49,9 @@ tile_map_data = PackedByteArray("AAAfAPz/AAAFAAAAAAAgAPz/AAAFAAAAAAAhAPz/AAAFAAA
 [node name="Border" parent="LevelStructure/Platforms" index="1"]
 tile_map_data = PackedByteArray("AAAeAPz/AAAEAAAAAAAfAPz/AAAEAAAAAAAgAPz/AAAEAAAAAAAhAPz/AAAEAAAAAAAiAPz/AAAEAAAAAAAjAPz/AAAEAAAAAAAkAPz/AAAEAAAAAAAmAP3/AAAEAAAAAAAoAP7/AAAEAAAAAAAqAP//AAAEAAAAAAA=")
 
-[node name="ElementColorChanger" parent="LevelStructure/ColorChangers" index="0" instance=ExtResource("4_bhyi5")]
+[node name="ElementColorChanger" parent="LevelStructure/ColorChangers" index="0" node_paths=PackedStringArray("tile_sets") instance=ExtResource("4_bhyi5")]
 position = Vector2(42, -6)
+tile_sets = [NodePath("../../Ground/Blocks")]
 change_to_color = Color(0.894531, 0.115311, 0.115311, 1)
 
 [node name="Spikes" parent="LevelStructure/GroundSpikes" index="0"]

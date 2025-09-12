@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dn6pl4qij2wyn"]
+[gd_scene load_steps=21 format=3 uid="uid://dn6pl4qij2wyn"]
 
 [ext_resource type="Texture2D" uid="uid://ddeb5q3uhisg8" path="res://Player/Assets/Player.png" id="1_d34st"]
 [ext_resource type="Script" uid="uid://d1kbjxocbis8h" path="res://Player/Scripts/player_visuals.gd" id="1_mjcin"]
@@ -6,6 +6,10 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_mjcin"]
 atlas = ExtResource("1_d34st")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t863f"]
+atlas = ExtResource("1_d34st")
+region = Rect2(0, 32, 20, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lhhpj"]
 atlas = ExtResource("1_d34st")
@@ -28,6 +32,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mjcin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t863f")
 }],
 "loop": true,
 "name": &"0",
@@ -70,6 +77,10 @@ animations = [{
 atlas = ExtResource("1_d34st")
 region = Rect2(0, 16, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsifx"]
+atlas = ExtResource("1_d34st")
+region = Rect2(0, 48, 20, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_k4xbj"]
 atlas = ExtResource("1_d34st")
 region = Rect2(16, 16, 16, 16)
@@ -91,6 +102,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_u3sth")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsifx")
 }],
 "loop": true,
 "name": &"0",
@@ -176,14 +190,14 @@ script = ExtResource("1_mjcin")
 [node name="BodySprites" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 0.0273438, 0.072937, 1)
 sprite_frames = SubResource("SpriteFrames_t863f")
-animation = &"3"
+animation = &"0"
 
 [node name="DetailsSprites" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.859375, 0.980225, 1, 1)
 sprite_frames = SubResource("SpriteFrames_jsifx")
-animation = &"3"
+animation = &"0"
 
-[node name="AnimPlayer" type="AnimationPlayer" parent="."]
+[node name="PlayerAnimations" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_hqtel")
 }
