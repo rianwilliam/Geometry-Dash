@@ -14,7 +14,7 @@ script = ExtResource("1_eow3j")
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(-160, -304)
+position = Vector2(-371, -314)
 motion_scale = Vector2(0.2, 0.2)
 motion_mirroring = Vector2(502, 0)
 
@@ -27,7 +27,6 @@ region_enabled = true
 region_rect = Rect2(3, 10, 502, 498)
 
 [node name="LevelStructure" parent="." instance=ExtResource("3_fc0e3")]
-position = Vector2(192, 64)
 script = ExtResource("4_51uk8")
 
 [node name="Blocks" parent="LevelStructure/Ground" index="0"]
@@ -64,40 +63,34 @@ tile_map_data = PackedByteArray("AAATAP//AAAIAAUAAAAUAP//AAAKAAUAAAAVAP//AAAKAAU
 tile_map_data = PackedByteArray("AAATAP//AAAJAAQAAAAUAP//AAAJAAQAAAAVAP//AAAJAAQAAAAXAP//AAAHAAQAAAAYAP//AAAKAAQAAAAZAP//AAAKAAQAAAAbAP//AAAKAAQAAAAcAP//AAAJAAQAAAAdAP//AAAIAAQAAAAeAP//AAAIAAQAAAAfAP//AAAHAAQAAAAgAP//AAAJAAQAAAAhAP//AAAJAAQAAAAiAP//AAAHAAQAAAAjAP//AAAHAAQAAAAkAP//AAAHAAQAAAAlAP//AAAKAAQAAAAmAP//AAAJAAQAAAAnAP//AAAIAAQAAAA=")
 
 [node name="Player" parent="." instance=ExtResource("2_feb5d")]
-position = Vector2(32, 56)
+position = Vector2(-160, -8)
 
 [node name="PlayerElements" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(192, 64)
 
 [node name="PlayerSpawn" type="Marker2D" parent="PlayerElements"]
 unique_name_in_owner = true
-position = Vector2(-176, -10)
-
-[node name="WaveLines" type="Node2D" parent="PlayerElements"]
-unique_name_in_owner = true
+position = Vector2(-176, -8)
 
 [node name="DieCounter" type="Label" parent="."]
 unique_name_in_owner = true
-offset_left = 40.0
-offset_top = -16.0
-offset_right = 80.0
-offset_bottom = 7.0
+offset_left = -152.0
+offset_top = -80.0
+offset_right = -112.0
+offset_bottom = -57.0
 metadata/_edit_use_anchors_ = true
 
 [node name="MechanicChangers" type="Node2D" parent="."]
-position = Vector2(192, 64)
 
 [node name="ModeSwitcher" parent="MechanicChangers" instance=ExtResource("7_he4dk")]
 position = Vector2(-112, 0)
 transform_to = 1
 
 [node name="PadsAndOrbs" type="Node2D" parent="."]
-position = Vector2(192, 64)
 
 [node name="Camera" type="Camera2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(32, 56)
+position = Vector2(-160, -8)
 zoom = Vector2(3, 3)
 process_callback = 0
 position_smoothing_enabled = true

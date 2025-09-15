@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dn6pl4qij2wyn"]
+[gd_scene load_steps=8 format=3 uid="uid://dn6pl4qij2wyn"]
 
 [ext_resource type="Script" uid="uid://d1kbjxocbis8h" path="res://Player/Scripts/player_visuals.gd" id="1_mjcin"]
 [ext_resource type="PackedScene" uid="uid://ca7oyv25uiftn" path="res://Player/Scenes/PlayerVisualBase.tscn" id="2_mjcin"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mjcin"]
 
 [sub_resource type="Animation" id="Animation_i3pqv"]
 length = 0.001
@@ -47,9 +49,27 @@ _data = {
 [node name="PlayerVisuals" type="Node2D"]
 script = ExtResource("1_mjcin")
 
-[node name="SquareVisual" parent="." instance_placeholder="res://Player/Scenes/PlayerVisualBase.tscn"]
+[node name="SquareVisual" parent="." instance=ExtResource("2_mjcin")]
+
+[node name="BodySprites" parent="SquareVisual" index="0"]
+animation = &""
+
+[node name="DetailsSprites" parent="SquareVisual" index="1"]
+animation = &""
+
+[node name="AnimationPlayer" parent="SquareVisual" index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_mjcin")
+}
 
 [node name="WaveVisual" parent="." instance=ExtResource("2_mjcin")]
+visible = false
+
+[node name="BodySprites" parent="WaveVisual" index="0"]
+animation = &""
+
+[node name="DetailsSprites" parent="WaveVisual" index="1"]
+animation = &""
 
 [node name="PlayerAnimations" type="AnimationPlayer" parent="."]
 libraries = {

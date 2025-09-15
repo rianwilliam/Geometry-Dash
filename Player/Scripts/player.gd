@@ -9,9 +9,12 @@ class_name Player
 @onready var spawn: Marker2D = %PlayerSpawn
 @onready var player_elements: Node2D = %PlayerElements
 @onready var robot_nodes: Robot = $RobotNodes
-@onready var player_visuals: PlayerVisuals = $PlayerVisuals
+@onready var wave_lines: Node2D = %WaveLines
+@onready var square_mode: ModeBase = $SquareMode
+@onready var wave_mode: ModeBase = $WaveMode
 
 @export var _gravity_dir: Enums.GRAVITY_DIR = Enums.GRAVITY_DIR.NORMAL
+@export var _initial_mode: Enums.PLAYER_MODE
 
 #TODO Usando o preload, os valores nao eram atualizados quando mudava na base
 #var _square_rsc: SquareResource = preload("res://Player/Resources/Square/square_rsc.tres")
@@ -36,7 +39,7 @@ var _old_x_position: int
 var _position_verified: bool = false
 var _gravity_force_multiplier: Enums.GRAVITY_FORCE = Enums.GRAVITY_FORCE.NORMAL
 
-var _mode: Enums.PLAYER_MODE = Enums.PLAYER_MODE.SQUARE
+var _mode: Enums.PLAYER_MODE
 var _can_action: bool = true
 var _action_pressed: bool
 var _action_clicked: bool
@@ -50,6 +53,7 @@ const _WAVE_TRIAL_SCENE_PATH: String = "res://Player/Scenes/wave_trial.tscn"
 const _WAVE_TRIAL_SCENE = preload(_WAVE_TRIAL_SCENE_PATH)
 
 func _ready() -> void:
+	global_position = spawn.global_position
 	_player_resources = {
 		Enums.PLAYER_MODE.SQUARE: _square_rsc,
 		Enums.PLAYER_MODE.WAVE: _wave_rsc,
@@ -58,8 +62,7 @@ func _ready() -> void:
 		Enums.PLAYER_MODE.SPACESHIP: _spaceship_rsc,
 		Enums.PLAYER_MODE.ROBOT: _robot_rsc
 	}
-	global_position = spawn.global_position
-	_set_active_resource()
+	change_mode(_initial_mode)
 	Events.emit_signal("send_player_mode", _mode)
 
 func _physics_process(delta: float) -> void:
@@ -79,11 +82,15 @@ func _physics_process(delta: float) -> void:
 		Enums.PLAYER_MODE.UFO: _ufo_mode(delta)
 		Enums.PLAYER_MODE.SPACESHIP: _spaceship_mode(delta)
 		Enums.PLAYER_MODE.ROBOT: _robot_mode(delta)
-	
+
 	velocity.x = _active_rsc.speed * _player_direction
 	move_and_slide()
 
 #region ModifiersActions
+
+## Verifica se o jogador está dentro de um [code]Pad[/code] ou de um [code]Orb[/code] [br]
+## E executa as ações contidas no [code]_modifier_effect[/code] que são atribuídas na funcão [br]
+## [member _on_modifier_sensor_area_entered]
 func _is_inside_player_modifier() -> void:
 	if (_orb_jump() or _pad_jump()) and not _modifier_used:
 		if not _modifier_effect: return
@@ -99,7 +106,7 @@ func _is_inside_player_modifier() -> void:
 		if _dash_effect != null: pass
 
 		_modifier_used = true
-		
+
 		if _orb_jump():
 			Events.emit_signal("player_use_orb")
 #endregion
@@ -152,18 +159,30 @@ func _jump(jump_size: Enums.JUMPS = Enums.JUMPS.MEDIUM) -> void:
 #endregion
 
 #region ModeControl
+
+## Altera o modo do jogador
+## [br] - param: [param Enums.PLAYER_MODE] [br] [br]
+## [code]ORBS[/code] disparam essa função quando o jogador entra
 func change_mode(new_mode: Enums.PLAYER_MODE) -> void:
 	_mode = new_mode
 	_on_mode_entered()
+	Events.emit_signal("send_player_mode", _mode)
 
 func _on_mode_entered() -> void:
+	_reset_modes_visibility()
 	_set_active_resource()
 	match _mode:
-		#Enums.PLAYER_MODE.SQUARE: _square_mode()
+		Enums.PLAYER_MODE.SQUARE: _on_enter_square_mode()
 		Enums.PLAYER_MODE.WAVE: _on_enter_wave_mode()
 		#Enums.PLAYER_MODE.BALL: _ball_mode()
 		#Enums.PLAYER_MODE.UFO: _ufo_mode()
 		#Enums.PLAYER_MODE.SPACESHIP: _spaceship_mode()
+
+func _reset_modes_visibility() -> void:
+	for item in get_children():
+		if item is ModeBase: 
+			item.visible = false
+
 #endregion
 
 #region Gravity
@@ -171,8 +190,10 @@ func _apply_gravity(delta: float) -> void:
 	velocity.y += _active_rsc.gravity * _gravity_dir * delta * _gravity_force_multiplier
 
 func _invert_gravity() -> void:
-	#TODO Colocar if que verifica o tipo de gravidade e inverte
-	_gravity_dir *= -1
+	if _gravity_dir == Enums.GRAVITY_DIR.NORMAL:
+		_gravity_dir = Enums.GRAVITY_DIR.INVERTED
+	else:
+		_gravity_dir = Enums.GRAVITY_DIR.NORMAL
 
 func _set_gravity_dir(new_dir: Enums.GRAVITY_DIR) -> void:
 	_gravity_dir = new_dir
@@ -198,6 +219,11 @@ func _gravity_force_modifiers_actions(effect: Enums.GRAVITY_FORCE) -> void:
 #region GameplayModes
 
 #region Square
+
+func _on_enter_square_mode() -> void:
+	square_mode.visible = true
+	Events.emit_signal("set_player_collision_shape", square_mode.get_collision_shape())
+
 func _square_mode(delta: float) -> void:
 	if not is_on_floor() or not is_on_ceiling():
 		_apply_gravity(delta)
@@ -207,21 +233,24 @@ func _square_mode(delta: float) -> void:
 	_action_pressed and is_on_ceiling()
 	):
 		_jump()
-		_play_jump_anim()
+		#_play_jump_anim()
 	
 	if _orb_jump():
-		_play_jump_anim()
+		pass
+		#_play_jump_anim()
 
-func _play_jump_anim() -> void:
-	player_visuals.play_jump_anim()
+#func _play_jump_anim() -> void:
+	#player_visuals.play_jump_anim()
 
 #endregion
 
 #region Wave
 func _on_enter_wave_mode() -> void:
+	wave_mode.visible = true
+	Events.emit_signal("set_player_collision_shape", wave_mode.get_collision_shape())
 	_wave_trial = _WAVE_TRIAL_SCENE.instantiate()
 	_wave_trial.global_position = Vector2.ZERO
-	player_elements.add_child(_wave_trial)
+	wave_lines.add_child(_wave_trial)
 	_add_trial_point()
 
 func _wave_mode(_delta: float) -> void:
@@ -297,11 +326,12 @@ func _reset_player() -> void:
 	_gravity_dir = Enums.GRAVITY_DIR.NORMAL
 	
 	# Modes
-	change_mode(Enums.PLAYER_MODE.SQUARE)
+	change_mode(_initial_mode)
 	velocity = Vector2.ZERO
 	robot_nodes.reset_fly_timer()
-	if player_elements.has_node(_WAVE_TRIAL_SCENE_PATH): 
-		player_elements.remove_child(_wave_trial)
+	if wave_lines.get_children():
+		for lines in wave_lines.get_children():
+			lines.queue_free() 
 #endregion
 
 #region Interations

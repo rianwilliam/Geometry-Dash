@@ -1,0 +1,108 @@
+[gd_scene load_steps=16 format=3 uid="uid://v8sdhet7k10t"]
+
+[ext_resource type="PackedScene" uid="uid://6w5huacev6wl" path="res://Player/Modes/ModeBase/Scenes/ModeBase.tscn" id="1_ug8np"]
+[ext_resource type="Texture2D" uid="uid://ddeb5q3uhisg8" path="res://Player/Assets/Player.png" id="2_rk348"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyll3"]
+atlas = ExtResource("2_rk348")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_atliv"]
+atlas = ExtResource("2_rk348")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf8c6"]
+atlas = ExtResource("2_rk348")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iobpn"]
+atlas = ExtResource("2_rk348")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0v007"]
+atlas = ExtResource("2_rk348")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0qm3l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yyll3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_atliv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf8c6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iobpn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0v007")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y08jv"]
+atlas = ExtResource("2_rk348")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu0hn"]
+atlas = ExtResource("2_rk348")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1044"]
+atlas = ExtResource("2_rk348")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_786s2"]
+atlas = ExtResource("2_rk348")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw7qd"]
+atlas = ExtResource("2_rk348")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f7bi5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y08jv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu0hn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1044")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_786s2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gw7qd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ffx7p"]
+size = Vector2(16, 16)
+
+[node name="SquareMode" instance=ExtResource("1_ug8np")]
+
+[node name="BodySprites" parent="PlayerVisualBase" index="0"]
+sprite_frames = SubResource("SpriteFrames_0qm3l")
+animation = &"default"
+
+[node name="DetailsSprites" parent="PlayerVisualBase" index="1"]
+sprite_frames = SubResource("SpriteFrames_f7bi5")
+animation = &"default"
+
+[node name="Collision" parent="." index="1"]
+shape = SubResource("RectangleShape2D_ffx7p")
+
+[editable path="PlayerVisualBase"]

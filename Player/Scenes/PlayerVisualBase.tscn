@@ -1,105 +1,29 @@
-[gd_scene load_steps=15 format=3 uid="uid://ca7oyv25uiftn"]
+[gd_scene load_steps=4 format=3 uid="uid://ca7oyv25uiftn"]
 
 [ext_resource type="Script" uid="uid://clilg5p2dpmfp" path="res://Player/Scripts/player_visual_base.gd" id="1_yn75k"]
-[ext_resource type="Texture2D" uid="uid://ddeb5q3uhisg8" path="res://Player/Assets/Player.png" id="2_uuddj"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uuddj"]
-atlas = ExtResource("2_uuddj")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="Animation" id="Animation_uuddj"]
+length = 0.001
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kum55"]
-atlas = ExtResource("2_uuddj")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nhok5"]
-atlas = ExtResource("2_uuddj")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s5v4n"]
-atlas = ExtResource("2_uuddj")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kvr4u"]
-atlas = ExtResource("2_uuddj")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_kum55"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uuddj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kum55")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nhok5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s5v4n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kvr4u")
-}],
-"loop": true,
-"name": &"0",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_737mp"]
-atlas = ExtResource("2_uuddj")
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7m5om"]
-atlas = ExtResource("2_uuddj")
-region = Rect2(16, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6nxum"]
-atlas = ExtResource("2_uuddj")
-region = Rect2(32, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gj8i7"]
-atlas = ExtResource("2_uuddj")
-region = Rect2(48, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_awyc4"]
-atlas = ExtResource("2_uuddj")
-region = Rect2(64, 16, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_nhok5"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_737mp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7m5om")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6nxum")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gj8i7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_awyc4")
-}],
-"loop": true,
-"name": &"0",
-"speed": 5.0
-}]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uuddj"]
+_data = {
+&"RESET": SubResource("Animation_uuddj")
+}
 
 [node name="PlayerVisualBase" type="Node2D"]
 script = ExtResource("1_yn75k")
 
 [node name="BodySprites" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 0.0273438, 0.072937, 1)
-sprite_frames = SubResource("SpriteFrames_kum55")
-animation = &"0"
+animation = &""
 
 [node name="DetailsSprites" type="AnimatedSprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
-sprite_frames = SubResource("SpriteFrames_nhok5")
-animation = &"0"
+animation = &""
 
 [node name="Particles" type="CPUParticles2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_uuddj")
+}

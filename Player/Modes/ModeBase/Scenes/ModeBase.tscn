@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://6w5huacev6wl"]
+
+[ext_resource type="Script" uid="uid://dq4e7w3ccx6hd" path="res://Player/Modes/ModeBase/Scripts/mode_base.gd" id="1_mcfcu"]
+[ext_resource type="PackedScene" uid="uid://ca7oyv25uiftn" path="res://Player/Scenes/PlayerVisualBase.tscn" id="2_0somf"]
+
+[node name="ModeBase" type="Node2D"]
+script = ExtResource("1_mcfcu")
+
+[node name="PlayerVisualBase" parent="." instance=ExtResource("2_0somf")]
+
+[node name="Collision" type="CollisionShape2D" parent="."]

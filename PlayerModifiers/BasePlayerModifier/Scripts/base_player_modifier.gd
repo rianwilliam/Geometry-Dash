@@ -14,7 +14,9 @@ func get_type() -> Enums.MODIFIERS:
 	return _type
 
 func _on_body_entered(body: Node2D) -> void:
+	if body is not Player: return
 	player_in_area = true
 
 func _on_body_exited(body: Node2D) -> void:
+	if body is not Player: return
 	player_in_area = false
