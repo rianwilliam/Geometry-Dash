@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2chvkyy457fn"]
+[gd_scene load_steps=8 format=3 uid="uid://c2chvkyy457fn"]
 
 [ext_resource type="Script" uid="uid://chfam0xfy4w5b" path="res://Player/Scripts/player.gd" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://v8sdhet7k10t" path="res://Player/Modes/SquareMode/Scenes/square_mode.tscn" id="2_omv0o"]
+[ext_resource type="PackedScene" uid="uid://b1ns3f8yyuunf" path="res://Player/Modes/BallMode/Scenes/ball_mode.tscn" id="2_qo0kk"]
+[ext_resource type="PackedScene" uid="uid://bw4i0ujepwv0o" path="res://Player/Modes/UfoMode/Scenes/ufo_mode.tscn" id="2_xwb2w"]
 [ext_resource type="Script" uid="uid://bigue4b0pt5le" path="res://Player/Scripts/robot.gd" id="3_52sos"]
 [ext_resource type="PackedScene" uid="uid://joqiig3q10m6" path="res://Player/Collisions/Scenes/collision.tscn" id="3_bw35f"]
 [ext_resource type="PackedScene" uid="uid://bvaqvyy7ask3x" path="res://Player/Modes/WaveMode/Scenes/wave_mode.tscn" id="3_xwb2w"]
@@ -9,11 +11,13 @@
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_onrkg")
 
+[node name="BallMode" parent="." instance=ExtResource("2_qo0kk")]
+
+[node name="UfoMode" parent="." instance=ExtResource("2_xwb2w")]
+
 [node name="SquareMode" parent="." instance=ExtResource("2_omv0o")]
-visible = false
 
 [node name="WaveMode" parent="." instance=ExtResource("3_xwb2w")]
-visible = false
 
 [node name="Collision" parent="." instance=ExtResource("3_bw35f")]
 

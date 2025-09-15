@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://bw4i0ujepwv0o"]
+
+[ext_resource type="PackedScene" uid="uid://6w5huacev6wl" path="res://Player/Modes/ModeBase/Scenes/ModeBase.tscn" id="1_oal1e"]
+[ext_resource type="Texture2D" uid="uid://ddeb5q3uhisg8" path="res://Player/Assets/Player.png" id="2_stcpt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stcpt"]
+atlas = ExtResource("2_stcpt")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ove33"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stcpt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pn7y1"]
+atlas = ExtResource("2_stcpt")
+region = Rect2(0, 112, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j5rt3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pn7y1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_stcpt"]
+radius = 7.0
+
+[node name="UfoMode" instance=ExtResource("1_oal1e")]
+
+[node name="BodySprites" parent="PlayerVisualBase" index="0"]
+modulate = Color(0.0594177, 0.142271, 0.230469, 1)
+sprite_frames = SubResource("SpriteFrames_ove33")
+animation = &"default"
+
+[node name="DetailsSprites" parent="PlayerVisualBase" index="1"]
+modulate = Color(0.175781, 0.526886, 0.9375, 1)
+sprite_frames = SubResource("SpriteFrames_j5rt3")
+animation = &"default"
+
+[node name="Collision" parent="." index="1"]
+shape = SubResource("CircleShape2D_stcpt")
+
+[editable path="PlayerVisualBase"]

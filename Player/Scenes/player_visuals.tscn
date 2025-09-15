@@ -51,12 +51,6 @@ script = ExtResource("1_mjcin")
 
 [node name="SquareVisual" parent="." instance=ExtResource("2_mjcin")]
 
-[node name="BodySprites" parent="SquareVisual" index="0"]
-animation = &""
-
-[node name="DetailsSprites" parent="SquareVisual" index="1"]
-animation = &""
-
 [node name="AnimationPlayer" parent="SquareVisual" index="3"]
 libraries = {
 &"": SubResource("AnimationLibrary_mjcin")
@@ -64,12 +58,6 @@ libraries = {
 
 [node name="WaveVisual" parent="." instance=ExtResource("2_mjcin")]
 visible = false
-
-[node name="BodySprites" parent="WaveVisual" index="0"]
-animation = &""
-
-[node name="DetailsSprites" parent="WaveVisual" index="1"]
-animation = &""
 
 [node name="PlayerAnimations" type="AnimationPlayer" parent="."]
 libraries = {

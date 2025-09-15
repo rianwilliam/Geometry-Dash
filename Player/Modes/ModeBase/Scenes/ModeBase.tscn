@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ca7oyv25uiftn" path="res://Player/Scenes/PlayerVisualBase.tscn" id="2_0somf"]
 
 [node name="ModeBase" type="Node2D"]
+visible = false
 script = ExtResource("1_mcfcu")
 
 [node name="PlayerVisualBase" parent="." instance=ExtResource("2_0somf")]

@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://b1ns3f8yyuunf"]
+
+[ext_resource type="PackedScene" uid="uid://6w5huacev6wl" path="res://Player/Modes/ModeBase/Scenes/ModeBase.tscn" id="1_j5xri"]
+[ext_resource type="Texture2D" uid="uid://ddeb5q3uhisg8" path="res://Player/Assets/Player.png" id="2_lctih"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qna3o"]
+atlas = ExtResource("2_lctih")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l53a7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qna3o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odvl7"]
+atlas = ExtResource("2_lctih")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_psoht"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odvl7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lctih"]
+radius = 8.0
+
+[node name="BallMode" instance=ExtResource("1_j5xri")]
+
+[node name="BodySprites" parent="PlayerVisualBase" index="0"]
+modulate = Color(0.179688, 0.155823, 0.155823, 1)
+sprite_frames = SubResource("SpriteFrames_l53a7")
+animation = &"default"
+
+[node name="DetailsSprites" parent="PlayerVisualBase" index="1"]
+modulate = Color(0.746094, 0.746094, 0.746094, 1)
+sprite_frames = SubResource("SpriteFrames_psoht")
+animation = &"default"
+
+[node name="Collision" parent="." index="1"]
+shape = SubResource("CircleShape2D_lctih")
+
+[editable path="PlayerVisualBase"]
