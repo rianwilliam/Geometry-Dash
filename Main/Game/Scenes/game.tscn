@@ -65,6 +65,8 @@ tile_map_data = PackedByteArray("AAATAP//AAAJAAQAAAAUAP//AAAJAAQAAAAVAP//AAAJAAQ
 
 [node name="Player" parent="." instance=ExtResource("2_feb5d")]
 position = Vector2(32, 56)
+_gravity_dir = null
+_initial_mode = null
 
 [node name="PlayerElements" type="Node2D" parent="."]
 unique_name_in_owner = true

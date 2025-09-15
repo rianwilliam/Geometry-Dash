@@ -51,7 +51,7 @@ var _wave_trial: WaveTrial
 var _player_resources: Dictionary[Enums.PLAYER_MODE, PlayerBaseResource]
 var _player_direction: Enums.PLAYER_DIRECTION = Enums.PLAYER_DIRECTION.RIGHT
 
-const _WAVE_TRIAL_SCENE_PATH: String = "res://Player/Scenes/wave_trial.tscn"
+const _WAVE_TRIAL_SCENE_PATH: String = "res://Player/Modes/WaveMode/Scenes/wave_trial.tscn"
 const _WAVE_TRIAL_SCENE = preload(_WAVE_TRIAL_SCENE_PATH)
 
 func _ready() -> void:
@@ -69,10 +69,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	Events.emit_signal("player_pos", global_position)
-	_action_pressed = Input.is_action_pressed("Action")
-	_action_clicked = Input.is_action_just_pressed("Action")
-	_action_released = Input.is_action_just_released("Action")
-	
+	_set_input_states()
 	_reset_gravity_force_if_on_surface()
 	_is_inside_player_modifier()
 	_kill_on_idle()
@@ -87,6 +84,11 @@ func _physics_process(delta: float) -> void:
 
 	velocity.x = _active_rsc.speed * _player_direction
 	move_and_slide()
+
+func _set_input_states() -> void:
+	_action_pressed = Input.is_action_pressed("Action")
+	_action_clicked = Input.is_action_just_pressed("Action")
+	_action_released = Input.is_action_just_released("Action")
 
 #region ModifiersActions
 

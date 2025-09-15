@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ca7oyv25uiftn"]
 
-[ext_resource type="Script" uid="uid://clilg5p2dpmfp" path="res://Player/Scripts/player_visual_base.gd" id="1_yn75k"]
+[ext_resource type="Script" uid="uid://clilg5p2dpmfp" path="res://Player/Scripts/Visual/player_visual_base.gd" id="1_yn75k"]
 
 [sub_resource type="Animation" id="Animation_uuddj"]
 length = 0.001
