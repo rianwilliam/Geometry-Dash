@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 class_name TileMapController
 
 @export var tile_map_to_reset: MainTileMap

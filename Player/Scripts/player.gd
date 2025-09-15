@@ -12,7 +12,6 @@ class_name Player
 @onready var player_visuals: PlayerVisuals = $PlayerVisuals
 
 @export var _gravity_dir: Enums.GRAVITY_DIR = Enums.GRAVITY_DIR.NORMAL
-@export var _player_skin: Enums.SKIN_IDS
 
 #TODO Usando o preload, os valores nao eram atualizados quando mudava na base
 #var _square_rsc: SquareResource = preload("res://Player/Resources/Square/square_rsc.tres")
@@ -37,13 +36,13 @@ var _old_x_position: int
 var _position_verified: bool = false
 var _gravity_force_multiplier: Enums.GRAVITY_FORCE = Enums.GRAVITY_FORCE.NORMAL
 
+var _mode: Enums.PLAYER_MODE = Enums.PLAYER_MODE.SQUARE
 var _can_action: bool = true
 var _action_pressed: bool
 var _action_clicked: bool
 var _action_released: bool
 var _active_rsc: PlayerBaseResource
 var _wave_trial: WaveTrial
-var _mode: Enums.PLAYER_MODE = Enums.PLAYER_MODE.SQUARE
 var _player_resources: Dictionary[Enums.PLAYER_MODE, PlayerBaseResource]
 var _player_direction: Enums.PLAYER_DIRECTION = Enums.PLAYER_DIRECTION.RIGHT
 
@@ -61,13 +60,13 @@ func _ready() -> void:
 	}
 	global_position = spawn.global_position
 	_set_active_resource()
-	player_visuals.set_skin(_player_skin)
+	Events.emit_signal("send_player_mode", _mode)
 
 func _physics_process(delta: float) -> void:
+	Events.emit_signal("player_pos", global_position)
 	_action_pressed = Input.is_action_pressed("Action")
 	_action_clicked = Input.is_action_just_pressed("Action")
 	_action_released = Input.is_action_just_released("Action")
-	Events.emit_signal("player_pos", global_position)
 	
 	_reset_gravity_force_if_on_surface()
 	_is_inside_player_modifier()
