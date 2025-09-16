@@ -1,50 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvaqvyy7ask3x"]
+[gd_scene load_steps=3 format=3 uid="uid://bvaqvyy7ask3x"]
 
 [ext_resource type="PackedScene" uid="uid://6w5huacev6wl" path="res://Player/Modes/ModeBase/Scenes/ModeBase.tscn" id="1_02qar"]
-[ext_resource type="Texture2D" uid="uid://ddeb5q3uhisg8" path="res://Player/Assets/Player.png" id="2_lhbpn"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r1j7j"]
-atlas = ExtResource("2_lhbpn")
-region = Rect2(0, 32, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_bymt5"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r1j7j")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eoq21"]
-atlas = ExtResource("2_lhbpn")
-region = Rect2(0, 48, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_3we87"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eoq21")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhbpn"]
 size = Vector2(12, 8)
 
 [node name="WaveMode" instance=ExtResource("1_02qar")]
-
-[node name="BodySprites" parent="PlayerVisualBase" index="0"]
-sprite_frames = SubResource("SpriteFrames_bymt5")
-animation = &"default"
-
-[node name="DetailsSprites" parent="PlayerVisualBase" index="1"]
-sprite_frames = SubResource("SpriteFrames_3we87")
-animation = &"default"
+visible = true
 
 [node name="Collision" parent="." index="1"]
 shape = SubResource("RectangleShape2D_lhbpn")

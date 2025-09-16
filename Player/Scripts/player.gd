@@ -4,6 +4,9 @@ class_name Player
 #TODO Recortar o sprite do player, fazer uma animação dele despedaçando e saindo partículas
 # Fazer uma função que recebe os nós dos sprites, assim funcionando para qualquer elemento
 #TODO Portal que teleporta o jogador
+#TODO Colocar Signals em uma função
+#TODO Consertar pulo do PAD
+#TODO Emissão de partículas do UFO vai ocorrer (ou aumentar caso eu coloque para emitir direto) quando o jogador pressionar action
 
 @onready var hurt_box: Area2D = %HurtBox
 @onready var spawn: Marker2D = %PlayerSpawn
@@ -69,9 +72,13 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	Events.emit_signal("player_pos", global_position)
-	_set_input_states()
+	Events.emit_signal("player_in_floor", is_on_floor())
+	Events.emit_signal("player_in_ceiling", is_on_ceiling())
+
+	_refresh_input_states()
 	_reset_gravity_force_if_on_surface()
 	_is_inside_player_modifier()
+	_is_player_in_action()
 	_kill_on_idle()
 
 	match _mode:
@@ -85,10 +92,16 @@ func _physics_process(delta: float) -> void:
 	velocity.x = _active_rsc.speed * _player_direction
 	move_and_slide()
 
-func _set_input_states() -> void:
+func _refresh_input_states() -> void:
 	_action_pressed = Input.is_action_pressed("Action")
 	_action_clicked = Input.is_action_just_pressed("Action")
 	_action_released = Input.is_action_just_released("Action")
+
+func _is_player_in_action() -> void:
+	if _action_clicked or _action_pressed or _orb_jump() or _pad_jump():
+		Events.emit_signal("player_in_action", true)
+	else:
+		Events.emit_signal("player_in_action", false)
 
 #region ModifiersActions
 
@@ -201,6 +214,7 @@ func _invert_gravity() -> void:
 		_gravity_dir = Enums.GRAVITY_DIR.INVERTED
 	else:
 		_gravity_dir = Enums.GRAVITY_DIR.NORMAL
+	Events.emit_signal("player_gravity_dir", _gravity_dir)
 
 func _set_gravity_dir(new_dir: Enums.GRAVITY_DIR) -> void:
 	_gravity_dir = new_dir
@@ -240,14 +254,9 @@ func _square_mode(delta: float) -> void:
 	_action_pressed and is_on_ceiling()
 	):
 		_jump()
-		#_play_jump_anim()
-	
+
 	if _orb_jump():
 		pass
-		#_play_jump_anim()
-
-#func _play_jump_anim() -> void:
-	#player_visuals.play_jump_anim()
 
 #endregion
 

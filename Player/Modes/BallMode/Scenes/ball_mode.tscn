@@ -1,54 +1,119 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1ns3f8yyuunf"]
+[gd_scene load_steps=12 format=3 uid="uid://b1ns3f8yyuunf"]
 
 [ext_resource type="PackedScene" uid="uid://6w5huacev6wl" path="res://Player/Modes/ModeBase/Scenes/ModeBase.tscn" id="1_j5xri"]
 [ext_resource type="Texture2D" uid="uid://ddeb5q3uhisg8" path="res://Player/Assets/Player.png" id="2_lctih"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qna3o"]
-atlas = ExtResource("2_lctih")
-region = Rect2(0, 64, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_l53a7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qna3o")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_odvl7"]
-atlas = ExtResource("2_lctih")
-region = Rect2(0, 80, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_psoht"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_odvl7")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="Script" uid="uid://c05a0j3j2syne" path="res://Player/Modes/BallMode/Scripts/ball_mode.gd" id="2_qna3o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lctih"]
 radius = 8.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lctih"]
+atlas = ExtResource("2_lctih")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qna3o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lctih")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l53a7"]
+atlas = ExtResource("2_lctih")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_odvl7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l53a7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_qna3o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_lctih"]
+resource_name = "rotate_sphere"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l53a7"]
+_data = {
+&"RESET": SubResource("Animation_qna3o"),
+&"rotate_sphere": SubResource("Animation_lctih")
+}
+
 [node name="BallMode" instance=ExtResource("1_j5xri")]
+visible = true
+script = ExtResource("2_qna3o")
 
-[node name="BodySprites" parent="PlayerVisualBase" index="0"]
-modulate = Color(0.179688, 0.155823, 0.155823, 1)
-sprite_frames = SubResource("SpriteFrames_l53a7")
-animation = &"default"
+[node name="PlayerVisualBase" parent="." index="0" node_paths=PackedStringArray("anim_player", "body_sprites", "details_sprites", "particles")]
+anim_player = NodePath("../AnimationPlayer")
+body_sprites = NodePath("../Marker2D/Body")
+details_sprites = NodePath("../Marker2D/Details")
+particles = NodePath("../Particles")
 
-[node name="DetailsSprites" parent="PlayerVisualBase" index="1"]
-modulate = Color(0.746094, 0.746094, 0.746094, 1)
-sprite_frames = SubResource("SpriteFrames_psoht")
-animation = &"default"
+[node name="NormalGravityParticles" parent="PlayerVisualBase" index="0"]
+position = Vector2(0, 8)
+
+[node name="InvertedGravityParticles" parent="PlayerVisualBase" index="1"]
+position = Vector2(0, -8)
 
 [node name="Collision" parent="." index="1"]
 shape = SubResource("CircleShape2D_lctih")
+
+[node name="Marker2D" type="Marker2D" parent="." index="2"]
+
+[node name="Body" type="AnimatedSprite2D" parent="Marker2D" index="0"]
+modulate = Color(0.85301, 0, 0, 1)
+sprite_frames = SubResource("SpriteFrames_qna3o")
+
+[node name="Details" type="AnimatedSprite2D" parent="Marker2D" index="1"]
+sprite_frames = SubResource("SpriteFrames_odvl7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_l53a7")
+}
+autoplay = "rotate_sphere"
+
+[node name="Particles" type="CPUParticles2D" parent="." index="4"]
+position = Vector2(0, 8)
+amount = 16
+lifetime = 0.6
+spread = 28.26
+gravity = Vector2(-100, -5)
+scale_amount_max = 2.1
 
 [editable path="PlayerVisualBase"]

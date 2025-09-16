@@ -50,3 +50,10 @@ metadata/_custom_type_script = "uid://c2tp465lrxm1q"
 [node name="Spikes" parent="GroundSpikes" instance=ExtResource("1_4nr2x")]
 
 [node name="Base" parent="GroundSpikes" instance=ExtResource("1_4nr2x")]
+
+[node name="InclinatedBlocks" type="Node2D" parent="."]
+rotation = 0.785398
+
+[node name="Blocks" parent="InclinatedBlocks" instance=ExtResource("1_4nr2x")]
+
+[node name="Border" parent="InclinatedBlocks" instance=ExtResource("1_4nr2x")]

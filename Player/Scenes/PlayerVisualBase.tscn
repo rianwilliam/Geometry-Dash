@@ -1,27 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://ca7oyv25uiftn"]
+[gd_scene load_steps=2 format=3 uid="uid://ca7oyv25uiftn"]
 
 [ext_resource type="Script" uid="uid://clilg5p2dpmfp" path="res://Player/Scripts/Visual/player_visual_base.gd" id="1_yn75k"]
-
-[sub_resource type="Animation" id="Animation_uuddj"]
-length = 0.001
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_uuddj"]
-_data = {
-&"RESET": SubResource("Animation_uuddj")
-}
 
 [node name="PlayerVisualBase" type="Node2D"]
 script = ExtResource("1_yn75k")
 
-[node name="BodySprites" type="AnimatedSprite2D" parent="."]
-animation = &""
+[node name="NormalGravityParticles" type="Marker2D" parent="."]
 
-[node name="DetailsSprites" type="AnimatedSprite2D" parent="."]
-animation = &""
-
-[node name="Particles" type="CPUParticles2D" parent="."]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_uuddj")
-}
+[node name="InvertedGravityParticles" type="Marker2D" parent="."]
