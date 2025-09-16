@@ -9,6 +9,9 @@ var is_player_in_floor: bool
 var is_player_in_ceiling: bool
 
 func _ready() -> void:
+	_connect_events()
+
+func _connect_events() -> void:
 	Events.connect("player_in_action", _on_player_action)
 	Events.connect("player_in_floor", _on_player_in_floor)
 	Events.connect("player_in_ceiling", _on_player_in_ceiling)

@@ -19,6 +19,7 @@ size = Vector2(0, 0)
 script = ExtResource("1_onrkg")
 
 [node name="BallMode" parent="." instance=ExtResource("2_qo0kk")]
+visible = false
 
 [node name="UfoMode" parent="." instance=ExtResource("2_xwb2w")]
 
@@ -26,6 +27,7 @@ script = ExtResource("1_onrkg")
 visible = false
 
 [node name="WaveMode" parent="." instance=ExtResource("3_xwb2w")]
+visible = false
 
 [node name="Collision" parent="." instance=ExtResource("3_bw35f")]
 shape = SubResource("RectangleShape2D_qo0kk")

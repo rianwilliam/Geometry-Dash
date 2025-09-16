@@ -195,8 +195,8 @@ func _on_mode_entered() -> void:
 		Enums.PLAYER_MODE.UFO: _on_enter_ufo_mode()
 		#Enums.PLAYER_MODE.SPACESHIP: _spaceship_mode()
 
-func _change_node_visibility(node: ModeBase,is_visible: bool) -> void:
-	node.visible = is_visible
+func _change_node_visibility(node: ModeBase, be_visible: bool) -> void:
+	node.visible = be_visible
 
 func _reset_modes_visibility() -> void:
 	for item in get_children():

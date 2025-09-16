@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://b6dmle3sl63cf"]
+[gd_scene load_steps=8 format=4 uid="uid://b6dmle3sl63cf"]
 
 [ext_resource type="Script" uid="uid://vjn7j4c5jhnu" path="res://Main/Game/Scripts/game.gd" id="1_eow3j"]
 [ext_resource type="PackedScene" uid="uid://c2chvkyy457fn" path="res://Player/Scenes/player.tscn" id="2_feb5d"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://c4k0f4lyslspp" path="res://Main/ElementColorChanger/Scenes/element_color_changer.tscn" id="4_bhyi5"]
 [ext_resource type="Texture2D" uid="uid://bmj0v06xqhbnw" path="res://Assets/Background - 1.png" id="7_eow3j"]
 [ext_resource type="PackedScene" uid="uid://bnt2ftx7usqym" path="res://MechanicChangers/Portals/ModeSwitcher/Scenes/mode_switcher.tscn" id="7_he4dk"]
-[ext_resource type="PackedScene" uid="uid://cwm6yd6g4jhjn" path="res://PlayerModifiers/Pads/BluePad/Scenes/blue_pad.tscn" id="8_wuomk"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_eow3j")
@@ -90,14 +89,11 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(192, 64)
 
 [node name="ModeSwitcher" parent="MechanicChangers" instance=ExtResource("7_he4dk")]
-position = Vector2(-128, 48)
-transform_to = 2
+position = Vector2(-128, 0)
+transform_to = 1
 
 [node name="PadsAndOrbs" type="Node2D" parent="."]
 position = Vector2(192, 64)
-
-[node name="BluePad" parent="PadsAndOrbs" instance=ExtResource("8_wuomk")]
-position = Vector2(-80, 0)
 
 [node name="Camera" type="Camera2D" parent="."]
 unique_name_in_owner = true

@@ -8,7 +8,6 @@ class_name PlayerVisualBase
 
 #TODO Colocar verificação das variaveis de export
 
-
 @onready var normal_gravity_particles: Marker2D = $NormalGravityParticles
 @onready var inverted_gravity_particles: Marker2D = $InvertedGravityParticles
 

@@ -7,7 +7,7 @@ var attemp_counter: int = 1
 var attemp_text: String = "Attemp"
 var player_pos: Vector2
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	camera_2d.position = player_pos.round()
 
 func _ready() -> void:

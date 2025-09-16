@@ -1,14 +1,103 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvaqvyy7ask3x"]
+[gd_scene load_steps=11 format=3 uid="uid://bvaqvyy7ask3x"]
 
 [ext_resource type="PackedScene" uid="uid://6w5huacev6wl" path="res://Player/Modes/ModeBase/Scenes/ModeBase.tscn" id="1_02qar"]
+[ext_resource type="Texture2D" uid="uid://ddeb5q3uhisg8" path="res://Player/Assets/Player.png" id="2_lhbpn"]
+[ext_resource type="Script" uid="uid://cfov1pox2yx8p" path="res://Player/Modes/WaveMode/Scripts/wave_mode.gd" id="2_r1j7j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhbpn"]
 size = Vector2(12, 8)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1j7j"]
+atlas = ExtResource("2_lhbpn")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bymt5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1j7j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eoq21"]
+atlas = ExtResource("2_lhbpn")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3we87"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eoq21")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_bymt5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bymt5"]
+_data = {
+&"RESET": SubResource("Animation_bymt5")
+}
+
 [node name="WaveMode" instance=ExtResource("1_02qar")]
 visible = true
+script = ExtResource("2_r1j7j")
+
+[node name="PlayerVisualBase" parent="." index="0" node_paths=PackedStringArray("anim_player", "body_sprites", "details_sprites", "particles")]
+anim_player = NodePath("../AnimationPlayer")
+body_sprites = NodePath("../Marker2D/Body")
+details_sprites = NodePath("../Marker2D/Details")
+particles = NodePath("../Particles")
+
+[node name="NormalGravityParticles" parent="PlayerVisualBase" index="0"]
+position = Vector2(-6, 0)
+
+[node name="InvertedGravityParticles" parent="PlayerVisualBase" index="1"]
+position = Vector2(-6, 0)
 
 [node name="Collision" parent="." index="1"]
 shape = SubResource("RectangleShape2D_lhbpn")
+
+[node name="Particles" type="CPUParticles2D" parent="." index="2"]
+amount = 16
+lifetime = 0.6
+gravity = Vector2(-100, 0)
+initial_velocity_max = 12.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+
+[node name="Marker2D" type="Marker2D" parent="." index="3"]
+
+[node name="Body" type="AnimatedSprite2D" parent="Marker2D" index="0"]
+modulate = Color(0.6953125, 0.040740967, 0.040740967, 1)
+sprite_frames = SubResource("SpriteFrames_bymt5")
+
+[node name="Details" type="AnimatedSprite2D" parent="Marker2D" index="1"]
+sprite_frames = SubResource("SpriteFrames_3we87")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+&"": SubResource("AnimationLibrary_bymt5")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 
 [editable path="PlayerVisualBase"]
