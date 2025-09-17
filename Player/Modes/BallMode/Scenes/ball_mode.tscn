@@ -42,7 +42,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Marker2D:rotation")
+tracks/0/path = NodePath("SpriteHolder:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -58,7 +58,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Marker2D:rotation")
+tracks/0/path = NodePath("SpriteHolder:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -80,8 +80,8 @@ script = ExtResource("2_qna3o")
 
 [node name="PlayerVisualBase" parent="." index="0" node_paths=PackedStringArray("anim_player", "body_sprites", "details_sprites", "particles")]
 anim_player = NodePath("../AnimationPlayer")
-body_sprites = NodePath("../Marker2D/Body")
-details_sprites = NodePath("../Marker2D/Details")
+body_sprites = NodePath("../SpriteHolder/Body")
+details_sprites = [NodePath("../SpriteHolder/Details")]
 particles = NodePath("../Particles")
 
 [node name="NormalGravityParticles" parent="PlayerVisualBase" index="0"]
@@ -93,13 +93,13 @@ position = Vector2(0, -8)
 [node name="Collision" parent="." index="1"]
 shape = SubResource("CircleShape2D_lctih")
 
-[node name="Marker2D" type="Marker2D" parent="." index="2"]
+[node name="SpriteHolder" type="Marker2D" parent="." index="2"]
 
-[node name="Body" type="AnimatedSprite2D" parent="Marker2D" index="0"]
+[node name="Body" type="AnimatedSprite2D" parent="SpriteHolder" index="0"]
 modulate = Color(0.85301, 0, 0, 1)
 sprite_frames = SubResource("SpriteFrames_qna3o")
 
-[node name="Details" type="AnimatedSprite2D" parent="Marker2D" index="1"]
+[node name="Details" type="AnimatedSprite2D" parent="SpriteHolder" index="1"]
 sprite_frames = SubResource("SpriteFrames_odvl7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]

@@ -7,6 +7,7 @@ class_name Player
 #TODO Colocar Signals em uma função
 #TODO Consertar pulo do PAD
 #TODO Emissão de partículas do UFO vai ocorrer (ou aumentar caso eu coloque para emitir direto) quando o jogador pressionar action
+#TODO Função que recebe o modo que o jogador entrou e torna o nó visivel e aplica a colisão
 
 @onready var hurt_box: Area2D = %HurtBox
 @onready var spawn: Marker2D = %PlayerSpawn
@@ -17,6 +18,7 @@ class_name Player
 @onready var wave_mode: ModeBase = $WaveMode
 @onready var ufo_mode: ModeBase = $UfoMode
 @onready var ball_mode: ModeBase = $BallMode
+@onready var robot_mode: ModeBase = $RobotMode
 
 @export var _gravity_dir: Enums.GRAVITY_DIR = Enums.GRAVITY_DIR.NORMAL
 @export var _initial_mode: Enums.PLAYER_MODE
@@ -193,6 +195,7 @@ func _on_mode_entered() -> void:
 		Enums.PLAYER_MODE.WAVE: _on_enter_wave_mode()
 		Enums.PLAYER_MODE.BALL: _on_enter_ball_mode()
 		Enums.PLAYER_MODE.UFO: _on_enter_ufo_mode()
+		Enums.PLAYER_MODE.ROBOT: _on_enter_robot_mode()
 		#Enums.PLAYER_MODE.SPACESHIP: _spaceship_mode()
 
 func _change_node_visibility(node: ModeBase, be_visible: bool) -> void:
@@ -326,10 +329,10 @@ func _spaceship_mode(delta: float) -> void:
 
 #region Robot
 func _on_enter_robot_mode() -> void:
-	pass
+	_change_node_visibility(robot_mode, true)
 
 func _robot_mode(delta: float) -> void:
-	if is_on_floor() or is_on_ceiling():
+	if is_on_floor() or (is_on_ceiling() and _gravity_dir == Enums.GRAVITY_DIR.INVERTED):
 		_active_rsc.can_fly = true
 	if not is_on_floor() and _action_released:
 		_active_rsc.can_fly = false

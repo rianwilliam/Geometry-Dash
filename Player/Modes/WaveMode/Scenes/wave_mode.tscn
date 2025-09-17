@@ -64,7 +64,7 @@ script = ExtResource("2_r1j7j")
 [node name="PlayerVisualBase" parent="." index="0" node_paths=PackedStringArray("anim_player", "body_sprites", "details_sprites", "particles")]
 anim_player = NodePath("../AnimationPlayer")
 body_sprites = NodePath("../Marker2D/Body")
-details_sprites = NodePath("../Marker2D/Details")
+details_sprites = [NodePath("../Marker2D/Details")]
 particles = NodePath("../Particles")
 
 [node name="NormalGravityParticles" parent="PlayerVisualBase" index="0"]
@@ -77,8 +77,8 @@ position = Vector2(-6, 0)
 shape = SubResource("RectangleShape2D_lhbpn")
 
 [node name="Particles" type="CPUParticles2D" parent="." index="2"]
-amount = 16
-lifetime = 0.6
+z_index = 1
+lifetime = 0.5
 gravity = Vector2(-100, 0)
 initial_velocity_max = 12.0
 scale_amount_min = 2.0

@@ -19,10 +19,6 @@ func _connect_events() -> void:
 func get_collision_shape() -> CollisionShape2D:
 	return collision
 
-func enable_particles(emit: bool) -> void:
-	if emit: player_visual_base.turn_on_particles()
-	else: player_visual_base.turn_off_particles()
-
 func _on_player_action(action: bool) -> void:
 	is_player_action = action
 
