@@ -8,6 +8,9 @@ class_name Player
 #TODO Consertar pulo do PAD
 #TODO Emissão de partículas do UFO vai ocorrer (ou aumentar caso eu coloque para emitir direto) quando o jogador pressionar action
 #TODO Função que recebe o modo que o jogador entrou e torna o nó visivel e aplica a colisão
+#TODO Pad amarelo 5 blocks
+# Vermelho 8 blocks
+# Rosa 3 blocks
 
 @onready var hurt_box: Area2D = %HurtBox
 @onready var spawn: Marker2D = %PlayerSpawn
