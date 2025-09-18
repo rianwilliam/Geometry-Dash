@@ -3,5 +3,5 @@ class_name YellowPad
 
 func _ready() -> void:
 	_effect = {
-		Enums.MODIFIERS.JUMP: Enums.JUMPS.MEDIUM
+		Enums.MODIFIERS.JUMP: Enums.JUMPS.MEDIUM_HIGH
 	}

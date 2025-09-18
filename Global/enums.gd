@@ -33,6 +33,7 @@ enum WAVE_DIR {
 enum JUMPS {
 	SMALL,
 	MEDIUM,
+	MEDIUM_HIGH,
 	HIGH,
 }
 

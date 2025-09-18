@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://c2chvkyy457fn"]
+[gd_scene load_steps=11 format=3 uid="uid://c2chvkyy457fn"]
 
 [ext_resource type="Script" uid="uid://chfam0xfy4w5b" path="res://Player/Scripts/player.gd" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://dhqymlddhmfl8" path="res://Player/Modes/RobotMode/Scenes/robot_mode.tscn" id="2_2hb64"]
 [ext_resource type="PackedScene" uid="uid://v8sdhet7k10t" path="res://Player/Modes/SquareMode/Scenes/square_mode.tscn" id="2_omv0o"]
 [ext_resource type="PackedScene" uid="uid://b1ns3f8yyuunf" path="res://Player/Modes/BallMode/Scenes/ball_mode.tscn" id="2_qo0kk"]
 [ext_resource type="PackedScene" uid="uid://bw4i0ujepwv0o" path="res://Player/Modes/UfoMode/Scenes/ufo_mode.tscn" id="2_xwb2w"]
-[ext_resource type="Script" uid="uid://bigue4b0pt5le" path="res://Player/Modes/RobotMode/Scripts/robot.gd" id="3_52sos"]
 [ext_resource type="PackedScene" uid="uid://joqiig3q10m6" path="res://Player/Collisions/Scenes/collision.tscn" id="3_bw35f"]
 [ext_resource type="PackedScene" uid="uid://bvaqvyy7ask3x" path="res://Player/Modes/WaveMode/Scenes/wave_mode.tscn" id="3_xwb2w"]
 
@@ -52,14 +51,6 @@ shape = SubResource("RectangleShape2D_2hb64")
 visible = false
 shape = SubResource("RectangleShape2D_qsune")
 
-[node name="RobotNodes" type="Node2D" parent="."]
-script = ExtResource("3_52sos")
-
-[node name="FlyTimer" type="Timer" parent="RobotNodes"]
-wait_time = 0.3
-one_shot = true
-
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="area_entered" from="ModifierSensor" to="." method="_on_modifier_sensor_area_entered"]
 [connection signal="area_exited" from="ModifierSensor" to="." method="_on_modifier_sensor_area_exited"]
-[connection signal="timeout" from="RobotNodes/FlyTimer" to="." method="_on_robot_fly_timer_timeout"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dhqymlddhmfl8"]
+[gd_scene load_steps=15 format=3 uid="uid://dhqymlddhmfl8"]
 
 [ext_resource type="PackedScene" uid="uid://6w5huacev6wl" path="res://Player/Modes/ModeBase/Scenes/ModeBase.tscn" id="1_r6152"]
 [ext_resource type="Texture2D" uid="uid://ddeb5q3uhisg8" path="res://Player/Assets/Player.png" id="2_0grpw"]
+[ext_resource type="Script" uid="uid://bigue4b0pt5le" path="res://Player/Modes/RobotMode/Scripts/robot_mode.gd" id="2_p74ch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0grpw"]
 size = Vector2(16, 15)
@@ -50,6 +51,57 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_6sl5k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite Holder/FrontLeg:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite Holder/FrontLeg:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.61086524]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite Holder/BackLeg:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.9972462, 6.000182)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite Holder/BackLeg:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.61086524]
+}
 
 [sub_resource type="Animation" id="Animation_sx3ke"]
 resource_name = "action"
@@ -107,57 +159,6 @@ tracks/3/keys = {
 "values": [0.61086524, -0.61086524]
 }
 
-[sub_resource type="Animation" id="Animation_6sl5k"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite Holder/FrontLeg:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 2)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite Holder/FrontLeg:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.61086524]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite Holder/BackLeg:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.9972462, 6.000182)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite Holder/BackLeg:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.61086524]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_htfyf"]
 _data = {
 &"RESET": SubResource("Animation_6sl5k"),
@@ -167,6 +168,7 @@ _data = {
 
 [node name="RobotMode" instance=ExtResource("1_r6152")]
 visible = true
+script = ExtResource("2_p74ch")
 
 [node name="PlayerVisualBase" parent="." index="0" node_paths=PackedStringArray("anim_player", "body_sprites", "details_sprites", "particles")]
 anim_player = NodePath("../AnimationPlayer")
@@ -219,5 +221,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_htfyf")
 }
 autoplay = "not_action"
+
+[node name="FlyTimer" type="Timer" parent="." index="5"]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="timeout" from="FlyTimer" to="." method="_on_fly_timer_timeout"]
 
 [editable path="PlayerVisualBase"]

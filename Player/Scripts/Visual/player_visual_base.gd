@@ -15,8 +15,6 @@ const NOT_ACTION_ANIM: String = "not_action"
 func _ready() -> void:
 	_validate_required_nodes()
 	_set_particles_color()
-	Events.connect("player_gravity_dir", _on_player_send_gravity_dir)
-	Events.connect("player_died", _on_player_die)
 
 func _validate_required_nodes() -> void:
 	assert(anim_player)
@@ -43,22 +41,3 @@ func play_not_action_anim() -> void:
 	if not _has_anim(NOT_ACTION_ANIM): return
 	anim_player.play(NOT_ACTION_ANIM)
 #endregion
-
-func _flip_sprites_vertically(invert: bool) -> void:
-	body_sprites.flip_v = invert
-	for animated_sprite: AnimatedSprite2D in details_sprites:
-		animated_sprite.flip_v = invert
-
-func _change_particles_position_to(marker: Marker2D) -> void:
-	particles.position = marker.position
-
-func _on_player_send_gravity_dir(direction: Enums.GRAVITY_DIR) -> void:
-	if direction == Enums.GRAVITY_DIR.INVERTED:
-		_change_particles_position_to(inverted_gravity_particles_position)
-		_flip_sprites_vertically(true)
-	else:
-		_change_particles_position_to(normal_gravity_particles_position)
-		_flip_sprites_vertically(false)
-
-func _on_player_die() -> void:
-	_flip_sprites_vertically(false)

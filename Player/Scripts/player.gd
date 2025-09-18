@@ -15,13 +15,12 @@ class_name Player
 @onready var hurt_box: Area2D = %HurtBox
 @onready var spawn: Marker2D = %PlayerSpawn
 @onready var player_elements: Node2D = %PlayerElements
-@onready var robot_nodes: Robot = $RobotNodes
 @onready var wave_lines: Node2D = %WaveLines
-@onready var square_mode: ModeBase = $SquareMode
-@onready var wave_mode: ModeBase = $WaveMode
+@onready var square_mode: SquareMode = $SquareMode
+@onready var wave_mode: WaveMode = $WaveMode
 @onready var ufo_mode: ModeBase = $UfoMode
-@onready var ball_mode: ModeBase = $BallMode
-@onready var robot_mode: ModeBase = $RobotMode
+@onready var ball_mode: BallMode = $BallMode
+@onready var robot_mode: RobotMode = $RobotMode
 
 @export var _gravity_dir: Enums.GRAVITY_DIR = Enums.GRAVITY_DIR.NORMAL
 @export var _initial_mode: Enums.PLAYER_MODE
@@ -63,23 +62,13 @@ const _WAVE_TRIAL_SCENE_PATH: String = "res://Player/Modes/WaveMode/Scenes/wave_
 const _WAVE_TRIAL_SCENE = preload(_WAVE_TRIAL_SCENE_PATH)
 
 func _ready() -> void:
-	global_position = spawn.global_position
-	_player_resources = {
-		Enums.PLAYER_MODE.SQUARE: _square_rsc,
-		Enums.PLAYER_MODE.WAVE: _wave_rsc,
-		Enums.PLAYER_MODE.UFO: _ufo_rsc,
-		Enums.PLAYER_MODE.BALL: _ball_rsc,
-		Enums.PLAYER_MODE.SPACESHIP: _spaceship_rsc,
-		Enums.PLAYER_MODE.ROBOT: _robot_rsc
-	}
+	_setup_player_resources()
 	change_mode(_initial_mode)
 	Events.emit_signal("send_player_mode", _mode)
+	robot_mode.connect("robot_fly_timeout", _on_robot_fly_timeout)
 
 func _physics_process(delta: float) -> void:
-	Events.emit_signal("player_pos", global_position)
-	Events.emit_signal("player_in_floor", is_on_floor())
-	Events.emit_signal("player_in_ceiling", is_on_ceiling())
-
+	_emit_player_signals()
 	_refresh_input_states()
 	_reset_gravity_force_if_on_surface()
 	_is_inside_player_modifier()
@@ -108,6 +97,23 @@ func _is_player_in_action() -> void:
 	else:
 		Events.emit_signal("player_in_action", false)
 
+func _emit_player_signals() -> void:
+	Events.emit_signal("player_pos", global_position)
+	Events.emit_signal("player_in_floor", is_on_floor())
+	Events.emit_signal("player_in_ceiling", is_on_ceiling())
+
+func _set_spawn_position() -> void:
+	global_position = spawn.global_position
+
+func _setup_player_resources() -> void:
+	_player_resources = {
+		Enums.PLAYER_MODE.SQUARE: _square_rsc,
+		Enums.PLAYER_MODE.WAVE: _wave_rsc,
+		Enums.PLAYER_MODE.UFO: _ufo_rsc,
+		Enums.PLAYER_MODE.BALL: _ball_rsc,
+		Enums.PLAYER_MODE.SPACESHIP: _spaceship_rsc,
+		Enums.PLAYER_MODE.ROBOT: _robot_rsc
+	}
 #region ModifiersActions
 
 ## Verifica se o jogador está dentro de um [code]Pad[/code] ou de um [code]Orb[/code] [br]
@@ -165,6 +171,7 @@ func _jump_modifiers_actions(effect: Enums.JUMPS) -> void:
 	match effect:
 		Enums.JUMPS.MEDIUM: _jump()
 		Enums.JUMPS.SMALL: _jump(Enums.JUMPS.SMALL)
+		Enums.JUMPS.MEDIUM_HIGH: _jump(Enums.JUMPS.MEDIUM_HIGH)
 		Enums.JUMPS.HIGH: _jump(Enums.JUMPS.HIGH)
 
 func _orb_jump() -> bool:
@@ -175,9 +182,10 @@ func _pad_jump() -> bool:
 
 func _jump(jump_size: Enums.JUMPS = Enums.JUMPS.MEDIUM) -> void:
 	match jump_size:
-		Enums.JUMPS.SMALL: velocity.y = (_active_rsc.jump_height * _gravity_dir) / 1.5
+		Enums.JUMPS.SMALL: velocity.y = (_active_rsc.jump_height * _gravity_dir) / 1.8
 		Enums.JUMPS.MEDIUM: velocity.y = _active_rsc.jump_height * _gravity_dir
-		Enums.JUMPS.HIGH: velocity.y = _active_rsc.jump_height * _gravity_dir * 2
+		Enums.JUMPS.MEDIUM_HIGH: velocity.y = _active_rsc.jump_height * _gravity_dir * 1.5
+		Enums.JUMPS.HIGH: velocity.y = _active_rsc.jump_height * _gravity_dir * 3
 #endregion
 
 #region ModeControl
@@ -188,9 +196,9 @@ func _jump(jump_size: Enums.JUMPS = Enums.JUMPS.MEDIUM) -> void:
 func change_mode(new_mode: Enums.PLAYER_MODE) -> void:
 	_mode = new_mode
 	_on_mode_entered()
-	Events.emit_signal("send_player_mode", _mode)
 
 func _on_mode_entered() -> void:
+	Events.emit_signal("send_player_mode", _mode)
 	_reset_modes_visibility()
 	_set_active_resource()
 	match _mode:
@@ -205,9 +213,10 @@ func _change_node_visibility(node: ModeBase, be_visible: bool) -> void:
 	node.visible = be_visible
 
 func _reset_modes_visibility() -> void:
-	for item in get_children():
-		if item is ModeBase: 
-			_change_node_visibility(item, false)
+	for item: Node2D in get_children():
+		if item is ModeBase:
+			var modes = item as ModeBase
+			_change_node_visibility(modes, false)
 
 #endregion
 
@@ -342,11 +351,11 @@ func _robot_mode(delta: float) -> void:
 
 	if _action_pressed and _active_rsc.can_fly:
 		velocity.y += _active_rsc.boost_force
-		robot_nodes.start_fly_timer()
+		robot_mode.start_fly_timer()
 	else:
 		_apply_gravity(delta)
 
-func _on_robot_fly_timer_timeout() -> void:
+func _on_robot_fly_timeout() -> void:
 	_active_rsc.can_fly = false
 
 #endregion
@@ -363,7 +372,7 @@ func _reset_player() -> void:
 	# Modes
 	change_mode(_initial_mode)
 	velocity = Vector2.ZERO
-	robot_nodes.reset_fly_timer()
+	robot_mode.reset_fly_timer()
 	if wave_lines.get_children():
 		for lines in wave_lines.get_children():
 			lines.queue_free() 
