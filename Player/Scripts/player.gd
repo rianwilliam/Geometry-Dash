@@ -8,7 +8,6 @@ class_name Player
 #TODO Consertar pulo do PAD
 #TODO Emissão de partículas do UFO vai ocorrer (ou aumentar caso eu coloque para emitir direto) quando o jogador pressionar action
 #TODO Função que recebe o modo que o jogador entrou e torna o nó visivel e aplica a colisão
-#TODO Pad amarelo 5 blocks
 # Vermelho 8 blocks
 # Rosa 3 blocks
 
@@ -57,6 +56,7 @@ var _active_rsc: PlayerBaseResource
 var _wave_trial: WaveTrial
 var _player_resources: Dictionary[Enums.PLAYER_MODE, PlayerBaseResource]
 var _player_direction: Enums.PLAYER_DIRECTION = Enums.PLAYER_DIRECTION.RIGHT
+var _active_mode: ModeBase
 
 const _WAVE_TRIAL_SCENE_PATH: String = "res://Player/Modes/WaveMode/Scenes/wave_trial.tscn"
 const _WAVE_TRIAL_SCENE = preload(_WAVE_TRIAL_SCENE_PATH)
@@ -64,8 +64,8 @@ const _WAVE_TRIAL_SCENE = preload(_WAVE_TRIAL_SCENE_PATH)
 func _ready() -> void:
 	_setup_player_resources()
 	change_mode(_initial_mode)
+	_connect_signals()
 	Events.emit_signal("send_player_mode", _mode)
-	robot_mode.connect("robot_fly_timeout", _on_robot_fly_timeout)
 
 func _physics_process(delta: float) -> void:
 	_emit_player_signals()
@@ -105,15 +105,9 @@ func _emit_player_signals() -> void:
 func _set_spawn_position() -> void:
 	global_position = spawn.global_position
 
-func _setup_player_resources() -> void:
-	_player_resources = {
-		Enums.PLAYER_MODE.SQUARE: _square_rsc,
-		Enums.PLAYER_MODE.WAVE: _wave_rsc,
-		Enums.PLAYER_MODE.UFO: _ufo_rsc,
-		Enums.PLAYER_MODE.BALL: _ball_rsc,
-		Enums.PLAYER_MODE.SPACESHIP: _spaceship_rsc,
-		Enums.PLAYER_MODE.ROBOT: _robot_rsc
-	}
+func _connect_signals() -> void:
+	robot_mode.connect("robot_fly_timeout", _on_robot_fly_timeout)
+
 #region ModifiersActions
 
 ## Verifica se o jogador está dentro de um [code]Pad[/code] ou de um [code]Orb[/code] [br]
@@ -142,6 +136,16 @@ func _is_inside_player_modifier() -> void:
 #region Resources
 func _set_active_resource() -> void:
 	_active_rsc = _player_resources.get(_mode)
+
+func _setup_player_resources() -> void:
+	_player_resources = {
+		Enums.PLAYER_MODE.SQUARE: _square_rsc,
+		Enums.PLAYER_MODE.WAVE: _wave_rsc,
+		Enums.PLAYER_MODE.UFO: _ufo_rsc,
+		Enums.PLAYER_MODE.BALL: _ball_rsc,
+		Enums.PLAYER_MODE.SPACESHIP: _spaceship_rsc,
+		Enums.PLAYER_MODE.ROBOT: _robot_rsc
+	}
 #endregion
 
 #region DirectionSetter
@@ -191,32 +195,57 @@ func _jump(jump_size: Enums.JUMPS = Enums.JUMPS.MEDIUM) -> void:
 #region ModeControl
 
 ## Altera o modo do jogador
-## [br] - param: [param Enums.PLAYER_MODE] [br] [br]
-## [code]ORBS[/code] disparam essa função quando o jogador entra
+## [br] - param: [param Enums.PLAYER_MODE] [br]
+## [member Orbs] disparam essa função quando o jogador entra
 func change_mode(new_mode: Enums.PLAYER_MODE) -> void:
 	_mode = new_mode
 	_on_mode_entered()
 
 func _on_mode_entered() -> void:
 	Events.emit_signal("send_player_mode", _mode)
+	_disconnect_modes_events()
 	_reset_modes_visibility()
 	_set_active_resource()
+	_reset_changed_values_to_default()
 	match _mode:
-		Enums.PLAYER_MODE.SQUARE: _on_enter_square_mode()
-		Enums.PLAYER_MODE.WAVE: _on_enter_wave_mode()
-		Enums.PLAYER_MODE.BALL: _on_enter_ball_mode()
-		Enums.PLAYER_MODE.UFO: _on_enter_ufo_mode()
-		Enums.PLAYER_MODE.ROBOT: _on_enter_robot_mode()
+		Enums.PLAYER_MODE.SQUARE: 
+			_active_mode = square_mode
+			_on_enter_square_mode()
+		Enums.PLAYER_MODE.WAVE:
+			_active_mode = wave_mode
+			_on_enter_wave_mode()
+		Enums.PLAYER_MODE.BALL:
+			_active_mode = ball_mode
+			_on_enter_ball_mode()
+		Enums.PLAYER_MODE.UFO:
+			_active_mode = ufo_mode
+			_on_enter_ufo_mode()
+		Enums.PLAYER_MODE.ROBOT:
+			_active_mode = robot_mode
+			_on_enter_robot_mode()
 		#Enums.PLAYER_MODE.SPACESHIP: _spaceship_mode()
 
-func _change_node_visibility(node: ModeBase, be_visible: bool) -> void:
+	_set_mode_visual(_active_mode, true)
+	_set_mode_collision(_active_mode)
+
+func _set_mode_visual(node: ModeBase, be_visible: bool) -> void:
 	node.visible = be_visible
 
 func _reset_modes_visibility() -> void:
 	for item: Node2D in get_children():
 		if item is ModeBase:
 			var modes = item as ModeBase
-			_change_node_visibility(modes, false)
+			_set_mode_visual(modes, false)
+
+func _set_mode_collision(mode: ModeBase) -> void:
+	Events.emit_signal("set_player_collision_shape", mode.get_collision_shape())
+
+func _disconnect_modes_events() -> void:
+	if wave_mode.is_connected("collision_rotate_requested", _on_collision_rotate_requested):
+		wave_mode.disconnect("collision_rotate_requested", _on_collision_rotate_requested)
+
+func _reset_changed_values_to_default() -> void:
+	rotation_degrees = 0
 
 #endregion
 
@@ -257,8 +286,9 @@ func _gravity_force_modifiers_actions(effect: Enums.GRAVITY_FORCE) -> void:
 #region Square
 
 func _on_enter_square_mode() -> void:
-	_change_node_visibility(square_mode, true)
-	Events.emit_signal("set_player_collision_shape", square_mode.get_collision_shape())
+	return
+	#_set_mode_visual(square_mode, true)
+	#Events.emit_signal("set_player_collision_shape", square_mode.get_collision_shape())
 
 func _square_mode(delta: float) -> void:
 	if not is_on_floor() or not is_on_ceiling():
@@ -277,10 +307,9 @@ func _square_mode(delta: float) -> void:
 
 #region Wave
 func _on_enter_wave_mode() -> void:
-	_change_node_visibility(wave_mode, true)
-	Events.emit_signal("set_player_collision_shape", wave_mode.get_collision_shape())
 	_instanciate_wave_trial()
-	
+	wave_mode.connect("collision_rotate_requested", _on_collision_rotate_requested)
+
 func _wave_mode(_delta: float) -> void:
 	velocity.y = _active_rsc.vertical_speed * _active_rsc.direction * _gravity_dir
 	if _action_pressed:
@@ -289,6 +318,9 @@ func _wave_mode(_delta: float) -> void:
 	else:
 		_change_wave_direction(Enums.WAVE_DIR.DOWN)
 		_add_trial_point()
+
+func _on_collision_rotate_requested(requested_rotation: int) -> void:
+	rotation_degrees = requested_rotation
 
 func _instanciate_wave_trial() -> void:
 	_wave_trial = _WAVE_TRIAL_SCENE.instantiate()
@@ -308,8 +340,7 @@ func _change_wave_direction(new_dir: Enums.WAVE_DIR) -> void:
 #region Ball
 
 func _on_enter_ball_mode() -> void:
-	_change_node_visibility(ball_mode, true)
-	Events.emit_signal("set_player_collision_shape", ball_mode.get_collision_shape())
+	pass
 
 func _ball_mode(delta: float) -> void:
 	_apply_gravity(delta)
@@ -321,12 +352,10 @@ func _ball_mode(delta: float) -> void:
 #region Ufo
 
 func _on_enter_ufo_mode() -> void:
-	_change_node_visibility(ufo_mode, true)
-	Events.emit_signal("set_player_collision_shape", ufo_mode.get_collision_shape())
+	pass
 
 func _ufo_mode(delta: float) -> void:
 	_apply_gravity(delta)
-	if not _can_action: return
 	if _action_clicked:
 		velocity.y = _active_rsc.impulse_height * _gravity_dir
 #endregion
@@ -341,7 +370,7 @@ func _spaceship_mode(delta: float) -> void:
 
 #region Robot
 func _on_enter_robot_mode() -> void:
-	_change_node_visibility(robot_mode, true)
+	_set_mode_visual(robot_mode, true)
 
 func _robot_mode(delta: float) -> void:
 	if is_on_floor() or (is_on_ceiling() and _gravity_dir == Enums.GRAVITY_DIR.INVERTED):
@@ -375,7 +404,7 @@ func _reset_player() -> void:
 	robot_mode.reset_fly_timer()
 	if wave_lines.get_children():
 		for lines in wave_lines.get_children():
-			lines.queue_free() 
+			lines.queue_free()
 #endregion
 
 #region Interations
