@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c2chvkyy457fn"]
+[gd_scene load_steps=12 format=3 uid="uid://c2chvkyy457fn"]
 
 [ext_resource type="Script" uid="uid://chfam0xfy4w5b" path="res://Player/Scripts/player.gd" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://dhqymlddhmfl8" path="res://Player/Modes/RobotMode/Scenes/robot_mode.tscn" id="2_2hb64"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bw4i0ujepwv0o" path="res://Player/Modes/UfoMode/Scenes/ufo_mode.tscn" id="2_xwb2w"]
 [ext_resource type="PackedScene" uid="uid://joqiig3q10m6" path="res://Player/Collisions/Scenes/collision.tscn" id="3_bw35f"]
 [ext_resource type="PackedScene" uid="uid://bvaqvyy7ask3x" path="res://Player/Modes/WaveMode/Scenes/wave_mode.tscn" id="3_xwb2w"]
+[ext_resource type="PackedScene" uid="uid://y1hfisbd3tnq" path="res://Player/Modes/SpaceshipMode/Scenes/spaceship_mode.tscn" id="7_2hb64"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qo0kk"]
 size = Vector2(0, 0)
@@ -28,9 +29,12 @@ visible = false
 visible = false
 
 [node name="SquareMode" parent="." instance=ExtResource("2_omv0o")]
+visible = false
 
 [node name="WaveMode" parent="." instance=ExtResource("3_xwb2w")]
 visible = false
+
+[node name="SpaceshipMode" parent="." instance=ExtResource("7_2hb64")]
 
 [node name="Collision" parent="." instance=ExtResource("3_bw35f")]
 shape = SubResource("RectangleShape2D_qo0kk")

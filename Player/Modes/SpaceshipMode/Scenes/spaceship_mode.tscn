@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://y1hfisbd3tnq"]
+
+[ext_resource type="PackedScene" uid="uid://6w5huacev6wl" path="res://Player/Modes/ModeBase/Scenes/ModeBase.tscn" id="1_bh0xh"]
+[ext_resource type="Texture2D" uid="uid://ddeb5q3uhisg8" path="res://Player/Assets/Player.png" id="2_8ofyl"]
+[ext_resource type="Script" uid="uid://bvb2p8pb0vb00" path="res://Player/Modes/SpaceshipMode/Scripts/spaceship_mode.gd" id="2_u4v5p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ofyl"]
+size = Vector2(14, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4v5p"]
+atlas = ExtResource("2_8ofyl")
+region = Rect2(0, 160, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xw4dh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4v5p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w72va"]
+atlas = ExtResource("2_8ofyl")
+region = Rect2(0, 176, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_356k6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w72va")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SpaceshipMode" instance=ExtResource("1_bh0xh")]
+visible = true
+script = ExtResource("2_u4v5p")
+
+[node name="PlayerVisualBase" parent="." index="0" node_paths=PackedStringArray("anim_player", "body_sprites", "details_sprites", "particles")]
+anim_player = NodePath("../AnimPlayer")
+body_sprites = NodePath("../SpriteHolder/Body")
+details_sprites = [NodePath("../SpriteHolder/Details")]
+particles = NodePath("../Particles")
+
+[node name="NormalGravityParticles" parent="PlayerVisualBase" index="0"]
+position = Vector2(-6, 0)
+
+[node name="InvertedGravityParticles" parent="PlayerVisualBase" index="1"]
+position = Vector2(-6, 0)
+
+[node name="Collision" parent="." index="1"]
+shape = SubResource("RectangleShape2D_8ofyl")
+
+[node name="Particles" type="CPUParticles2D" parent="." index="2"]
+position = Vector2(-6, 0)
+gravity = Vector2(-75, 0)
+initial_velocity_max = 8.0
+
+[node name="SpriteHolder" type="Marker2D" parent="." index="3"]
+
+[node name="Body" type="AnimatedSprite2D" parent="SpriteHolder" index="0"]
+sprite_frames = SubResource("SpriteFrames_xw4dh")
+
+[node name="Details" type="AnimatedSprite2D" parent="SpriteHolder" index="1"]
+modulate = Color(0, 0, 0, 1)
+sprite_frames = SubResource("SpriteFrames_356k6")
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="." index="4"]
+
+[editable path="PlayerVisualBase"]

@@ -12,7 +12,7 @@ func _ready() -> void:
 	_connect_events()
 
 func _connect_events() -> void:
-	Events.connect("player_in_action", _on_player_action)
+	Events.connect("player_is_in_action", _on_player_action)
 	Events.connect("player_in_floor", _on_player_in_floor)
 	Events.connect("player_in_ceiling", _on_player_in_ceiling)
 	Events.connect("player_gravity_dir", _on_player_send_gravity)

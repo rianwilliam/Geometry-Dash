@@ -57,7 +57,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite Holder/FrontLeg:position")
+tracks/0/path = NodePath("SpriteHolder/FrontLeg:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -69,7 +69,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite Holder/FrontLeg:rotation")
+tracks/1/path = NodePath("SpriteHolder/FrontLeg:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -81,7 +81,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite Holder/BackLeg:position")
+tracks/2/path = NodePath("SpriteHolder/BackLeg:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -93,7 +93,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite Holder/BackLeg:rotation")
+tracks/3/path = NodePath("SpriteHolder/BackLeg:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -113,7 +113,7 @@ loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite Holder/FrontLeg:position")
+tracks/0/path = NodePath("SpriteHolder/FrontLeg:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -125,7 +125,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite Holder/FrontLeg:rotation")
+tracks/1/path = NodePath("SpriteHolder/FrontLeg:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -137,7 +137,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite Holder/BackLeg:position")
+tracks/2/path = NodePath("SpriteHolder/BackLeg:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -149,7 +149,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite Holder/BackLeg:rotation")
+tracks/3/path = NodePath("SpriteHolder/BackLeg:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -172,8 +172,8 @@ script = ExtResource("2_p74ch")
 
 [node name="PlayerVisualBase" parent="." index="0" node_paths=PackedStringArray("anim_player", "body_sprites", "details_sprites", "particles")]
 anim_player = NodePath("../AnimationPlayer")
-body_sprites = NodePath("../Sprite Holder/Body")
-details_sprites = [NodePath("../Sprite Holder/Details"), NodePath("../Sprite Holder/FrontLeg"), NodePath("../Sprite Holder/BackLeg")]
+body_sprites = NodePath("../SpriteHolder/Body")
+details_sprites = [NodePath("../SpriteHolder/Details"), NodePath("../SpriteHolder/FrontLeg"), NodePath("../SpriteHolder/BackLeg")]
 particles = NodePath("../Particles")
 
 [node name="NormalGravityParticles" parent="PlayerVisualBase" index="0"]
@@ -196,21 +196,21 @@ emission_normals = PackedVector2Array()
 emission_colors = PackedColorArray()
 gravity = Vector2(-100, -8)
 
-[node name="Sprite Holder" type="Marker2D" parent="." index="3"]
+[node name="SpriteHolder" type="Marker2D" parent="." index="3"]
 
-[node name="Body" type="AnimatedSprite2D" parent="Sprite Holder" index="0"]
+[node name="Body" type="AnimatedSprite2D" parent="SpriteHolder" index="0"]
 sprite_frames = SubResource("SpriteFrames_6saq3")
 
-[node name="Details" type="AnimatedSprite2D" parent="Sprite Holder" index="1"]
+[node name="Details" type="AnimatedSprite2D" parent="SpriteHolder" index="1"]
 modulate = Color(0.24203092, 0, 0, 1)
 sprite_frames = SubResource("SpriteFrames_jf8oq")
 
-[node name="FrontLeg" type="AnimatedSprite2D" parent="Sprite Holder" index="2"]
+[node name="FrontLeg" type="AnimatedSprite2D" parent="SpriteHolder" index="2"]
 position = Vector2(1, 2)
 rotation = -0.61086524
 sprite_frames = SubResource("SpriteFrames_b571d")
 
-[node name="BackLeg" type="AnimatedSprite2D" parent="Sprite Holder" index="3"]
+[node name="BackLeg" type="AnimatedSprite2D" parent="SpriteHolder" index="3"]
 z_index = -1
 position = Vector2(0.9972462, 6.000182)
 rotation = 0.61086524

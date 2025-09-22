@@ -3,11 +3,11 @@ class_name Player
 
 #TODO Recortar o sprite do player, fazer uma animação dele despedaçando e saindo partículas
 # Fazer uma função que recebe os nós dos sprites, assim funcionando para qualquer elemento
-#TODO Portal que teleporta o jogador
-#TODO Colocar Signals em uma função
-#TODO Consertar pulo do PAD
-#TODO Emissão de partículas do UFO vai ocorrer (ou aumentar caso eu coloque para emitir direto) quando o jogador pressionar action
-#TODO Função que recebe o modo que o jogador entrou e torna o nó visivel e aplica a colisão
+#TODO Colocar em cada emissão de evento que o recebe
+#TODO Fazer nave inclinar conforme sobe ou desce (aplicar corretamente esta funcão na gravidade invertida)
+#TODO Tirar rotation requested e fazer o no player girar diretamente
+# Fazer o mesmo com a spaceship
+
 # Vermelho 8 blocks
 # Rosa 3 blocks
 
@@ -20,6 +20,7 @@ class_name Player
 @onready var ufo_mode: ModeBase = $UfoMode
 @onready var ball_mode: BallMode = $BallMode
 @onready var robot_mode: RobotMode = $RobotMode
+@onready var spaceship_mode: SpaceshipMode = $SpaceshipMode
 
 @export var _gravity_dir: Enums.GRAVITY_DIR = Enums.GRAVITY_DIR.NORMAL
 @export var _initial_mode: Enums.PLAYER_MODE
@@ -61,14 +62,16 @@ var _active_mode: ModeBase
 const _WAVE_TRIAL_SCENE_PATH: String = "res://Player/Modes/WaveMode/Scenes/wave_trial.tscn"
 const _WAVE_TRIAL_SCENE = preload(_WAVE_TRIAL_SCENE_PATH)
 
+#region Ready Func
 func _ready() -> void:
+	_connect_signals()
 	_setup_player_resources()
 	change_mode(_initial_mode)
-	_connect_signals()
 	Events.emit_signal("send_player_mode", _mode)
+#endregion
 
 func _physics_process(delta: float) -> void:
-	_emit_player_signals()
+	_emit_player_regular_signals()
 	_refresh_input_states()
 	_reset_gravity_force_if_on_surface()
 	_is_inside_player_modifier()
@@ -93,20 +96,22 @@ func _refresh_input_states() -> void:
 
 func _is_player_in_action() -> void:
 	if _action_clicked or _action_pressed or _orb_jump() or _pad_jump():
-		Events.emit_signal("player_in_action", true)
+		Events.emit_signal("player_is_in_action", true)
 	else:
-		Events.emit_signal("player_in_action", false)
-
-func _emit_player_signals() -> void:
-	Events.emit_signal("player_pos", global_position)
-	Events.emit_signal("player_in_floor", is_on_floor())
-	Events.emit_signal("player_in_ceiling", is_on_ceiling())
+		Events.emit_signal("player_is_in_action", false)
 
 func _set_spawn_position() -> void:
 	global_position = spawn.global_position
 
+#region Signals
+func _emit_player_regular_signals() -> void:
+	Events.emit_signal("player_pos", global_position)
+	Events.emit_signal("player_in_floor", is_on_floor())
+	Events.emit_signal("player_in_ceiling", is_on_ceiling())
+
 func _connect_signals() -> void:
 	robot_mode.connect("robot_fly_timeout", _on_robot_fly_timeout)
+#endregion
 
 #region ModifiersActions
 
@@ -153,23 +158,6 @@ func set_direction(new_dir: Enums.PLAYER_DIRECTION = Enums.PLAYER_DIRECTION.RIGH
 	_player_direction = new_dir
 #endregion
 
-#region DieFunctions
-func _kill_on_idle() -> void:
-	if not _position_verified:
-		_old_x_position = int(position.x)
-		_position_verified = true
-	else:
-		if int(position.x) == _old_x_position:
-			_died()
-		else:
-			_old_x_position = 0
-		_position_verified = false
-
-func _died() -> void:
-	Events.emit_signal("player_died")
-	_reset_player()
-#endregion
-
 #region JumpActions
 func _jump_modifiers_actions(effect: Enums.JUMPS) -> void:
 	match effect:
@@ -206,7 +194,7 @@ func _on_mode_entered() -> void:
 	_disconnect_modes_events()
 	_reset_modes_visibility()
 	_set_active_resource()
-	_reset_changed_values_to_default()
+	_reset_transform()
 	match _mode:
 		Enums.PLAYER_MODE.SQUARE: 
 			_active_mode = square_mode
@@ -223,7 +211,9 @@ func _on_mode_entered() -> void:
 		Enums.PLAYER_MODE.ROBOT:
 			_active_mode = robot_mode
 			_on_enter_robot_mode()
-		#Enums.PLAYER_MODE.SPACESHIP: _spaceship_mode()
+		Enums.PLAYER_MODE.SPACESHIP: 
+			_active_mode = spaceship_mode
+			_on_enter_spaceship_mode()
 
 	_set_mode_visual(_active_mode, true)
 	_set_mode_collision(_active_mode)
@@ -241,12 +231,8 @@ func _set_mode_collision(mode: ModeBase) -> void:
 	Events.emit_signal("set_player_collision_shape", mode.get_collision_shape())
 
 func _disconnect_modes_events() -> void:
-	if wave_mode.is_connected("collision_rotate_requested", _on_collision_rotate_requested):
-		wave_mode.disconnect("collision_rotate_requested", _on_collision_rotate_requested)
-
-func _reset_changed_values_to_default() -> void:
-	rotation_degrees = 0
-
+	if wave_mode.is_connected("rotation_requested", _on_rotation_requested):
+		wave_mode.disconnect("rotation_requested", _on_rotation_requested)
 #endregion
 
 #region Gravity
@@ -308,7 +294,7 @@ func _square_mode(delta: float) -> void:
 #region Wave
 func _on_enter_wave_mode() -> void:
 	_instanciate_wave_trial()
-	wave_mode.connect("collision_rotate_requested", _on_collision_rotate_requested)
+	wave_mode.connect("rotation_requested", _on_rotation_requested)
 
 func _wave_mode(_delta: float) -> void:
 	velocity.y = _active_rsc.vertical_speed * _active_rsc.direction * _gravity_dir
@@ -319,7 +305,7 @@ func _wave_mode(_delta: float) -> void:
 		_change_wave_direction(Enums.WAVE_DIR.DOWN)
 		_add_trial_point()
 
-func _on_collision_rotate_requested(requested_rotation: int) -> void:
+func _on_rotation_requested(requested_rotation: int) -> void:
 	rotation_degrees = requested_rotation
 
 func _instanciate_wave_trial() -> void:
@@ -361,6 +347,10 @@ func _ufo_mode(delta: float) -> void:
 #endregion
 
 #region Spaceship
+
+func _on_enter_spaceship_mode() -> void:
+	pass
+
 func _spaceship_mode(delta: float) -> void:
 	if _action_pressed and _can_action:
 		velocity.y += _active_rsc.vertical_vel * _gravity_dir
@@ -370,16 +360,17 @@ func _spaceship_mode(delta: float) -> void:
 
 #region Robot
 func _on_enter_robot_mode() -> void:
-	_set_mode_visual(robot_mode, true)
+	pass
 
 func _robot_mode(delta: float) -> void:
-	if is_on_floor() or (is_on_ceiling() and _gravity_dir == Enums.GRAVITY_DIR.INVERTED):
+	if (is_on_floor() and _gravity_dir == Enums.GRAVITY_DIR.NORMAL) or \
+	(is_on_ceiling() and _gravity_dir == Enums.GRAVITY_DIR.INVERTED):
 		_active_rsc.can_fly = true
 	if not is_on_floor() and _action_released:
 		_active_rsc.can_fly = false
 
 	if _action_pressed and _active_rsc.can_fly:
-		velocity.y += _active_rsc.boost_force
+		velocity.y += _active_rsc.boost_force * _gravity_dir
 		robot_mode.start_fly_timer()
 	else:
 		_apply_gravity(delta)
@@ -399,12 +390,38 @@ func _reset_player() -> void:
 	_gravity_dir = Enums.GRAVITY_DIR.NORMAL
 	
 	# Modes
-	change_mode(_initial_mode)
 	velocity = Vector2.ZERO
+	change_mode(_initial_mode)
+	_reset_robot_fly_mode()
+	_erase_wave_lines()
+
+func _reset_transform() -> void:
+	rotation_degrees = 0
+
+func _reset_robot_fly_mode() -> void:
 	robot_mode.reset_fly_timer()
+
+func _erase_wave_lines() -> void:
 	if wave_lines.get_children():
 		for lines in wave_lines.get_children():
 			lines.queue_free()
+#endregion
+
+#region DieFunctions
+func _kill_on_idle() -> void:
+	if not _position_verified:
+		_old_x_position = int(position.x)
+		_position_verified = true
+	else:
+		if int(position.x) == _old_x_position:
+			_died()
+		else:
+			_old_x_position = 0
+		_position_verified = false
+
+func _died() -> void:
+	Events.emit_signal("player_died")
+	_reset_player()
 #endregion
 
 #region Interations
@@ -413,13 +430,22 @@ func _on_hurt_box_body_entered(_body: Node2D) -> void:
 
 func _on_modifier_sensor_area_entered(area: Area2D) -> void:
 	if not area is PlayerModifier: return
-	if area is Orb: _is_on_orb = true
-	if area is Pad: _is_on_pad = true
+	_identify_area_type(area)
+	_get_modifier_effect(area)
 	_can_action = false
-	_modifier_effect = area.get_effect()
+
+func _get_modifier_effect(entered_area: Area2D) -> void:
+	_modifier_effect = entered_area.get_effect()
+
+func _identify_area_type(entered_area: Area2D) -> void:
+	if entered_area is Orb: _is_on_orb = true
+	if entered_area is Pad: _is_on_pad = true
 
 func _on_modifier_sensor_area_exited(area: Area2D) -> void:
 	if not area is PlayerModifier: return
+	_reset_modifier_variables()
+
+func _reset_modifier_variables() -> void:
 	_is_on_orb = false
 	_is_on_pad = false
 	_can_action = true
