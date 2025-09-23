@@ -5,8 +5,9 @@ class_name Player
 # Fazer uma função que recebe os nós dos sprites, assim funcionando para qualquer elemento
 #TODO Colocar em cada emissão de evento que o recebe
 #TODO Fazer nave inclinar conforme sobe ou desce (aplicar corretamente esta funcão na gravidade invertida)
-#TODO Tirar rotation requested e fazer o no player girar diretamente
-# Fazer o mesmo com a spaceship
+#TODO Aplicar a rotação dinâmica na spaceship
+#TODO Colocar uma variável de recurso para cada modo, essa variável vai ser determinada como:
+# var mode_type = _active_rsc as MODECLASS
 
 # Vermelho 8 blocks
 # Rosa 3 blocks
@@ -61,6 +62,7 @@ var _active_mode: ModeBase
 
 const _WAVE_TRIAL_SCENE_PATH: String = "res://Player/Modes/WaveMode/Scenes/wave_trial.tscn"
 const _WAVE_TRIAL_SCENE = preload(_WAVE_TRIAL_SCENE_PATH)
+const SMOOTH_ROTATION_STEP: float = 2.0
 
 #region Ready Func
 func _ready() -> void:
@@ -231,8 +233,7 @@ func _set_mode_collision(mode: ModeBase) -> void:
 	Events.emit_signal("set_player_collision_shape", mode.get_collision_shape())
 
 func _disconnect_modes_events() -> void:
-	if wave_mode.is_connected("rotation_requested", _on_rotation_requested):
-		wave_mode.disconnect("rotation_requested", _on_rotation_requested)
+	pass
 #endregion
 
 #region Gravity
@@ -272,9 +273,7 @@ func _gravity_force_modifiers_actions(effect: Enums.GRAVITY_FORCE) -> void:
 #region Square
 
 func _on_enter_square_mode() -> void:
-	return
-	#_set_mode_visual(square_mode, true)
-	#Events.emit_signal("set_player_collision_shape", square_mode.get_collision_shape())
+	pass
 
 func _square_mode(delta: float) -> void:
 	if not is_on_floor() or not is_on_ceiling():
@@ -294,7 +293,6 @@ func _square_mode(delta: float) -> void:
 #region Wave
 func _on_enter_wave_mode() -> void:
 	_instanciate_wave_trial()
-	wave_mode.connect("rotation_requested", _on_rotation_requested)
 
 func _wave_mode(_delta: float) -> void:
 	velocity.y = _active_rsc.vertical_speed * _active_rsc.direction * _gravity_dir
@@ -304,9 +302,6 @@ func _wave_mode(_delta: float) -> void:
 	else:
 		_change_wave_direction(Enums.WAVE_DIR.DOWN)
 		_add_trial_point()
-
-func _on_rotation_requested(requested_rotation: int) -> void:
-	rotation_degrees = requested_rotation
 
 func _instanciate_wave_trial() -> void:
 	_wave_trial = _WAVE_TRIAL_SCENE.instantiate()
@@ -321,6 +316,13 @@ func _add_trial_point() -> void:
 
 func _change_wave_direction(new_dir: Enums.WAVE_DIR) -> void:
 	_active_rsc.direction = new_dir
+	_apply_rotation_by_state()
+
+func _apply_rotation_by_state() -> void:
+	if is_on_floor() or is_on_ceiling(): rotation_degrees = _active_rsc.IN_SURFACE_ROTATE_DEG * _gravity_dir
+	elif _action_pressed: rotation_degrees = _active_rsc.ACTION_ROTATE_DEG * _gravity_dir
+	else: rotation_degrees = _active_rsc.NOT_ACTION_ROTATE_DEG * _gravity_dir
+
 #endregion
 
 #region Ball
@@ -354,8 +356,12 @@ func _on_enter_spaceship_mode() -> void:
 func _spaceship_mode(delta: float) -> void:
 	if _action_pressed and _can_action:
 		velocity.y += _active_rsc.vertical_vel * _gravity_dir
+		#if rotation_degrees > -35:
+			#rotation_degrees -= SMOOTH_ROTATION_STEP
 	else:
 		_apply_gravity(delta)
+		#if rotation_degrees < 0:
+			#rotation_degrees += SMOOTH_ROTATION_STEP
 #endregion
 
 #region Robot
@@ -383,14 +389,17 @@ func _on_robot_fly_timeout() -> void:
 
 #region Reset
 func _reset_player() -> void:
-	# Position
+	# Transforms
 	global_position = spawn.global_position
+	_reset_transform()
 
 	# Gravity
 	_gravity_dir = Enums.GRAVITY_DIR.NORMAL
 	
-	# Modes
+	# Velocity
 	velocity = Vector2.ZERO
+
+	# Modes
 	change_mode(_initial_mode)
 	_reset_robot_fly_mode()
 	_erase_wave_lines()
