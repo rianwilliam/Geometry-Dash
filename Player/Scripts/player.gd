@@ -3,11 +3,7 @@ class_name Player
 
 #TODO Recortar o sprite do player, fazer uma animação dele despedaçando e saindo partículas
 # Fazer uma função que recebe os nós dos sprites, assim funcionando para qualquer elemento
-#TODO Colocar em cada emissão de evento que o recebe
-#TODO Fazer nave inclinar conforme sobe ou desce (aplicar corretamente esta funcão na gravidade invertida)
-#TODO Aplicar a rotação dinâmica na spaceship
-#TODO Colocar uma variável de recurso para cada modo, essa variável vai ser determinada como:
-# var mode_type = _active_rsc as MODECLASS
+#TODO Colocar em cada emissão de evento quem o recebe
 
 # Vermelho 8 blocks
 # Rosa 3 blocks
@@ -316,9 +312,9 @@ func _add_trial_point() -> void:
 
 func _change_wave_direction(new_dir: Enums.WAVE_DIR) -> void:
 	_active_rsc.direction = new_dir
-	_apply_rotation_by_state()
+	_apply_wave_rotation_by_state()
 
-func _apply_rotation_by_state() -> void:
+func _apply_wave_rotation_by_state() -> void:
 	if is_on_floor() or is_on_ceiling(): rotation_degrees = _active_rsc.IN_SURFACE_ROTATE_DEG * _gravity_dir
 	elif _action_pressed: rotation_degrees = _active_rsc.ACTION_ROTATE_DEG * _gravity_dir
 	else: rotation_degrees = _active_rsc.NOT_ACTION_ROTATE_DEG * _gravity_dir
@@ -356,12 +352,8 @@ func _on_enter_spaceship_mode() -> void:
 func _spaceship_mode(delta: float) -> void:
 	if _action_pressed and _can_action:
 		velocity.y += _active_rsc.vertical_vel * _gravity_dir
-		#if rotation_degrees > -35:
-			#rotation_degrees -= SMOOTH_ROTATION_STEP
 	else:
 		_apply_gravity(delta)
-		#if rotation_degrees < 0:
-			#rotation_degrees += SMOOTH_ROTATION_STEP
 #endregion
 
 #region Robot
