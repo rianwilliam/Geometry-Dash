@@ -9,6 +9,11 @@ enum PLAYER_MODE {
 	SPACESHIP,
 }
 
+enum SCALE_DIR {
+	NORMAL = 1,
+	INVERTED = -1
+}
+
 enum PLAYER_DIRECTION {
 	RIGHT = 1,
 	LEFT = -1
