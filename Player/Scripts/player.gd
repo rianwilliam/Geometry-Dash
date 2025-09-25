@@ -358,7 +358,6 @@ func _on_enter_ball_mode() -> void:
 
 func _ball_mode(delta: float) -> void:
 	_apply_gravity(delta)
-	if not _can_action: return
 	if _action_clicked and is_on_ceiling() : _invert_gravity()
 	elif _action_clicked and is_on_floor(): _invert_gravity()
 #endregion
@@ -390,6 +389,9 @@ func _spaceship_mode(delta: float) -> void:
 func _on_enter_robot_mode() -> void:
 	pass
 
+## O [RobotMode] pode iniciar o voo quando estiver em uma superfície [br]
+## Uma vez que o voo é iniciado ele só poderá voltar a voar quando encostar em uma superfície segura
+## A propriedade que define se ele pode voar ou não é [member RobotResource.can_fly]
 func _robot_mode(delta: float) -> void:
 	if (is_on_floor() and _gravity_dir == Enums.GRAVITY_DIR.NORMAL) or \
 	(is_on_ceiling() and _gravity_dir == Enums.GRAVITY_DIR.INVERTED):
@@ -410,13 +412,21 @@ func _on_robot_fly_timeout() -> void:
 #endregion
 
 #region Transform
+## Inverte o eixo y do nó raiz do [Player] de acordo com a gravidade em que ele se encontra
 func _update_scale_y_by_gravity() -> void:
 	scale.y = Enums.SCALE_DIR.NORMAL \
 		if _gravity_dir == Enums.GRAVITY_DIR.NORMAL \
 		else Enums.SCALE_DIR.INVERTED
+
+## Inverte o eixo x do [Player] de acordo com a direcão que ele está seguindo
+func _update_scale_x_by_direction() -> void:
+	pass
 #endregion
 
 #region Reset
+
+## Reseta os valores alterados durante a gameplay para o valor padrão [br]
+## Este funcão somente é disparada quando o jogador morre
 func _reset_player() -> void:
 	# Transforms
 	global_position = spawn.global_position
@@ -448,6 +458,10 @@ func _erase_wave_lines() -> void:
 #endregion
 
 #region DieFunctions
+
+## Verifica se o valor de [member global_position.x] do frame atual é igual ao do frame anterior [br]
+## Caso seja, isso significa que o jogador está parado, ou seja colidindo com algo.
+## No momento que isto acontece a funcão [method _died] é disparada
 func _kill_on_idle() -> void:
 	if not _position_verified:
 		_old_x_position = int(position.x)

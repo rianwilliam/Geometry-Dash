@@ -121,7 +121,7 @@ position = Vector2(192, 64)
 
 [node name="ModeSwitcher" parent="MechanicChangers" instance=ExtResource("7_he4dk")]
 position = Vector2(-128, 0)
-transform_to = 5
+transform_to = 2
 
 [node name="PadsAndOrbs" type="Node2D" parent="."]
 position = Vector2(192, 64)
