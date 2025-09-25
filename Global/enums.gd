@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 enum PLAYER_MODE {
 	SQUARE,
@@ -47,12 +47,4 @@ enum MODIFIERS {
 	GRAVITY = 2,
 	G_FORCE = 3,
 	DASH = 4,
-}
-
-enum SKIN_IDS {
-	ID_0,
-	ID_1,
-	ID_2,
-	ID_3,
-	ID_4,
 }

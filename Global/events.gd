@@ -1,5 +1,7 @@
-extends Node
+extends Node2D
 
+## Who's Recieve
+## [LevelStructure]
 signal player_died()
 signal player_pos(pos: Vector2)
 signal player_use_orb()
