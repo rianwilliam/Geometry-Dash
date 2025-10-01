@@ -1,11 +1,11 @@
 extends Area2D
 class_name PlayerModifier
 
-## Base de modificador na gameplay do jogador
+## Base class for gameplay modifiers of the player
 ##
-## O modificador recebe um o mais efeitos do tipo [enum MODIFIERS] e aplica ao 
-## jogador quando o mesmo interaje com ele, sempre que uma classe que deriva dele é
-## instanciada, a mesma deve determinar o valor da variável [member effect]
+## The modifier receives one or more effects of type [enum MODIFIERS] and applies them to 
+## the player when they interact with it. Whenever a class that inherits from it is
+## instantiated, it must set the value of the [member effect] variable.
 
 var effect: Dictionary[Enums.MODIFIERS, Variant]
 var _type: Enums.MODIFIERS

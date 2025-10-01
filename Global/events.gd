@@ -1,5 +1,4 @@
 extends Node2D
-class_name GameEvents
 
 signal player_died() ## who's recieve: [LevelStructure]; [GameManager]
 signal player_pos(pos: Vector2) ## who's recieve:
