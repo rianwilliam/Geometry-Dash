@@ -1,0 +1,3 @@
+Sprites do mode switcher
+Sprites do direction switcher
+Restante da documentação

@@ -46,5 +46,4 @@ enum MODIFIERS {
 	JUMP = 1,
 	GRAVITY = 2,
 	G_FORCE = 3,
-	DASH = 4,
 }

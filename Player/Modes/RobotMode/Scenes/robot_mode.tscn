@@ -268,7 +268,6 @@ sprite_frames = SubResource("SpriteFrames_b571d")
 libraries = {
 &"": SubResource("AnimationLibrary_htfyf")
 }
-autoplay = "not_action"
 
 [node name="FlyTimer" type="Timer" parent="." index="5"]
 wait_time = 0.3

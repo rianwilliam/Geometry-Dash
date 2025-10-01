@@ -1,4 +1,5 @@
 extends Node2D
+class_name GameManager
 
 @onready var die_counter: Label = %DieCounter
 @onready var camera_2d: Camera2D = %Camera

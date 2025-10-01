@@ -1,6 +1,11 @@
 extends Node2D
 class_name ModeBase
 
+## Base class for all player modes
+##
+## Holds the mode collision and certain player states, 
+## which are used to play animations.
+
 @onready var collision: CollisionShape2D = $Collision
 @onready var player_visual_base: PlayerVisualBase = $PlayerVisualBase
 
@@ -11,11 +16,13 @@ var is_player_in_ceiling: bool
 func _ready() -> void:
 	_connect_events()
 
+## Connects the events emitted by the player to obtain required information
 func _connect_events() -> void:
 	Events.connect("player_is_in_action", _on_player_action)
 	Events.connect("player_in_floor", _on_player_in_floor)
 	Events.connect("player_in_ceiling", _on_player_in_ceiling)
 
+## Returns the mode collision
 func get_collision_shape() -> CollisionShape2D:
 	return collision
 

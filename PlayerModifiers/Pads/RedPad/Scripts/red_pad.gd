@@ -2,6 +2,6 @@ extends Pad
 class_name RedPad
 
 func _ready() -> void:
-	_effect = {
+	effect = {
 		Enums.MODIFIERS.JUMP: Enums.JUMPS.HIGH
 	}

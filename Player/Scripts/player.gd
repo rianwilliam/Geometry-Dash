@@ -139,7 +139,6 @@ func _is_inside_player_modifier() -> void:
 		_modifier_used = true
 		if _orb_jump():
 			Events.emit_signal("player_use_orb")
-#endregion
 
 ## Executes functions that check which effects are inside [member _modifier_effect]
 func _identify_effect() -> void:
@@ -166,6 +165,13 @@ func _is_gravity_force_effect() -> void:
 func _can_use_modifier() -> bool:
 	return (_orb_jump() or _pad_jump()) and not _modifier_used
 
+#region DirectionSetter
+func set_direction(new_dir: Enums.PLAYER_DIRECTION = Enums.PLAYER_DIRECTION.RIGHT) -> void:
+	_player_direction = new_dir
+	_update_scale_x_by_direction()
+#endregion
+#endregion
+
 #region Resources
 
 ## Changes the player's [member _active_rsc] based on [member _mode]
@@ -184,11 +190,6 @@ func _setup_player_resources() -> void:
 		Enums.PLAYER_MODE.SPACESHIP: _spaceship_rsc,
 		Enums.PLAYER_MODE.ROBOT: _robot_rsc
 	}
-#endregion
-
-#region DirectionSetter
-func set_direction(new_dir: Enums.PLAYER_DIRECTION = Enums.PLAYER_DIRECTION.RIGHT) -> void:
-	_player_direction = new_dir
 #endregion
 
 #region JumpActions
@@ -407,14 +408,14 @@ func _on_enter_robot_mode() -> void:
 ## Once flight starts it can only fly again after touching a safe surface
 ## The property that defines if it can fly is [member RobotResource.can_fly]
 func _robot_mode(delta: float) -> void:
-	if (is_on_floor() and _gravity_dir == Enums.GRAVITY_DIR.NORMAL) or \
-	(is_on_ceiling() and _gravity_dir == Enums.GRAVITY_DIR.INVERTED):
+	if (is_on_floor() and _gravity_dir == Enums.GRAVITY_DIR.NORMAL) \
+	or (is_on_ceiling() and _gravity_dir == Enums.GRAVITY_DIR.INVERTED):
 		_active_rsc.can_fly = true
 	if not is_on_floor() and _action_released:
 		_active_rsc.can_fly = false
 
 	if _action_pressed and _active_rsc.can_fly:
-		velocity.y += _active_rsc.boost_force * _gravity_dir
+		velocity.y = _active_rsc.boost_force * _gravity_dir
 		robot_mode.start_fly_timer()
 	else:
 		_apply_gravity(delta)
@@ -429,12 +430,14 @@ func _on_robot_fly_timeout() -> void:
 ## Inverts the y-axis of the root node of [Player] according to the gravity in which it is found
 func _update_scale_y_by_gravity() -> void:
 	scale.y = Enums.SCALE_DIR.NORMAL \
-		if _gravity_dir == Enums.GRAVITY_DIR.NORMAL \
-		else Enums.SCALE_DIR.INVERTED
+	if _gravity_dir == Enums.GRAVITY_DIR.NORMAL \
+	else Enums.SCALE_DIR.INVERTED
 
 ## Inverts the x-axis of [Player] according to the direction he is heading
 func _update_scale_x_by_direction() -> void:
-	pass
+	scale.x = Enums.PLAYER_DIRECTION.LEFT \
+	if _player_direction == Enums.PLAYER_DIRECTION.LEFT \
+	else Enums.PLAYER_DIRECTION.RIGHT
 #endregion
 
 #region Reset
@@ -460,7 +463,7 @@ func _reset_player() -> void:
 func _reset_transform() -> void:
 	rotation_degrees = 0
 	_update_scale_y_by_gravity()
-	scale.x = Enums.SCALE_DIR.NORMAL
+	_update_scale_x_by_direction()
 
 func _reset_robot_fly_mode() -> void:
 	robot_mode.reset_fly_timer()

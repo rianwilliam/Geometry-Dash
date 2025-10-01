@@ -3,6 +3,6 @@ class_name BlackOrb
 
 func _ready() -> void:
 	super._ready()
-	_effect = {
+	effect = {
 		Enums.MODIFIERS.G_FORCE: Enums.GRAVITY_FORCE.STRONG
 	}

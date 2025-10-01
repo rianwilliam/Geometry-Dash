@@ -3,6 +3,6 @@ class_name RedOrb
 
 func _ready() -> void:
 	super._ready()
-	_effect = {
+	effect = {
 		Enums.MODIFIERS.JUMP: Enums.JUMPS.HIGH
 	}

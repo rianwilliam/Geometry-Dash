@@ -1,6 +1,14 @@
 extends Node2D
 class_name PlayerVisualBase
 
+## Controls the functions and animations of each player mode
+##
+## To initialize [PlayerVisualBase] it requires: [br]
+## - [AnimationPlayer]; [br]
+## - Body sprites, which is an [AnimatedSprite2D]; [br]
+## - Details sprites, which is an [Array] containing [AnimatedSprite2D]; [br]
+## - [CPUParticles2D]; [br]
+
 @export var anim_player: AnimationPlayer
 @export var body_sprites: AnimatedSprite2D
 @export var details_sprites: Array[AnimatedSprite2D]
@@ -16,15 +24,18 @@ func _ready() -> void:
 	_validate_required_nodes()
 	_set_particles_color()
 
+## Checks if the required nodes have been assigned when it is loaded
 func _validate_required_nodes() -> void:
 	assert(anim_player)
 	assert(body_sprites)
 	assert(details_sprites)
 	assert(particles)
 
+## Changes the color of the particles based on the color defined in the sprite
 func _set_particles_color() -> void:
 	particles.modulate = body_sprites.modulate.to_html()
 
+## Enables or disables the particles based on the [param state] value
 func set_particles_active(state: bool) -> void:
 	particles.emitting = state
 
