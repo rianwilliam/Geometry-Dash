@@ -9,5 +9,3 @@ signal player_is_in_action(action: bool) ## who's recieve: [ModeBase]
 signal player_in_floor(on_floor: bool) ## who's recieve: [ModeBase]
 signal player_in_ceiling(on_ceiling: bool) ## who's recieve: [ModeBase]
 signal player_gravity_dir(direction: Enums.GRAVITY_DIR) ## who's recieve:
-
-signal play_btn_pressed()

@@ -1,0 +1,408 @@
+[gd_scene load_steps=13 format=3 uid="uid://s8hpa84v05uu"]
+
+[ext_resource type="Texture2D" uid="uid://c6lyef61jb2yw" path="res://Assets/Ui/logo - Geometry copy.png" id="1_5f5ij"]
+[ext_resource type="Texture2D" uid="uid://ddeb5q3uhisg8" path="res://Player/Assets/Player.png" id="2_nu8or"]
+[ext_resource type="PackedScene" uid="uid://vl8v58guvhvb" path="res://Ui/CustomizeMenu/Scenes/SkinColorControl.tscn" id="2_ophij"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cede6"]
+atlas = ExtResource("2_nu8or")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aa238"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cede6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ibxy"]
+atlas = ExtResource("2_nu8or")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ophij"]
+atlas = ExtResource("2_nu8or")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ykg08"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ibxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ophij")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k270n"]
+atlas = ExtResource("2_nu8or")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_en4ca"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k270n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dfk3"]
+atlas = ExtResource("2_nu8or")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lqvpc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dfk3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CustomizeMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -1.0
+offset_bottom = 191.0
+grow_horizontal = 2
+
+[node name="TextureRect" type="TextureRect" parent="Title"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -578.5
+offset_top = -70.5
+offset_right = 573.5
+offset_bottom = 68.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_5f5ij")
+expand_mode = 1
+
+[node name="PlayerSkins" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="PlayerSkins"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0000019
+offset_top = -2.0
+offset_right = -768.3333
+offset_bottom = 14.666664
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+
+[node name="BoxContainer" type="BoxContainer" parent="PlayerSkins/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SkinColorControl" parent="PlayerSkins/VBoxContainer/BoxContainer" node_paths=PackedStringArray("body_color_picker", "details_color_picker", "body_sprite", "details_sprite") instance=ExtResource("2_ophij")]
+layout_mode = 2
+body_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer/ColorPickerButton2")
+details_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer/ColorPickerButton3")
+body_sprite = NodePath("SquareBody")
+details_sprite = [NodePath("SquareDetails")]
+
+[node name="SquareBody" type="AnimatedSprite2D" parent="PlayerSkins/VBoxContainer/BoxContainer/SkinColorControl"]
+sprite_frames = SubResource("SpriteFrames_aa238")
+
+[node name="SquareDetails" type="AnimatedSprite2D" parent="PlayerSkins/VBoxContainer/BoxContainer/SkinColorControl"]
+sprite_frames = SubResource("SpriteFrames_ykg08")
+
+[node name="BoxContainer2" type="BoxContainer" parent="PlayerSkins/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SkinColorControl" parent="PlayerSkins/VBoxContainer/BoxContainer2" node_paths=PackedStringArray("body_color_picker", "details_color_picker", "body_sprite", "details_sprite") instance=ExtResource("2_ophij")]
+layout_mode = 2
+body_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer2/ColorPickerButton2")
+details_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer2/ColorPickerButton3")
+body_sprite = NodePath("WaveBody")
+details_sprite = [NodePath("WaveDetails")]
+
+[node name="WaveBody" type="AnimatedSprite2D" parent="PlayerSkins/VBoxContainer/BoxContainer2/SkinColorControl"]
+sprite_frames = SubResource("SpriteFrames_en4ca")
+
+[node name="WaveDetails" type="AnimatedSprite2D" parent="PlayerSkins/VBoxContainer/BoxContainer2/SkinColorControl"]
+sprite_frames = SubResource("SpriteFrames_lqvpc")
+
+[node name="BoxContainer3" type="BoxContainer" parent="PlayerSkins/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="PlayerSkins/VBoxContainer/BoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="BoxContainer4" type="BoxContainer" parent="PlayerSkins/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="PlayerSkins/VBoxContainer/BoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="BoxContainer5" type="BoxContainer" parent="PlayerSkins/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="PlayerSkins/VBoxContainer/BoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Body" type="AnimatedSprite2D" parent="PlayerSkins/VBoxContainer/BoxContainer5/Control"]
+sprite_frames = SubResource("SpriteFrames_aa238")
+
+[node name="Details" type="AnimatedSprite2D" parent="PlayerSkins/VBoxContainer/BoxContainer5/Control"]
+sprite_frames = SubResource("SpriteFrames_ykg08")
+
+[node name="BoxContainer6" type="BoxContainer" parent="PlayerSkins/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="PlayerSkins/VBoxContainer/BoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Body" type="AnimatedSprite2D" parent="PlayerSkins/VBoxContainer/BoxContainer6/Control"]
+sprite_frames = SubResource("SpriteFrames_aa238")
+
+[node name="Details" type="AnimatedSprite2D" parent="PlayerSkins/VBoxContainer/BoxContainer6/Control"]
+sprite_frames = SubResource("SpriteFrames_ykg08")
+
+[node name="ColorPickers" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -221.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ColorPickerContainer" type="HBoxContainer" parent="ColorPickers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.999999
+offset_right = 1724.4998
+offset_bottom = 331.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorPickers/ColorPickerContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorPickerButton2" type="ColorPicker" parent="ColorPickers/ColorPickerContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+edit_alpha = false
+edit_intensity = false
+can_add_swatches = false
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
+presets_visible = false
+
+[node name="ColorPickerButton3" type="ColorPicker" parent="ColorPickers/ColorPickerContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+edit_alpha = false
+edit_intensity = false
+can_add_swatches = false
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
+presets_visible = false
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ColorPickers/ColorPickerContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorPickerButton2" type="ColorPicker" parent="ColorPickers/ColorPickerContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+edit_alpha = false
+edit_intensity = false
+can_add_swatches = false
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
+presets_visible = false
+
+[node name="ColorPickerButton3" type="ColorPicker" parent="ColorPickers/ColorPickerContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+edit_alpha = false
+edit_intensity = false
+can_add_swatches = false
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
+presets_visible = false
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="ColorPickers/ColorPickerContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorPickerButton2" type="ColorPicker" parent="ColorPickers/ColorPickerContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+edit_alpha = false
+edit_intensity = false
+can_add_swatches = false
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
+presets_visible = false
+
+[node name="ColorPickerButton3" type="ColorPicker" parent="ColorPickers/ColorPickerContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+edit_alpha = false
+edit_intensity = false
+can_add_swatches = false
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
+presets_visible = false
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="ColorPickers/ColorPickerContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorPickerButton2" type="ColorPicker" parent="ColorPickers/ColorPickerContainer/VBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+edit_alpha = false
+edit_intensity = false
+can_add_swatches = false
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
+presets_visible = false
+
+[node name="ColorPickerButton3" type="ColorPicker" parent="ColorPickers/ColorPickerContainer/VBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+edit_alpha = false
+edit_intensity = false
+can_add_swatches = false
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
+presets_visible = false
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="ColorPickers/ColorPickerContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorPickerButton2" type="ColorPicker" parent="ColorPickers/ColorPickerContainer/VBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+edit_alpha = false
+edit_intensity = false
+can_add_swatches = false
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
+presets_visible = false
+
+[node name="ColorPickerButton3" type="ColorPicker" parent="ColorPickers/ColorPickerContainer/VBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+edit_alpha = false
+edit_intensity = false
+can_add_swatches = false
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
+presets_visible = false
+
+[node name="VBoxContainer6" type="VBoxContainer" parent="ColorPickers/ColorPickerContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorPickerButton2" type="ColorPicker" parent="ColorPickers/ColorPickerContainer/VBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+edit_alpha = false
+edit_intensity = false
+can_add_swatches = false
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
+presets_visible = false
+
+[node name="ColorPickerButton3" type="ColorPicker" parent="ColorPickers/ColorPickerContainer/VBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+edit_alpha = false
+edit_intensity = false
+can_add_swatches = false
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
+presets_visible = false
+
+[editable path="PlayerSkins/VBoxContainer/BoxContainer/SkinColorControl"]

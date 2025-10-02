@@ -1,3 +1,4 @@
 Sprites do mode switcher
 Sprites do direction switcher
 Restante da documentação
+Font generator: https://gdcolon.com/gdfont

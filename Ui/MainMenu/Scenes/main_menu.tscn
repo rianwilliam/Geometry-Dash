@@ -1,0 +1,125 @@
+[gd_scene load_steps=6 format=3 uid="uid://0kb8a7wtx023"]
+
+[ext_resource type="Script" uid="uid://1uci4ho6honi" path="res://Ui/MainMenu/Scripts/main_menu.gd" id="1_e6g6g"]
+[ext_resource type="Texture2D" uid="uid://c6lyef61jb2yw" path="res://Assets/Ui/logo - Geometry copy.png" id="2_gv5y6"]
+[ext_resource type="Theme" uid="uid://difkmoghwod51" path="res://Ui/Themes/main_menu_btn.tres" id="3_jhi0l"]
+[ext_resource type="PackedScene" uid="uid://s8hpa84v05uu" path="res://Ui/CustomizeMenu/Scenes/customize_menu.tscn" id="4_m6u6s"]
+
+[sub_resource type="GDScript" id="GDScript_523pk"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e6g6g")
+
+[node name="Title" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -1.0
+offset_bottom = 191.0
+grow_horizontal = 2
+
+[node name="TextureRect" type="TextureRect" parent="Title"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -578.5
+offset_top = -70.5
+offset_right = 573.5
+offset_bottom = 68.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_gv5y6")
+expand_mode = 1
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -574.0
+offset_top = -179.0
+offset_right = 574.0
+offset_bottom = 321.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -324.0
+offset_top = -123.0
+offset_right = 315.0
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="PlayBtn" type="Button" parent="Buttons/GridContainer"]
+layout_mode = 2
+theme = ExtResource("3_jhi0l")
+text = "Play"
+script = SubResource("GDScript_523pk")
+
+[node name="R1C2" type="MarginContainer" parent="Buttons/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionsBtn" type="Button" parent="Buttons/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_jhi0l")
+text = "Options"
+
+[node name="R2C1" type="MarginContainer" parent="Buttons/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="R2C2" type="MarginContainer" parent="Buttons/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="R3C3" type="MarginContainer" parent="Buttons/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CustomizeBtn" type="Button" parent="Buttons/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_jhi0l")
+text = "Customize"
+
+[node name="R4C2" type="MarginContainer" parent="Buttons/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="QuitBtn" type="Button" parent="Buttons/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_jhi0l")
+text = "Quit"
+
+[node name="CustomizeScreen" parent="." instance=ExtResource("4_m6u6s")]
+visible = false
+layout_mode = 1
