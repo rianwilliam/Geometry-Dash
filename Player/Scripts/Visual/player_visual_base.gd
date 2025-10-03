@@ -31,6 +31,13 @@ func _validate_required_nodes() -> void:
 	assert(details_sprites)
 	assert(particles)
 
+func set_body_color(color: Color) -> void:
+	body_sprites.modulate = color
+
+func set_details_color(color: Color) -> void:
+	for sprite: AnimatedSprite2D in details_sprites:
+		sprite.modulate = color
+
 ## Changes the color of the particles based on the color defined in the sprite
 func _set_particles_color() -> void:
 	particles.modulate = body_sprites.modulate.to_html()

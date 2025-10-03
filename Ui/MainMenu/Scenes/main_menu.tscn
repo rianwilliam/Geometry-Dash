@@ -70,6 +70,7 @@ grow_vertical = 2
 columns = 3
 
 [node name="PlayBtn" type="Button" parent="Buttons/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_jhi0l")
 text = "Play"

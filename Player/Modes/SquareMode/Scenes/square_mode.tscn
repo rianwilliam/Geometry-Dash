@@ -165,7 +165,6 @@ scale_amount_max = 2.1
 [node name="SpriteHolder" type="Marker2D" parent="." index="3"]
 
 [node name="Body" type="AnimatedSprite2D" parent="SpriteHolder" index="0"]
-modulate = Color(0.4296875, 0, 1, 1)
 rotation = -3.14159
 sprite_frames = SubResource("SpriteFrames_s6hj4")
 

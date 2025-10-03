@@ -34,3 +34,9 @@ func _on_player_in_floor(on_floor: bool) -> void:
 
 func _on_player_in_ceiling(on_ceiling: bool) -> void:
 	is_player_in_ceiling = on_ceiling
+
+func change_body_color(color: Color) -> void:
+	player_visual_base.set_body_color(color)
+	
+func change_details_color(color: Color) -> void:
+	player_visual_base.set_details_color(color)

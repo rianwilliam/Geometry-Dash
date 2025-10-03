@@ -1,8 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://s8hpa84v05uu"]
+[gd_scene load_steps=12 format=3 uid="uid://s8hpa84v05uu"]
 
 [ext_resource type="Texture2D" uid="uid://c6lyef61jb2yw" path="res://Assets/Ui/logo - Geometry copy.png" id="1_5f5ij"]
+[ext_resource type="Script" uid="uid://dxv1s5kh15a3b" path="res://Ui/CustomizeMenu/Scripts/customize_menu.gd" id="1_7dfk3"]
 [ext_resource type="Texture2D" uid="uid://ddeb5q3uhisg8" path="res://Player/Assets/Player.png" id="2_nu8or"]
 [ext_resource type="PackedScene" uid="uid://vl8v58guvhvb" path="res://Ui/CustomizeMenu/Scenes/SkinColorControl.tscn" id="2_ophij"]
+[ext_resource type="PackedScene" uid="uid://v8sdhet7k10t" path="res://Player/Modes/SquareMode/Scenes/square_mode.tscn" id="3_k270n"]
+[ext_resource type="Theme" uid="uid://difkmoghwod51" path="res://Ui/Themes/main_menu_btn.tres" id="3_lqvpc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cede6"]
 atlas = ExtResource("2_nu8or")
@@ -41,36 +44,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k270n"]
-atlas = ExtResource("2_nu8or")
-region = Rect2(0, 32, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_en4ca"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k270n")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7dfk3"]
-atlas = ExtResource("2_nu8or")
-region = Rect2(0, 48, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_lqvpc"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7dfk3")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [node name="CustomizeMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -78,6 +51,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_7dfk3")
 
 [node name="Title" type="Control" parent="."]
 layout_mode = 1
@@ -102,6 +76,19 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_5f5ij")
 expand_mode = 1
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+
+[node name="Button" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 8.0
+offset_right = 116.0
+offset_bottom = 42.0
+theme = ExtResource("3_lqvpc")
+text = "Back"
 
 [node name="PlayerSkins" type="Control" parent="."]
 layout_mode = 1
@@ -129,43 +116,22 @@ scale = Vector2(3, 3)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SkinColorControl" parent="PlayerSkins/VBoxContainer/BoxContainer" node_paths=PackedStringArray("body_color_picker", "details_color_picker", "body_sprite", "details_sprite") instance=ExtResource("2_ophij")]
+[node name="SkinColorControl" parent="PlayerSkins/VBoxContainer/BoxContainer" node_paths=PackedStringArray("body_color_picker", "details_color_picker", "sprite") instance=ExtResource("2_ophij")]
 layout_mode = 2
+mode = null
 body_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer/ColorPickerButton2")
 details_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer/ColorPickerButton3")
-body_sprite = NodePath("SquareBody")
-details_sprite = [NodePath("SquareDetails")]
+sprite = NodePath("SquareMode")
 
-[node name="SquareBody" type="AnimatedSprite2D" parent="PlayerSkins/VBoxContainer/BoxContainer/SkinColorControl"]
-sprite_frames = SubResource("SpriteFrames_aa238")
-
-[node name="SquareDetails" type="AnimatedSprite2D" parent="PlayerSkins/VBoxContainer/BoxContainer/SkinColorControl"]
-sprite_frames = SubResource("SpriteFrames_ykg08")
+[node name="SquareMode" parent="PlayerSkins/VBoxContainer/BoxContainer/SkinColorControl" instance=ExtResource("3_k270n")]
 
 [node name="BoxContainer2" type="BoxContainer" parent="PlayerSkins/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SkinColorControl" parent="PlayerSkins/VBoxContainer/BoxContainer2" node_paths=PackedStringArray("body_color_picker", "details_color_picker", "body_sprite", "details_sprite") instance=ExtResource("2_ophij")]
-layout_mode = 2
-body_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer2/ColorPickerButton2")
-details_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer2/ColorPickerButton3")
-body_sprite = NodePath("WaveBody")
-details_sprite = [NodePath("WaveDetails")]
-
-[node name="WaveBody" type="AnimatedSprite2D" parent="PlayerSkins/VBoxContainer/BoxContainer2/SkinColorControl"]
-sprite_frames = SubResource("SpriteFrames_en4ca")
-
-[node name="WaveDetails" type="AnimatedSprite2D" parent="PlayerSkins/VBoxContainer/BoxContainer2/SkinColorControl"]
-sprite_frames = SubResource("SpriteFrames_lqvpc")
-
 [node name="BoxContainer3" type="BoxContainer" parent="PlayerSkins/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="Control" type="Control" parent="PlayerSkins/VBoxContainer/BoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 6
 
 [node name="BoxContainer4" type="BoxContainer" parent="PlayerSkins/VBoxContainer"]
 layout_mode = 2

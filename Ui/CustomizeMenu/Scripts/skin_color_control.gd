@@ -4,8 +4,7 @@ class_name SkinColorControl
 @export var mode: Enums.PLAYER_MODE
 @export var body_color_picker: ColorPicker
 @export var details_color_picker: ColorPicker
-@export var body_sprite: AnimatedSprite2D
-@export var details_sprite: Array[AnimatedSprite2D]
+@export var mode_sprite: ModeBase
 
 var _body_color: Color
 var _details_color: Color
@@ -17,9 +16,8 @@ func _ready() -> void:
 	details_color_picker.connect("color_changed", _on_details_color_change)
 
 func _process(_delta: float) -> void:
-	body_sprite.modulate = _body_color
-	for sprite: AnimatedSprite2D in details_sprite:
-		sprite.modulate = _details_color
+	sprite.change_body_color(_body_color)
+	sprite.change_details_color(_details_color)
 
 func get_mode() -> Enums.PLAYER_MODE:
 	return mode
