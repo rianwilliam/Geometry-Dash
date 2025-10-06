@@ -15,4 +15,5 @@ func _on_customize_btn_pressed() -> void:
 	customize_screen.visible = true
 
 func _on_play_btn_pressed() -> void:
+	Events.emit_signal("play_btn_pressed")
 	get_tree().change_scene_to_file("res://Main/GameManager/Scenes/game.tscn")

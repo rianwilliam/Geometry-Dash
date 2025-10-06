@@ -250,24 +250,24 @@ gravity = Vector2(-100, -8)
 sprite_frames = SubResource("SpriteFrames_6saq3")
 
 [node name="Details" type="AnimatedSprite2D" parent="SpriteHolder" index="1"]
-modulate = Color(0.24203092, 0, 0, 1)
 sprite_frames = SubResource("SpriteFrames_jf8oq")
 
-[node name="FrontLeg" type="AnimatedSprite2D" parent="SpriteHolder" index="2"]
-position = Vector2(1, 2)
-rotation = -0.61086524
-sprite_frames = SubResource("SpriteFrames_b571d")
-
-[node name="BackLeg" type="AnimatedSprite2D" parent="SpriteHolder" index="3"]
+[node name="BackLeg" type="AnimatedSprite2D" parent="SpriteHolder" index="2"]
 z_index = -1
 position = Vector2(0.9972462, 6.000182)
 rotation = 0.61086524
+sprite_frames = SubResource("SpriteFrames_b571d")
+
+[node name="FrontLeg" type="AnimatedSprite2D" parent="SpriteHolder" index="3"]
+position = Vector2(1, 2)
+rotation = -0.61086524
 sprite_frames = SubResource("SpriteFrames_b571d")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 libraries = {
 &"": SubResource("AnimationLibrary_htfyf")
 }
+autoplay = "not_action"
 
 [node name="FlyTimer" type="Timer" parent="." index="5"]
 wait_time = 0.3

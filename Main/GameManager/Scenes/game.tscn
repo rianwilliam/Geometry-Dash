@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://vjn7j4c5jhnu" path="res://Main/GameManager/Scripts/game.gd" id="1_eow3j"]
 [ext_resource type="PackedScene" uid="uid://c2chvkyy457fn" path="res://Player/Scenes/player.tscn" id="2_feb5d"]
-[ext_resource type="PackedScene" uid="uid://c5ki3qigdi27q" path="res://Main/Levels/LevelStructure/Scenes/level_structure.tscn" id="3_fc0e3"]
-[ext_resource type="PackedScene" uid="uid://c4k0f4lyslspp" path="res://Main/ElementColorChanger/Scenes/element_color_changer.tscn" id="4_bhyi5"]
+[ext_resource type="PackedScene" uid="uid://c5ki3qigdi27q" path="res://Maps/Levels/LevelStructure/Scenes/level_structure.tscn" id="3_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://c4k0f4lyslspp" path="res://Maps/ElementColorChanger/Scenes/element_color_changer.tscn" id="4_bhyi5"]
 [ext_resource type="Texture2D" uid="uid://bmj0v06xqhbnw" path="res://Assets/Background - 1.png" id="7_eow3j"]
 [ext_resource type="PackedScene" uid="uid://bnt2ftx7usqym" path="res://MechanicChangers/Portals/ModeSwitcher/Scenes/mode_switcher.tscn" id="7_he4dk"]
 [ext_resource type="PackedScene" uid="uid://bmcsvr3jfodjs" path="res://MechanicChangers/Portals/DirectionSwitcher/Scenes/direction_switcher.tscn" id="7_wuomk"]
@@ -121,7 +121,7 @@ position = Vector2(192, 64)
 
 [node name="ModeSwitcher" parent="MechanicChangers" instance=ExtResource("7_he4dk")]
 position = Vector2(-111, 0)
-transform_to = 4
+transform_to = 1
 
 [node name="ModeSwitcher2" parent="MechanicChangers" instance=ExtResource("7_he4dk")]
 position = Vector2(1280, -48)

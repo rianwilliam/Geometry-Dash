@@ -1,9 +1,24 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://difkmoghwod51"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://difkmoghwod51"]
 
 [ext_resource type="FontFile" uid="uid://dld8s4xkgcnau" path="res://Assets/Ui/Fonts/PUSAB___.otf" id="1_iukqc"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8npv8"]
-bg_color = Color(0, 0.31109792, 0.62219584, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d74n5"]
+bg_color = Color(0, 0.24313726, 0.49019608, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 15.0
+expand_margin_top = 10.0
+expand_margin_right = 15.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iukqc"]
+bg_color = Color(0, 0.24414063, 0.48828125, 1)
 border_width_left = 6
 border_width_top = 6
 border_width_right = 6
@@ -35,5 +50,6 @@ expand_margin_bottom = 10.0
 [resource]
 Button/font_sizes/font_size = 35
 Button/fonts/font = ExtResource("1_iukqc")
-Button/styles/hover = SubResource("StyleBoxFlat_8npv8")
+Button/styles/focus = SubResource("StyleBoxFlat_d74n5")
+Button/styles/hover = SubResource("StyleBoxFlat_iukqc")
 Button/styles/normal = SubResource("StyleBoxFlat_sdvoj")

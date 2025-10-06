@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://c5ki3qigdi27q"]
 
-[ext_resource type="PackedScene" uid="uid://sxtdhwcpawbj" path="res://Main/TileMaps/Scenes/main_tile_map.tscn" id="1_4nr2x"]
-[ext_resource type="Script" uid="uid://c2tp465lrxm1q" path="res://Main/TileMaps/Scripts/tile_map_controller.gd" id="1_7xpw8"]
-[ext_resource type="Script" uid="uid://rom6l2m5gvqs" path="res://Main/Levels/LevelStructure/Scripts/level_structure.gd" id="1_xo7ch"]
+[ext_resource type="PackedScene" uid="uid://sxtdhwcpawbj" path="res://Maps/TileMaps/Scenes/main_tile_map.tscn" id="1_4nr2x"]
+[ext_resource type="Script" uid="uid://c2tp465lrxm1q" path="res://Maps/TileMaps/Scripts/tile_map_controller.gd" id="1_7xpw8"]
+[ext_resource type="Script" uid="uid://rom6l2m5gvqs" path="res://Maps/Levels/LevelStructure/Scripts/level_structure.gd" id="1_xo7ch"]
 
 [node name="LevelStructure" type="TileMapLayer"]
 script = ExtResource("1_xo7ch")

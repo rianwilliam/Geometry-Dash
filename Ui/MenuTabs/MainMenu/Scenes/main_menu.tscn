@@ -1,11 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://0kb8a7wtx023"]
 
-[ext_resource type="Script" uid="uid://1uci4ho6honi" path="res://Ui/MainMenu/Scripts/main_menu.gd" id="1_e6g6g"]
+[ext_resource type="Script" uid="uid://1uci4ho6honi" path="res://Ui/MenuTabs/MainMenu/Scripts/main_menu.gd" id="1_e6g6g"]
 [ext_resource type="Texture2D" uid="uid://c6lyef61jb2yw" path="res://Assets/Ui/logo - Geometry copy.png" id="2_gv5y6"]
 [ext_resource type="Theme" uid="uid://difkmoghwod51" path="res://Ui/Themes/main_menu_btn.tres" id="3_jhi0l"]
-[ext_resource type="PackedScene" uid="uid://s8hpa84v05uu" path="res://Ui/CustomizeMenu/Scenes/customize_menu.tscn" id="4_m6u6s"]
-
-[sub_resource type="GDScript" id="GDScript_523pk"]
+[ext_resource type="PackedScene" uid="uid://s8hpa84v05uu" path="res://Ui/MenuTabs/CustomizeMenu/Scenes/customize_menu.tscn" id="4_m6u6s"]
+[ext_resource type="PackedScene" uid="uid://doi4ve4kgdlun" path="res://Ui/menu_background.tscn" id="5_gv5y6"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -15,6 +14,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_e6g6g")
+
+[node name="ColorRect" parent="." instance=ExtResource("5_gv5y6")]
+layout_mode = 1
 
 [node name="Title" type="Control" parent="."]
 layout_mode = 1
@@ -74,7 +76,6 @@ unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_jhi0l")
 text = "Play"
-script = SubResource("GDScript_523pk")
 
 [node name="R1C2" type="MarginContainer" parent="Buttons/GridContainer"]
 layout_mode = 2

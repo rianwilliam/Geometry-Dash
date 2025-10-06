@@ -78,7 +78,11 @@ func _ready() -> void:
 	_connect_signals()
 	_setup_player_resources()
 	change_mode(_initial_mode)
+	_on_play_btn_pressed()
 #endregion
+
+func _set_custom_colors() -> void:
+	pass
 
 func _physics_process(delta: float) -> void:
 	_emit_player_regular_signals()
@@ -127,6 +131,14 @@ func _emit_player_regular_signals() -> void:
 
 func _connect_signals() -> void:
 	robot_mode.connect("robot_fly_timeout", _on_robot_fly_timeout)
+
+func _on_play_btn_pressed() -> void:
+	robot_mode.set_custom_color(
+		PlayerSkinColors.get_mode_custom_color(Enums.PLAYER_MODE.ROBOT)
+	)
+	wave_mode.set_custom_color(
+		PlayerSkinColors.get_mode_custom_color(Enums.PLAYER_MODE.WAVE)
+	)
 #endregion
 
 #region ModifiersActions

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c4tc3ad12dk2f"]
 
-[ext_resource type="Script" uid="uid://c2tp465lrxm1q" path="res://Main/TileMaps/Scripts/tile_map_controller.gd" id="1_y4hw1"]
+[ext_resource type="Script" uid="uid://c2tp465lrxm1q" path="res://Maps/TileMaps/Scripts/tile_map_controller.gd" id="1_y4hw1"]
 
 [node name="TileMapController" type="Node2D"]
 script = ExtResource("1_y4hw1")

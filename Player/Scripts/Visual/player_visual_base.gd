@@ -22,7 +22,6 @@ const NOT_ACTION_ANIM: String = "not_action"
 
 func _ready() -> void:
 	_validate_required_nodes()
-	_set_particles_color()
 
 ## Checks if the required nodes have been assigned when it is loaded
 func _validate_required_nodes() -> void:
@@ -39,8 +38,8 @@ func set_details_color(color: Color) -> void:
 		sprite.modulate = color
 
 ## Changes the color of the particles based on the color defined in the sprite
-func _set_particles_color() -> void:
-	particles.modulate = body_sprites.modulate.to_html()
+func set_particles_color(body_color: Color) -> void:
+	particles.modulate = body_color
 
 ## Enables or disables the particles based on the [param state] value
 func set_particles_active(state: bool) -> void:

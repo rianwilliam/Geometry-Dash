@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://vl8v58guvhvb"]
 
-[ext_resource type="Script" uid="uid://ck10nyetcnypq" path="res://Ui/CustomizeMenu/Scripts/skin_color_control.gd" id="1_v0osu"]
+[ext_resource type="Script" uid="uid://ck10nyetcnypq" path="res://Ui/MenuTabs/CustomizeMenu/Scripts/player_color_manager.gd" id="1_v0osu"]
 
-[node name="SkinColorControl" type="Control"]
+[node name="PlayerColorManager" type="Control"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

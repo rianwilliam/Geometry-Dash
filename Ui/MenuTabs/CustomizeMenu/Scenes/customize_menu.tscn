@@ -1,57 +1,31 @@
-[gd_scene load_steps=12 format=3 uid="uid://s8hpa84v05uu"]
+[gd_scene load_steps=13 format=3 uid="uid://s8hpa84v05uu"]
 
 [ext_resource type="Texture2D" uid="uid://c6lyef61jb2yw" path="res://Assets/Ui/logo - Geometry copy.png" id="1_5f5ij"]
-[ext_resource type="Script" uid="uid://dxv1s5kh15a3b" path="res://Ui/CustomizeMenu/Scripts/customize_menu.gd" id="1_7dfk3"]
-[ext_resource type="Texture2D" uid="uid://ddeb5q3uhisg8" path="res://Player/Assets/Player.png" id="2_nu8or"]
-[ext_resource type="PackedScene" uid="uid://vl8v58guvhvb" path="res://Ui/CustomizeMenu/Scenes/SkinColorControl.tscn" id="2_ophij"]
+[ext_resource type="Script" uid="uid://dxv1s5kh15a3b" path="res://Ui/MenuTabs/CustomizeMenu/Scripts/customize_menu.gd" id="1_7dfk3"]
+[ext_resource type="PackedScene" uid="uid://vl8v58guvhvb" path="res://Ui/MenuTabs/CustomizeMenu/Scenes/PlayerColorManager.tscn" id="2_ophij"]
 [ext_resource type="PackedScene" uid="uid://v8sdhet7k10t" path="res://Player/Modes/SquareMode/Scenes/square_mode.tscn" id="3_k270n"]
 [ext_resource type="Theme" uid="uid://difkmoghwod51" path="res://Ui/Themes/main_menu_btn.tres" id="3_lqvpc"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cede6"]
-atlas = ExtResource("2_nu8or")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_aa238"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cede6")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ibxy"]
-atlas = ExtResource("2_nu8or")
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ophij"]
-atlas = ExtResource("2_nu8or")
-region = Rect2(0, 48, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ykg08"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5ibxy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ophij")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="PackedScene" uid="uid://nuov45k3it0w" path="res://Ui/Buttons/Scenes/back_btn.tscn" id="4_1cg3m"]
+[ext_resource type="PackedScene" uid="uid://bvaqvyy7ask3x" path="res://Player/Modes/WaveMode/Scenes/wave_mode.tscn" id="6_lqvpc"]
+[ext_resource type="PackedScene" uid="uid://dhqymlddhmfl8" path="res://Player/Modes/RobotMode/Scenes/robot_mode.tscn" id="7_btsx8"]
+[ext_resource type="PackedScene" uid="uid://y1hfisbd3tnq" path="res://Player/Modes/SpaceshipMode/Scenes/spaceship_mode.tscn" id="8_1cg3m"]
+[ext_resource type="PackedScene" uid="uid://bw4i0ujepwv0o" path="res://Player/Modes/UfoMode/Scenes/ufo_mode.tscn" id="9_3fcww"]
+[ext_resource type="PackedScene" uid="uid://b1ns3f8yyuunf" path="res://Player/Modes/BallMode/Scenes/ball_mode.tscn" id="10_g6nrw"]
+[ext_resource type="PackedScene" uid="uid://doi4ve4kgdlun" path="res://Ui/menu_background.tscn" id="11_1cg3m"]
 
 [node name="CustomizeMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7dfk3")
+
+[node name="ColorRect" parent="." instance=ExtResource("11_1cg3m")]
+layout_mode = 1
 
 [node name="Title" type="Control" parent="."]
 layout_mode = 1
@@ -79,16 +53,42 @@ expand_mode = 1
 
 [node name="Buttons" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 0
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Button" type="Button" parent="Buttons"]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 8.0
-offset_right = 116.0
-offset_bottom = 42.0
+[node name="HBoxContainer" type="HBoxContainer" parent="Buttons"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -113.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxContainer2" type="BoxContainer" parent="Buttons/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="BackBtn" parent="Buttons/HBoxContainer/BoxContainer2" node_paths=PackedStringArray("tab") instance=ExtResource("4_1cg3m")]
+layout_mode = 2
+size_flags_vertical = 4
+tab = NodePath("../../../..")
+
+[node name="BoxContainer" type="BoxContainer" parent="Buttons/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="ApplyBtn" type="Button" parent="Buttons/HBoxContainer/BoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 theme = ExtResource("3_lqvpc")
-text = "Back"
+text = "Apply"
 
 [node name="PlayerSkins" type="Control" parent="."]
 layout_mode = 1
@@ -116,12 +116,11 @@ scale = Vector2(3, 3)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SkinColorControl" parent="PlayerSkins/VBoxContainer/BoxContainer" node_paths=PackedStringArray("body_color_picker", "details_color_picker", "sprite") instance=ExtResource("2_ophij")]
+[node name="SkinColorControl" parent="PlayerSkins/VBoxContainer/BoxContainer" node_paths=PackedStringArray("body_color_picker", "details_color_picker", "mode_sprite") instance=ExtResource("2_ophij")]
 layout_mode = 2
-mode = null
 body_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer/ColorPickerButton2")
 details_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer/ColorPickerButton3")
-sprite = NodePath("SquareMode")
+mode_sprite = NodePath("SquareMode")
 
 [node name="SquareMode" parent="PlayerSkins/VBoxContainer/BoxContainer/SkinColorControl" instance=ExtResource("3_k270n")]
 
@@ -129,45 +128,67 @@ sprite = NodePath("SquareMode")
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="SkinColorControl" parent="PlayerSkins/VBoxContainer/BoxContainer2" node_paths=PackedStringArray("body_color_picker", "details_color_picker", "mode_sprite") instance=ExtResource("2_ophij")]
+layout_mode = 2
+mode = 1
+body_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer2/ColorPickerButton2")
+details_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer2/ColorPickerButton3")
+mode_sprite = NodePath("WaveMode")
+
+[node name="WaveMode" parent="PlayerSkins/VBoxContainer/BoxContainer2/SkinColorControl" instance=ExtResource("6_lqvpc")]
+
 [node name="BoxContainer3" type="BoxContainer" parent="PlayerSkins/VBoxContainer"]
+z_index = 1
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="SkinColorControl" parent="PlayerSkins/VBoxContainer/BoxContainer3" node_paths=PackedStringArray("body_color_picker", "details_color_picker", "mode_sprite") instance=ExtResource("2_ophij")]
+layout_mode = 2
+mode = 4
+body_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer3/ColorPickerButton2")
+details_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer3/ColorPickerButton3")
+mode_sprite = NodePath("RobotMode")
+
+[node name="RobotMode" parent="PlayerSkins/VBoxContainer/BoxContainer3/SkinColorControl" instance=ExtResource("7_btsx8")]
 
 [node name="BoxContainer4" type="BoxContainer" parent="PlayerSkins/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Control" type="Control" parent="PlayerSkins/VBoxContainer/BoxContainer4"]
+[node name="SkinColorControl" parent="PlayerSkins/VBoxContainer/BoxContainer4" node_paths=PackedStringArray("body_color_picker", "details_color_picker", "mode_sprite") instance=ExtResource("2_ophij")]
 layout_mode = 2
-size_flags_horizontal = 6
+mode = 5
+body_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer4/ColorPickerButton2")
+details_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer4/ColorPickerButton3")
+mode_sprite = NodePath("SpaceshipMode")
+
+[node name="SpaceshipMode" parent="PlayerSkins/VBoxContainer/BoxContainer4/SkinColorControl" instance=ExtResource("8_1cg3m")]
 
 [node name="BoxContainer5" type="BoxContainer" parent="PlayerSkins/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Control" type="Control" parent="PlayerSkins/VBoxContainer/BoxContainer5"]
+[node name="SkinColorControl" parent="PlayerSkins/VBoxContainer/BoxContainer5" node_paths=PackedStringArray("body_color_picker", "details_color_picker", "mode_sprite") instance=ExtResource("2_ophij")]
 layout_mode = 2
-size_flags_horizontal = 6
+mode = 3
+body_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer5/ColorPickerButton2")
+details_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer5/ColorPickerButton3")
+mode_sprite = NodePath("UfoMode")
 
-[node name="Body" type="AnimatedSprite2D" parent="PlayerSkins/VBoxContainer/BoxContainer5/Control"]
-sprite_frames = SubResource("SpriteFrames_aa238")
-
-[node name="Details" type="AnimatedSprite2D" parent="PlayerSkins/VBoxContainer/BoxContainer5/Control"]
-sprite_frames = SubResource("SpriteFrames_ykg08")
+[node name="UfoMode" parent="PlayerSkins/VBoxContainer/BoxContainer5/SkinColorControl" instance=ExtResource("9_3fcww")]
 
 [node name="BoxContainer6" type="BoxContainer" parent="PlayerSkins/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Control" type="Control" parent="PlayerSkins/VBoxContainer/BoxContainer6"]
+[node name="SkinColorControl" parent="PlayerSkins/VBoxContainer/BoxContainer6" node_paths=PackedStringArray("body_color_picker", "details_color_picker", "mode_sprite") instance=ExtResource("2_ophij")]
 layout_mode = 2
-size_flags_horizontal = 6
+mode = 2
+body_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer6/ColorPickerButton2")
+details_color_picker = NodePath("../../../../ColorPickers/ColorPickerContainer/VBoxContainer6/ColorPickerButton3")
+mode_sprite = NodePath("BallMode")
 
-[node name="Body" type="AnimatedSprite2D" parent="PlayerSkins/VBoxContainer/BoxContainer6/Control"]
-sprite_frames = SubResource("SpriteFrames_aa238")
-
-[node name="Details" type="AnimatedSprite2D" parent="PlayerSkins/VBoxContainer/BoxContainer6/Control"]
-sprite_frames = SubResource("SpriteFrames_ykg08")
+[node name="BallMode" parent="PlayerSkins/VBoxContainer/BoxContainer6/SkinColorControl" instance=ExtResource("10_g6nrw")]
 
 [node name="ColorPickers" type="Control" parent="."]
 layout_mode = 1

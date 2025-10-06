@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c4k0f4lyslspp"]
 
-[ext_resource type="Script" uid="uid://dqcvrkyi36uc6" path="res://Main/ElementColorChanger/Scripts/level_color_changer.gd" id="1_8h5mh"]
+[ext_resource type="Script" uid="uid://dqcvrkyi36uc6" path="res://Maps/ElementColorChanger/Scripts/level_color_changer.gd" id="1_8h5mh"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rg8i5"]
 normal = Vector2(-1, 0)

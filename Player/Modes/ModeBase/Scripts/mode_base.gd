@@ -12,9 +12,15 @@ class_name ModeBase
 var is_player_action: bool
 var is_player_in_floor: bool
 var is_player_in_ceiling: bool
+var mode_type: Enums.PLAYER_MODE
 
 func _ready() -> void:
 	_connect_events()
+
+func set_custom_color(colors: PlayerColorData) -> void:
+	player_visual_base.set_body_color(colors.get_body_color())
+	player_visual_base.set_details_color(colors.get_details_color())
+	player_visual_base.set_particles_color(colors.get_body_color())
 
 ## Connects the events emitted by the player to obtain required information
 func _connect_events() -> void:

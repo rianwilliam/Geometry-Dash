@@ -96,7 +96,6 @@ shape = SubResource("CircleShape2D_lctih")
 [node name="SpriteHolder" type="Marker2D" parent="." index="2"]
 
 [node name="Body" type="AnimatedSprite2D" parent="SpriteHolder" index="0"]
-modulate = Color(0.85301, 0, 0, 1)
 sprite_frames = SubResource("SpriteFrames_qna3o")
 
 [node name="Details" type="AnimatedSprite2D" parent="SpriteHolder" index="1"]
