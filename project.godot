@@ -20,7 +20,7 @@ run/max_fps=60
 Enums="*res://Global/enums.gd"
 Events="*res://Global/events.gd"
 ScenePaths="*res://Global/scene_paths.gd"
-PlayerSkinColors="*res://Global/player_skin_colors.gd"
+PlayerColorScheme="*res://Global/player_color_scheme.gd"
 
 [display]
 

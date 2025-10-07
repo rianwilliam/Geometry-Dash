@@ -1,8 +1,6 @@
 Sprites do mode switcher
 Sprites do direction switcher
-Fazer jogador receber o que foi inserido no player_skin_control
 Fazer que quando o "esc" for apertado, o jogo pause
 Fazer níveis
 Restante da documentação
 Font generator: https://gdcolon.com/gdfont
-Fazer funcao de definir as cores no mode base funcionar. (Ou colocar essa funcao no jogador)

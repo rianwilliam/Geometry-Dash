@@ -78,11 +78,32 @@ func _ready() -> void:
 	_connect_signals()
 	_setup_player_resources()
 	change_mode(_initial_mode)
-	_on_play_btn_pressed()
+	_set_player_colors()
 #endregion
 
-func _set_custom_colors() -> void:
-	pass
+#region PlayerColorSetter
+## Retrieves the colors defined by the player in [PlayerColorScheme] through [ModeColorManager]
+## and applies them to each existing mode. 
+func _set_player_colors() -> void:
+	wave_mode.set_custom_color(
+		PlayerColorScheme.get_mode_custom_color(Enums.PLAYER_MODE.WAVE)
+	)
+	square_mode.set_custom_color(
+		PlayerColorScheme.get_mode_custom_color(Enums.PLAYER_MODE.SQUARE)
+	)
+	ufo_mode.set_custom_color(
+		PlayerColorScheme.get_mode_custom_color(Enums.PLAYER_MODE.UFO)
+	)
+	ball_mode.set_custom_color(
+		PlayerColorScheme.get_mode_custom_color(Enums.PLAYER_MODE.BALL)
+	)
+	robot_mode.set_custom_color(
+		PlayerColorScheme.get_mode_custom_color(Enums.PLAYER_MODE.ROBOT)
+	)
+	spaceship_mode.set_custom_color(
+		PlayerColorScheme.get_mode_custom_color(Enums.PLAYER_MODE.SPACESHIP)
+	)
+#endregion
 
 func _physics_process(delta: float) -> void:
 	_emit_player_regular_signals()
@@ -132,13 +153,6 @@ func _emit_player_regular_signals() -> void:
 func _connect_signals() -> void:
 	robot_mode.connect("robot_fly_timeout", _on_robot_fly_timeout)
 
-func _on_play_btn_pressed() -> void:
-	robot_mode.set_custom_color(
-		PlayerSkinColors.get_mode_custom_color(Enums.PLAYER_MODE.ROBOT)
-	)
-	wave_mode.set_custom_color(
-		PlayerSkinColors.get_mode_custom_color(Enums.PLAYER_MODE.WAVE)
-	)
 #endregion
 
 #region ModifiersActions

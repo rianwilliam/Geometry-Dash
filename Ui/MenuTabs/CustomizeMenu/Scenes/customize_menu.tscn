@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c6lyef61jb2yw" path="res://Assets/Ui/logo - Geometry copy.png" id="1_5f5ij"]
 [ext_resource type="Script" uid="uid://dxv1s5kh15a3b" path="res://Ui/MenuTabs/CustomizeMenu/Scripts/customize_menu.gd" id="1_7dfk3"]
-[ext_resource type="PackedScene" uid="uid://vl8v58guvhvb" path="res://Ui/MenuTabs/CustomizeMenu/Scenes/PlayerColorManager.tscn" id="2_ophij"]
+[ext_resource type="PackedScene" uid="uid://vl8v58guvhvb" path="res://Ui/MenuTabs/CustomizeMenu/Scenes/mode_color_manager.tscn" id="2_ophij"]
 [ext_resource type="PackedScene" uid="uid://v8sdhet7k10t" path="res://Player/Modes/SquareMode/Scenes/square_mode.tscn" id="3_k270n"]
 [ext_resource type="Theme" uid="uid://difkmoghwod51" path="res://Ui/Themes/main_menu_btn.tres" id="3_lqvpc"]
 [ext_resource type="PackedScene" uid="uid://nuov45k3it0w" path="res://Ui/Buttons/Scenes/back_btn.tscn" id="4_1cg3m"]

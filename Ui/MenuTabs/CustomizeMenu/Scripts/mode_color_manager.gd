@@ -1,5 +1,5 @@
 extends Node
-class_name PlayerColorManager
+class_name ModeColorManager
 
 @export var mode: Enums.PLAYER_MODE
 @export var body_color_picker: ColorPicker
@@ -27,12 +27,16 @@ func get_details_color() -> Color:
 
 func _on_body_color_change(color: Color) -> void:
 	mode_sprite.change_body_color(color)
+	_body_color = color
 
 func _on_details_color_change(color: Color) -> void:
 	mode_sprite.change_details_color(color)
+	_details_color = color
 
 func _on_send_custom_color() -> void:
-	PlayerSkinColors.define_skin_color(
+	PlayerColorScheme.define_skin_color(
 		mode, 
 		PlayerColorData.new(_body_color,_details_color)
 	)
+	
+	print(_body_color.to_html())
