@@ -2,7 +2,7 @@ extends Area2D
 class_name ModeSwitcher
 
 @export var transform_to: Enums.PLAYER_MODE
-const _PLAYER_VERTICAL_CORRECTION: int = 16
+const _PLAYER_VERTICAL_CORRECTION: float = 16.0
 
 func _on_body_entered(body: Node2D) -> void:
 	if not body is Player: return

@@ -386,7 +386,7 @@ func _change_wave_direction(new_dir: Enums.WAVE_DIR) -> void:
 
 ## Rotates the player according to the state of [WaveMode]
 func _apply_wave_rotation_by_state() -> void:
-	if is_on_floor() or is_on_ceiling(): rotation_degrees = _active_rsc.IN_SURFACE_ROTATE_DEG * _gravity_dir
+	if is_on_floor() or is_on_ceiling(): rotation_degrees = _active_rsc.IN_SURFACE_ROTATE_DEG * _gravity_dir * _player_direction
 	elif _action_pressed: rotation_degrees = _active_rsc.ACTION_ROTATE_DEG * _gravity_dir
 	else: rotation_degrees = _active_rsc.NOT_ACTION_ROTATE_DEG * _gravity_dir
 
@@ -461,9 +461,10 @@ func _update_scale_y_by_gravity() -> void:
 
 ## Inverts the x-axis of [Player] according to the direction he is heading
 func _update_scale_x_by_direction() -> void:
-	scale.x = Enums.PLAYER_DIRECTION.LEFT \
-	if _player_direction == Enums.PLAYER_DIRECTION.LEFT \
-	else Enums.PLAYER_DIRECTION.RIGHT
+	scale.x = Enums.SCALE_DIR.NORMAL \
+	if _player_direction == Enums.PLAYER_DIRECTION.RIGHT \
+	else Enums.SCALE_DIR.INVERTED
+
 #endregion
 
 #region Reset

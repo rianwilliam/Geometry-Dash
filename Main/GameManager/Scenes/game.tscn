@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://b6dmle3sl63cf"]
+[gd_scene load_steps=11 format=4 uid="uid://b6dmle3sl63cf"]
 
 [ext_resource type="Script" uid="uid://vjn7j4c5jhnu" path="res://Main/GameManager/Scripts/game.gd" id="1_eow3j"]
 [ext_resource type="PackedScene" uid="uid://c2chvkyy457fn" path="res://Player/Scenes/player.tscn" id="2_feb5d"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bnt2ftx7usqym" path="res://MechanicChangers/Portals/ModeSwitcher/Scenes/mode_switcher.tscn" id="7_he4dk"]
 [ext_resource type="PackedScene" uid="uid://bmcsvr3jfodjs" path="res://MechanicChangers/Portals/DirectionSwitcher/Scenes/direction_switcher.tscn" id="7_wuomk"]
 [ext_resource type="PackedScene" uid="uid://cwm6yd6g4jhjn" path="res://PlayerModifiers/Pads/BluePad/Scenes/blue_pad.tscn" id="8_wuomk"]
+[ext_resource type="PackedScene" uid="uid://db73738h2jqkv" path="res://Ui/Menus/PauseMenu/Scenes/pause_menu.tscn" id="9_5us2q"]
 
 [sub_resource type="GDScript" id="GDScript_wuomk"]
 script/source = "extends Node2D
@@ -112,8 +113,9 @@ script = SubResource("GDScript_wuomk")
 unique_name_in_owner = true
 offset_left = 40.0
 offset_top = -16.0
-offset_right = 80.0
+offset_right = 111.0
 offset_bottom = 7.0
+text = "Attemp 1"
 metadata/_edit_use_anchors_ = true
 
 [node name="MechanicChangers" type="Node2D" parent="."]
@@ -121,14 +123,14 @@ position = Vector2(192, 64)
 
 [node name="ModeSwitcher" parent="MechanicChangers" instance=ExtResource("7_he4dk")]
 position = Vector2(-111, 0)
-transform_to = 1
+transform_to = 5
 
 [node name="ModeSwitcher2" parent="MechanicChangers" instance=ExtResource("7_he4dk")]
 position = Vector2(1280, -48)
 transform_to = 1
 
 [node name="DirectionSwitcher" parent="MechanicChangers" instance=ExtResource("7_wuomk")]
-position = Vector2(-32, -64)
+position = Vector2(-58, 1)
 switch_to = -1
 
 [node name="PadsAndOrbs" type="Node2D" parent="."]
@@ -148,5 +150,17 @@ zoom = Vector2(3.5, 3.5)
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("9_5us2q")]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [editable path="LevelStructure"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://vl8v58guvhvb"]
 
-[ext_resource type="Script" uid="uid://ck10nyetcnypq" path="res://Ui/MenuTabs/CustomizeMenu/Scripts/mode_color_manager.gd" id="1_ebrrq"]
+[ext_resource type="Script" uid="uid://ck10nyetcnypq" path="res://Ui/Menus/CustomizeMenu/Scripts/mode_color_manager.gd" id="1_ebrrq"]
 
 [node name="ModeColorManager" type="Control"]
 layout_mode = 3

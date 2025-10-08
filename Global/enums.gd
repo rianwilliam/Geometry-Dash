@@ -59,3 +59,8 @@ enum MODIFIERS {
 	GRAVITY = 2,
 	G_FORCE = 3,
 }
+
+enum SCENES {
+	MAIN_MENU,
+	LEVEL_MENU,
+}

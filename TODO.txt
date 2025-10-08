@@ -1,6 +1,6 @@
 Sprites do mode switcher
 Sprites do direction switcher
-Fazer que quando o "esc" for apertado, o jogo pause
+Fazer correcao do sprite do wave quando entra no direction switcher (criar variavel que adiciona graus a rotacao dependendo da direcao do player)
 Fazer níveis
 Restante da documentação
 Font generator: https://gdcolon.com/gdfont
