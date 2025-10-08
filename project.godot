@@ -21,6 +21,7 @@ Enums="*res://Global/enums.gd"
 Events="*res://Global/events.gd"
 PlayerColorScheme="*res://Global/player_color_scheme.gd"
 SceneChanger="*res://Global/scene_changer.gd"
+AudioController="*res://Global/audio_controller.gd"
 
 [display]
 

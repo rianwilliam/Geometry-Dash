@@ -6,7 +6,7 @@ class_name MainMenu
 @onready var options_btn: Button = %OptionsBtn
 @onready var play_btn: Button = %PlayBtn
 @onready var options_menu: Control = $OptionsMenu
-@onready var customize_menu: Control = $CustomizeScreen
+@onready var customize_menu: Control = $CustomizeMenu
 
 func _ready() -> void:
 	options_btn.connect("pressed", _on_options_btn_pressed)

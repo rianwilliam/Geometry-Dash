@@ -1,0 +1,130 @@
+[gd_scene load_steps=10 format=3 uid="uid://dcifpm4tuyoxu"]
+
+[ext_resource type="Script" uid="uid://bw48wngwgyp41" path="res://Ui/Menus/OptionsMenu/Scripts/options_menu.gd" id="1_0adhn"]
+[ext_resource type="PackedScene" uid="uid://doi4ve4kgdlun" path="res://Ui/menu_background.tscn" id="1_rote1"]
+[ext_resource type="PackedScene" uid="uid://bcb3eiejfsr7" path="res://Ui/menu_title.tscn" id="2_0l1gu"]
+[ext_resource type="Texture2D" uid="uid://0n4gvwhgyy6f" path="res://Assets/Ui/logo - Options.png" id="2_xopqf"]
+[ext_resource type="Theme" uid="uid://dyuls4cbu36lg" path="res://Ui/Themes/label_theme.tres" id="4_0l1gu"]
+[ext_resource type="PackedScene" uid="uid://nuov45k3it0w" path="res://Ui/Buttons/Scenes/back_btn.tscn" id="5_ddt61"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ddt61"]
+bg_color = Color(0.035888672, 0.57421875, 0.14523697, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0l1gu"]
+bg_color = Color(0.03529412, 0.57254905, 0.14509805, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="Theme" id="Theme_10f5x"]
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_ddt61")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_0l1gu")
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0adhn")
+
+[node name="MenuBackground" parent="." instance=ExtResource("1_rote1")]
+layout_mode = 1
+offset_left = 2.0
+offset_right = 2.0
+
+[node name="MenuTitle" parent="." instance=ExtResource("2_0l1gu")]
+layout_mode = 1
+
+[node name="TextureRect" parent="MenuTitle/CenterContainer" index="0"]
+texture = ExtResource("2_xopqf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -25.5
+offset_right = 1.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -337.0
+offset_right = 337.0
+offset_bottom = 80.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = ExtResource("4_0l1gu")
+text = "Volume"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VolumeValue" type="HSlider" parent="VBoxContainer/Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+theme = SubResource("Theme_10f5x")
+max_value = 1.0
+step = 0.1
+value = 1.0
+ticks_position = 3
+
+[node name="Control2" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = -20.0
+offset_right = 50.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackBtn" parent="VBoxContainer/Control2/VBoxContainer" node_paths=PackedStringArray("tab") instance=ExtResource("5_ddt61")]
+layout_mode = 2
+size_flags_vertical = 10
+tab = NodePath("../../../..")
+
+[editable path="MenuTitle"]

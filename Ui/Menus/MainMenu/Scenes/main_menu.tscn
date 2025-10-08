@@ -6,7 +6,7 @@
 [ext_resource type="Theme" uid="uid://difkmoghwod51" path="res://Ui/Themes/main_menu_btn.tres" id="3_jhi0l"]
 [ext_resource type="PackedScene" uid="uid://s8hpa84v05uu" path="res://Ui/Menus/CustomizeMenu/Scenes/customize_menu.tscn" id="4_m6u6s"]
 [ext_resource type="PackedScene" uid="uid://doi4ve4kgdlun" path="res://Ui/menu_background.tscn" id="5_gv5y6"]
-[ext_resource type="PackedScene" uid="uid://dcifpm4tuyoxu" path="res://Ui/Menus/OptionsMenu/options_menu.tscn" id="6_4c4cw"]
+[ext_resource type="PackedScene" uid="uid://dcifpm4tuyoxu" path="res://Ui/Menus/OptionsMenu/Scenes/options_menu.tscn" id="6_4c4cw"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3

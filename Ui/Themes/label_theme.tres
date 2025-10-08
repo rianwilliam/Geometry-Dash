@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dyuls4cbu36lg"]
+
+[ext_resource type="FontFile" uid="uid://dld8s4xkgcnau" path="res://Assets/Ui/Fonts/PUSAB___.otf" id="1_6sxfm"]
+
+[resource]
+Label/font_sizes/font_size = 58
+Label/fonts/font = ExtResource("1_6sxfm")
