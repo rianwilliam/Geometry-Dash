@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcifpm4tuyoxu"]
+
+[ext_resource type="PackedScene" uid="uid://doi4ve4kgdlun" path="res://Ui/menu_background.tscn" id="1_rote1"]
+[ext_resource type="PackedScene" uid="uid://bcb3eiejfsr7" path="res://Ui/menu_title.tscn" id="2_0l1gu"]
+[ext_resource type="Texture2D" uid="uid://0n4gvwhgyy6f" path="res://Assets/Ui/logo - Options.png" id="2_xopqf"]
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuBackground" parent="." instance=ExtResource("1_rote1")]
+layout_mode = 0
+anchors_preset = 0
+
+[node name="MenuTitle" parent="." instance=ExtResource("2_0l1gu")]
+layout_mode = 1
+
+[node name="TextureRect" parent="MenuTitle/CenterContainer" index="0"]
+texture = ExtResource("2_xopqf")
+
+[editable path="MenuTitle"]

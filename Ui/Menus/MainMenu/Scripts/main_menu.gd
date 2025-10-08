@@ -1,18 +1,27 @@
 extends Control
 class_name MainMenu
 
-@onready var options_btn: Button = $Buttons/GridContainer/OptionsBtn
-@onready var customize_btn: Button = $Buttons/GridContainer/CustomizeBtn
-@onready var customize_screen: Control = $CustomizeScreen
+@onready var quit_btn: Button = %QuitBtn
+@onready var customize_btn: Button = %CustomizeBtn
+@onready var options_btn: Button = %OptionsBtn
 @onready var play_btn: Button = %PlayBtn
+@onready var options_menu: Control = $OptionsMenu
+@onready var customize_menu: Control = $CustomizeScreen
 
 func _ready() -> void:
-	#options_btn.connect("pressed", _on_options_btn_pressed)
+	options_btn.connect("pressed", _on_options_btn_pressed)
 	customize_btn.connect("pressed", _on_customize_btn_pressed)
 	play_btn.connect("pressed", _on_play_btn_pressed)
+	quit_btn.connect("pressed", _on_quit_btn_pressed)
 
 func _on_customize_btn_pressed() -> void:
-	customize_screen.visible = true
+	customize_menu.visible = true
+
+func _on_quit_btn_pressed() -> void:
+	get_tree().quit()
+
+func _on_options_btn_pressed() -> void:
+	options_menu.visible = true
 
 func _on_play_btn_pressed() -> void:
 	Events.emit_signal("play_btn_pressed")

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://doi4ve4kgdlun"]
 
-[node name="ColorRect" type="ColorRect"]
+[node name="MenuBackground" type="ColorRect"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
