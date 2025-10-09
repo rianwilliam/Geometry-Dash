@@ -1,4 +1,5 @@
 extends Control
+class_name OptionsMenus
 
 @onready var volume_value: HSlider = %VolumeValue
 

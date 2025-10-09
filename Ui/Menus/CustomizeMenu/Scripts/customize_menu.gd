@@ -1,4 +1,5 @@
 extends Control
+class_name CustomizeMenu
 
 @onready var apply_btn: Button = %ApplyBtn
 

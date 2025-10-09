@@ -60,6 +60,7 @@ enum MODIFIERS {
 	G_FORCE = 3,
 }
 
+## Loads the types of scenes that can be loaded
 enum SCENES {
 	MAIN_MENU,
 	LEVEL_MENU,

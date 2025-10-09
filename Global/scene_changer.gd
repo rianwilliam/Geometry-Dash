@@ -1,5 +1,9 @@
 extends Node
 
+## Responsável por armazenar as cenas e altera-lás
+##
+##
+
 const MAIN_MENU: String = "res://Ui/Menus/MainMenu/Scenes/main_menu.tscn"
 const LEVEL_MENU: String = ""
 
