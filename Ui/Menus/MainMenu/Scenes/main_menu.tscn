@@ -124,4 +124,7 @@ offset_right = -1.0
 visible = false
 layout_mode = 1
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true
+
 [editable path="MenuTitle"]

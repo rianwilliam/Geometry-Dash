@@ -1,6 +1,6 @@
 extends Node2D
 
-signal player_died() ## who's recieve: [LevelStructure]; [GameManager]
+signal player_died() ## who's recieve: [LevelTileMapStructure]; [GameManager]
 signal player_pos(pos: Vector2) ## who's recieve:
 signal player_use_orb() ## who's recieve:
 signal send_player_mode(mode: Enums.PLAYER_MODE) ## who's recieve:

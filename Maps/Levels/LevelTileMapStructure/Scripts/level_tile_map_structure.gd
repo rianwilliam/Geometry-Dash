@@ -1,5 +1,5 @@
 extends TileMapLayer
-class_name LevelStructure
+class_name LevelTileMapStructure
 
 ## Contains all the elements that make up a level, which are:
 ## [i]ground, spikes, platforms, color changes holder, sloped blocks, and misc[/i]

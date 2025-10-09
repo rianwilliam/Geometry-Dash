@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://vjn7j4c5jhnu" path="res://Main/GameManager/Scripts/game.gd" id="1_eow3j"]
 [ext_resource type="PackedScene" uid="uid://c2chvkyy457fn" path="res://Player/Scenes/player.tscn" id="2_feb5d"]
-[ext_resource type="PackedScene" uid="uid://c5ki3qigdi27q" path="res://Maps/Levels/LevelStructure/Scenes/level_structure.tscn" id="3_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://c5ki3qigdi27q" path="res://Maps/Levels/LevelTileMapStructure/Scenes/level_tile_map_structure.tscn" id="3_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://c4k0f4lyslspp" path="res://Maps/ElementColorChanger/Scenes/element_color_changer.tscn" id="4_bhyi5"]
 [ext_resource type="Texture2D" uid="uid://bmj0v06xqhbnw" path="res://Assets/Background - 1.png" id="7_eow3j"]
 [ext_resource type="PackedScene" uid="uid://bnt2ftx7usqym" path="res://MechanicChangers/Portals/ModeSwitcher/Scenes/mode_switcher.tscn" id="7_he4dk"]
@@ -136,12 +136,12 @@ switch_to = -1
 [node name="PadsAndOrbs" type="Node2D" parent="."]
 position = Vector2(192, 64)
 
+[node name="BluePad2" parent="PadsAndOrbs" instance=ExtResource("8_wuomk")]
+position = Vector2(310, -111)
+rotation = -3.1415925
+
 [node name="BluePad" parent="PadsAndOrbs" instance=ExtResource("8_wuomk")]
 position = Vector2(40, -1)
-
-[node name="BluePad2" parent="PadsAndOrbs/BluePad" instance=ExtResource("8_wuomk")]
-position = Vector2(270, -110)
-rotation = -3.1415925
 
 [node name="Camera" type="Camera2D" parent="."]
 unique_name_in_owner = true
