@@ -30,8 +30,17 @@ window/stretch/mode="canvas_items"
 [file_customization]
 
 folder_colors={
+"res://Global/": "blue",
+"res://Main/": "blue",
+"res://Maps/": "blue",
+"res://MechanicChangers/": "blue",
 "res://Player/": "blue",
-"res://PlayerModifiers/BasePlayerModifier/": "blue"
+"res://PlayerModifiers/": "blue",
+"res://PlayerModifiers/BasePlayerModifier/": "blue",
+"res://PlayerModifiers/Orbs/": "blue",
+"res://PlayerModifiers/Orbs/GravityOrbs/": "blue",
+"res://PlayerModifiers/Orbs/JumpOrbs/": "blue",
+"res://PlayerModifiers/Pads/": "blue"
 }
 
 [input]

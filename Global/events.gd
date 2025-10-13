@@ -1,16 +1,18 @@
 extends Node2D
 
-signal player_died() ## who's recieve: [LevelTileMapStructure]; [GameManager]
+# Gameplay Signals
+signal player_died() ## who's recieve: [LevelTileMapStructure]; [LevelManager]
 signal player_pos(pos: Vector2) ## who's recieve:
-signal player_use_orb() ## who's recieve:
+signal player_use_orb() ## who's recieve: [Orb]
 signal send_player_mode(mode: Enums.PLAYER_MODE) ## who's recieve:
 signal set_player_collision_shape(new_collision: CollisionShape2D)
 signal player_is_in_action(action: bool) ## who's recieve: [ModeBase]
 signal player_in_floor(on_floor: bool) ## who's recieve: [ModeBase]
 signal player_in_ceiling(on_ceiling: bool) ## who's recieve: [ModeBase]
 signal player_gravity_dir(direction: Enums.GRAVITY_DIR) ## who's recieve:
-signal send_custom_colors() ## who's recieve: [PlayerColorManager]
 
+# Menu Signals
+signal send_custom_colors() ## who's recieve: [ModeColorManager]
 signal play_btn_pressed() ## who's recieve: [Player]
-signal resume_btn_pressed() ## who's recieve:
-signal quit_btn_pressed() ## who's recieve:
+signal resume_btn_pressed() ## who's recieve: [LevelManager]
+signal quit_btn_pressed() ## who's recieve: [LevelManager], [PauseMenu]

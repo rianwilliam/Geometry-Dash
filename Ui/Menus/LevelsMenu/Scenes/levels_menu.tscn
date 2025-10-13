@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2iy82hw0anrw"]
+[gd_scene load_steps=7 format=3 uid="uid://d2iy82hw0anrw"]
 
 [ext_resource type="PackedScene" uid="uid://doi4ve4kgdlun" path="res://Ui/menu_background.tscn" id="1_7q385"]
+[ext_resource type="Script" uid="uid://b7os3svittnpf" path="res://Ui/Menus/LevelsMenu/Scripts/levels_menu.gd" id="1_18m16"]
 [ext_resource type="PackedScene" uid="uid://bcb3eiejfsr7" path="res://Ui/menu_title.tscn" id="2_psa83"]
 [ext_resource type="Texture2D" uid="uid://p7qtu02qb04l" path="res://Assets/Ui/logo - Level Select.png" id="3_18m16"]
 [ext_resource type="Theme" uid="uid://difkmoghwod51" path="res://Ui/Themes/main_menu_btn.tres" id="4_psa83"]
+[ext_resource type="PackedScene" uid="uid://nuov45k3it0w" path="res://Ui/Buttons/Scenes/back_btn.tscn" id="6_w21il"]
 
 [node name="LevelsMenu" type="Control"]
 layout_mode = 3
@@ -12,6 +14,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_18m16")
+metadata/_edit_vertical_guides_ = [126.0]
 
 [node name="MenuBackground" parent="." instance=ExtResource("1_7q385")]
 layout_mode = 1
@@ -37,7 +41,8 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="HBoxContainer/BoxContainer"]
+[node name="Lvl1Btn" type="Button" parent="HBoxContainer/BoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 theme = ExtResource("4_psa83")
@@ -47,7 +52,8 @@ text = "Level 1"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button2" type="Button" parent="HBoxContainer/BoxContainer2"]
+[node name="Lvl2Btn" type="Button" parent="HBoxContainer/BoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 theme = ExtResource("4_psa83")
@@ -57,10 +63,28 @@ text = "Level 2"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button3" type="Button" parent="HBoxContainer/BoxContainer3"]
+[node name="Lvl3Btn" type="Button" parent="HBoxContainer/BoxContainer3"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 theme = ExtResource("4_psa83")
 text = "Level 3"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.5
+offset_top = -217.0
+offset_right = 50.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BackBtn" parent="CenterContainer" node_paths=PackedStringArray("tab") instance=ExtResource("6_w21il")]
+layout_mode = 2
+tab = NodePath("../..")
 
 [editable path="MenuTitle"]

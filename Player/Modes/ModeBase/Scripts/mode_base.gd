@@ -12,6 +12,7 @@ class_name ModeBase
 var is_player_action: bool
 var is_player_in_floor: bool
 var is_player_in_ceiling: bool
+var is_player_using_modifier: bool
 var mode_type: Enums.PLAYER_MODE
 
 func _ready() -> void:

@@ -11,7 +11,7 @@ class_name MainMenu
 @onready var play_btn: Button = %PlayBtn
 @onready var options_menu: Control = $OptionsMenu
 @onready var customize_menu: Control = $CustomizeMenu
-
+@onready var levels_menu: LevelsMenu = $LevelsMenu
 
 ## Performs the connection of required events through [method _connect_events]
 func _ready() -> void:
@@ -36,6 +36,6 @@ func _on_quit_btn_pressed() -> void:
 func _on_options_btn_pressed() -> void:
 	options_menu.visible = true
 
+## Makes the [LevelsMenu] visible when the [member play_btn] button is pressed
 func _on_play_btn_pressed() -> void:
-	Events.emit_signal("play_btn_pressed")
-	get_tree().change_scene_to_file("res://Main/GameManager/Scenes/game.tscn")
+	levels_menu.visible = true
