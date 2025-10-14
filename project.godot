@@ -40,7 +40,17 @@ folder_colors={
 "res://PlayerModifiers/Orbs/": "blue",
 "res://PlayerModifiers/Orbs/GravityOrbs/": "blue",
 "res://PlayerModifiers/Orbs/JumpOrbs/": "blue",
-"res://PlayerModifiers/Pads/": "blue"
+"res://PlayerModifiers/Pads/": "blue",
+"res://Ui/": "blue",
+"res://Ui/Buttons/": "blue",
+"res://Ui/Menus/": "blue",
+"res://Ui/Menus/CustomizeMenu/": "blue",
+"res://Ui/Menus/LevelsMenu/": "blue",
+"res://Ui/Menus/MainMenu/": "blue",
+"res://Ui/Menus/OptionsMenu/": "blue",
+"res://Ui/Menus/PauseMenu/": "blue",
+"res://Ui/Themes/": "blue",
+"res://Utils/": "blue"
 }
 
 [input]
