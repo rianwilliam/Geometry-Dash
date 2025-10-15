@@ -63,6 +63,7 @@ enum MODIFIERS {
 ## Loads the types of scenes that can be loaded
 enum SCENES {
 	MAIN_MENU,
+	LEVELS_MENU,
 	LEVEL_ONE,
 	LEVEL_TWO,
 	LEVEL_THREE,

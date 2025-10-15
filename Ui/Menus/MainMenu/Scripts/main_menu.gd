@@ -38,4 +38,4 @@ func _on_options_btn_pressed() -> void:
 
 ## Makes the [LevelsMenu] visible when the [member play_btn] button is pressed
 func _on_play_btn_pressed() -> void:
-	levels_menu.visible = true
+	SceneChanger.change_scene(Enums.SCENES.LEVELS_MENU)
