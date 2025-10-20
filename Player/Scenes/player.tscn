@@ -29,12 +29,12 @@ visible = false
 visible = false
 
 [node name="SquareMode" parent="." instance=ExtResource("2_omv0o")]
-visible = false
 
 [node name="WaveMode" parent="." instance=ExtResource("3_xwb2w")]
 visible = false
 
 [node name="SpaceshipMode" parent="." instance=ExtResource("7_2hb64")]
+visible = false
 
 [node name="Collision" parent="." instance=ExtResource("3_bw35f")]
 shape = SubResource("RectangleShape2D_qo0kk")
@@ -49,7 +49,6 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_2hb64")
 
 [node name="ModifierSensor" type="Area2D" parent="."]
-visible = false
 
 [node name="Collision" parent="ModifierSensor" instance=ExtResource("3_bw35f")]
 shape = SubResource("RectangleShape2D_qsune")
