@@ -26,7 +26,6 @@ script = ExtResource("1_eow3j")
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(-160, -304)
 motion_scale = Vector2(0.2, 0.2)
-motion_mirroring = Vector2(502, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 modulate = Color(0.592157, 0.611765, 1, 0.788235)
