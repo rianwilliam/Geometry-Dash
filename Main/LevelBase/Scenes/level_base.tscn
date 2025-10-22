@@ -50,9 +50,6 @@ modulate = Color(0, 0.0745098, 0.847059, 1)
 [node name="Blocks" parent="LevelStructure/Platforms" index="0"]
 modulate = Color(0.0340576, 0.116276, 0.96875, 1)
 
-[node name="Spikes" parent="LevelStructure/GroundSpikes" index="0"]
-modulate = Color(0.945098, 0, 1, 0.811765)
-
 [node name="Blocks" parent="LevelStructure/InclinatedBlocks" index="0"]
 modulate = Color(0.053024292, 0.08364582, 0.54296875, 1)
 
