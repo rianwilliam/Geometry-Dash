@@ -4,3 +4,4 @@ Fazer correcao do sprite do wave quando entra no direction switcher (criar varia
 Fazer níveis
 Restante da documentação
 Font generator: https://gdcolon.com/gdfont
+Fazer a orb verde

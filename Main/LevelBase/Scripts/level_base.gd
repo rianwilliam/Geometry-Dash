@@ -10,6 +10,7 @@ class_name LevelManager
 @onready var die_counter: Label = %DieCounter ## [Label] that displays the number of attempts
 @onready var camera_2d: Camera2D = %Camera ## Camera that follows the player's position
 @onready var pause_menu: PauseMenu = %PauseMenu ## Pause menu
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 var attemp_counter: int = 1 ## Death counter
 var attemp_text: String = "Attempt" ## Text displayed in [member die_counter]
@@ -22,6 +23,9 @@ func _ready() -> void:
 	Events.connect("quit_btn_pressed", _on_quit_btn_pressed)
 	_refresh_attemp_text()
 	pause_menu.visible = false
+
+func _set_music_volume() -> void:
+	audio_stream_player.volume_db = AudioController.get_main_volume()
 
 ## Checks if the pause button was pressed and continuously moves
 ## the [member camera_2d] to the current player position

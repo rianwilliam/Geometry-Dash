@@ -79,6 +79,10 @@ func _ready() -> void:
 	_setup_player_resources()
 	change_mode(_initial_mode)
 	_set_player_colors()
+	_set_spawn_position()
+
+func _set_spawn_position() -> void:
+	global_position = spawn.global_position
 #endregion
 
 #region PlayerColorSetter
@@ -142,9 +146,6 @@ func _is_player_in_action() -> void:
 	else:
 		Events.emit_signal("player_is_in_action", false)
 #endregion
-
-func _set_spawn_position() -> void:
-	global_position = spawn.global_position
 
 #region Signals
 func _emit_player_regular_signals() -> void:
@@ -235,7 +236,7 @@ func _pad_jump() -> bool:
 ## Performs the jump according to the value passed in [param jump_size]
 func _jump(jump_size: Enums.JUMPS = Enums.JUMPS.MEDIUM) -> void:
 	match jump_size:
-		Enums.JUMPS.SMALL: velocity.y = (_active_rsc.jump_height * _gravity_dir) / 1.8
+		Enums.JUMPS.SMALL: velocity.y = (_active_rsc.jump_height * _gravity_dir) / 1.3
 		Enums.JUMPS.MEDIUM: velocity.y = _active_rsc.jump_height * _gravity_dir
 		Enums.JUMPS.MEDIUM_HIGH: velocity.y = _active_rsc.jump_height * _gravity_dir * 1.5
 		Enums.JUMPS.HIGH: velocity.y = _active_rsc.jump_height * _gravity_dir * 3

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6dmle3sl63cf"]
+[gd_scene load_steps=8 format=3 uid="uid://b6dmle3sl63cf"]
 
 [ext_resource type="Script" uid="uid://vjn7j4c5jhnu" path="res://Main/LevelBase/Scripts/level_base.gd" id="1_eow3j"]
 [ext_resource type="PackedScene" uid="uid://c2chvkyy457fn" path="res://Player/Scenes/player.tscn" id="2_feb5d"]
 [ext_resource type="PackedScene" uid="uid://c5ki3qigdi27q" path="res://Maps/Levels/LevelTileMapStructure/Scenes/level_tile_map_structure.tscn" id="3_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://dd1kbrrja7lp" path="res://Maps/PlayMusicTrigger/Scenes/play_music_trigger.tscn" id="6_wfujf"]
 [ext_resource type="Texture2D" uid="uid://bmj0v06xqhbnw" path="res://Assets/Background - 1.png" id="7_eow3j"]
 [ext_resource type="PackedScene" uid="uid://db73738h2jqkv" path="res://Ui/Menus/PauseMenu/Scenes/pause_menu.tscn" id="9_5us2q"]
 
@@ -107,5 +108,8 @@ process_mode = 3
 visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="PlayMusicTrigger" parent="." node_paths=PackedStringArray("music") instance=ExtResource("6_wfujf")]
+music = NodePath("../AudioStreamPlayer")
 
 [editable path="LevelStructure"]

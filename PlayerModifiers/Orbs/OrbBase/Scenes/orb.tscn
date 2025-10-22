@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dm3tmqpuapy0c" path="res://PlayerModifiers/Orbs/OrbBase/Scripts/external_layer.gd" id="5_0ng1g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqcrr"]
-radius = 23.0217
+radius = 14.0
 
 [sub_resource type="Animation" id="Animation_of2de"]
 resource_name = "MiddleRotation"
@@ -118,16 +118,16 @@ _data = {
 script = ExtResource("1_xdlj8")
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(0, -23)
+position = Vector2(0, -15)
 region_enabled = true
 region_rect = Rect2(1, 1, 30, 30)
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, -23)
+position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_cqcrr")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." index="2"]
-position = Vector2(0, -23)
+position = Vector2(0, -15)
 amount = 50
 emission_shape = 1
 emission_sphere_radius = 15.0
@@ -137,7 +137,7 @@ orbit_velocity_min = 0.1
 orbit_velocity_max = 0.2
 
 [node name="OrbLayers" type="Marker2D" parent="." index="3"]
-position = Vector2(0, -23)
+position = Vector2(0, -15)
 script = ExtResource("3_jnywl")
 
 [node name="MiddleLayer" type="Marker2D" parent="OrbLayers" index="0"]
