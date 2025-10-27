@@ -308,7 +308,7 @@ func _disconnect_modes_events() -> void:
 func _apply_gravity(delta: float) -> void:
 	velocity.y += _active_rsc.gravity * _gravity_dir * delta * _gravity_force_multiplier
 
-func _invert_gravity() -> void:
+func invert_gravity() -> void:
 	if _gravity_dir == Enums.GRAVITY_DIR.NORMAL:
 		_gravity_dir = Enums.GRAVITY_DIR.INVERTED
 	else:
@@ -327,7 +327,7 @@ func _set_gravity_force(force: Enums.GRAVITY_FORCE = Enums.GRAVITY_FORCE.NORMAL)
 
 func _gravity_modifiers_actions(effect: Enums.GRAVITY_DIR) -> void:
 	match effect:
-		Enums.GRAVITY_DIR.FLIP: _invert_gravity()
+		Enums.GRAVITY_DIR.FLIP: invert_gravity()
 		Enums.GRAVITY_DIR.INVERTED: _set_gravity_dir(Enums.GRAVITY_DIR.INVERTED)
 		Enums.GRAVITY_DIR.NORMAL: _set_gravity_dir(Enums.GRAVITY_DIR.NORMAL)
 
@@ -402,8 +402,8 @@ func _on_enter_ball_mode() -> void:
 
 func _ball_mode(delta: float) -> void:
 	_apply_gravity(delta)
-	if _action_clicked and is_on_ceiling() : _invert_gravity()
-	elif _action_clicked and is_on_floor(): _invert_gravity()
+	if _action_clicked and is_on_ceiling() : invert_gravity()
+	elif _action_clicked and is_on_floor(): invert_gravity()
 #endregion
 
 #region Ufo

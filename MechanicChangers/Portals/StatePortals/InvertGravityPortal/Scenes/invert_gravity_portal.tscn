@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://beq1kcy4kryhs"]
+
+[ext_resource type="PackedScene" uid="uid://b53ljlp24j1ek" path="res://MechanicChangers/Portals/Portal Base/Scenes/portal_base.tscn" id="1_f7vpq"]
+[ext_resource type="Script" uid="uid://cg5sd44qr2shg" path="res://MechanicChangers/Portals/StatePortals/InvertGravityPortal/Scripts/invert_gravity_portal.gd" id="2_6d17d"]
+
+[node name="InvertGravityPortal" instance=ExtResource("1_f7vpq")]
+script = ExtResource("2_6d17d")
+
+[node name="Particles" parent="." index="1"]
+modulate = Color(0.85979897, 0, 0.6752446, 1)
+
+[node name="Front" parent="." index="2"]
+modulate = Color(0.85979897, 0, 0.6752446, 1)
+
+[node name="Back" parent="." index="3"]
+modulate = Color(0.85979897, 0, 0.6752446, 1)
