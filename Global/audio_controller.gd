@@ -5,7 +5,7 @@ extends Node
 ## The [AudioController] is responsible for storing and applying 
 ## the volume level defined by the player.
 
-var _volume: float = 0.5 ## Stores the current volume
+var _volume: float = 0.2 ## Stores the current volume
 var main_bus_idx: int = AudioServer.get_bus_index("Master") ## Gets the index of the "Master" bus
 
 ## Changes the value of [member _volume] to the one passed through [param value]
