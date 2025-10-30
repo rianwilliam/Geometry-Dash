@@ -116,8 +116,6 @@ func _physics_process(delta: float) -> void:
 	_is_inside_player_modifier()
 	_is_player_in_action()
 	_kill_on_idle()
-	if _action_clicked:
-		print(global_position.round())
 
 	match _mode:
 		Enums.PLAYER_MODE.SQUARE: _square_mode(delta)

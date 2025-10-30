@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6lyef61jb2yw"
-path="res://.godot/imported/logo - Geometry copy.png-38471e16f02f7aa0a9dd2964a81bad15.ctex"
+uid="uid://dswjm4453r7jp"
+path="res://.godot/imported/logo - Customize.png-b93db70bf48ab9a33f7ca0663120857b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Ui/logo - Geometry copy.png"
-dest_files=["res://.godot/imported/logo - Geometry copy.png-38471e16f02f7aa0a9dd2964a81bad15.ctex"]
+source_file="res://Assets/Ui/Texts/logo - Customize.png"
+dest_files=["res://.godot/imported/logo - Customize.png-b93db70bf48ab9a33f7ca0663120857b.ctex"]
 
 [params]
 
