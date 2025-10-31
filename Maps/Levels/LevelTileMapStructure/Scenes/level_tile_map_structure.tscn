@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5ki3qigdi27q"]
+[gd_scene load_steps=5 format=3 uid="uid://c5ki3qigdi27q"]
 
 [ext_resource type="PackedScene" uid="uid://sxtdhwcpawbj" path="res://Maps/TileMaps/Scenes/main_tile_map.tscn" id="1_4nr2x"]
 [ext_resource type="Script" uid="uid://c2tp465lrxm1q" path="res://Maps/TileMaps/Scripts/tile_map_controller.gd" id="1_7xpw8"]
 [ext_resource type="Script" uid="uid://rom6l2m5gvqs" path="res://Maps/Levels/LevelTileMapStructure/Scripts/level_tile_map_structure.gd" id="1_xo7ch"]
+[ext_resource type="PackedScene" uid="uid://c4tc3ad12dk2f" path="res://Maps/TileMaps/Scenes/tile_map_controller.tscn" id="4_m82ov"]
 
 [node name="LevelTileMapStructure" type="TileMapLayer"]
 script = ExtResource("1_xo7ch")
@@ -53,10 +54,11 @@ metadata/_custom_type_script = "uid://c2tp465lrxm1q"
 
 [node name="Base" parent="GroundSpikes" instance=ExtResource("1_4nr2x")]
 
-[node name="InclinatedBlocks" type="Node2D" parent="."]
-rotation = 0.785398
-script = ExtResource("1_7xpw8")
+[node name="InclinatedBlocks" parent="." node_paths=PackedStringArray("tile_map_to_reset") instance=ExtResource("4_m82ov")]
+tile_map_to_reset = NodePath("Blocks")
 
 [node name="Blocks" parent="InclinatedBlocks" instance=ExtResource("1_4nr2x")]
+rotation = 0.785398
 
 [node name="Border" parent="InclinatedBlocks" instance=ExtResource("1_4nr2x")]
+rotation = 0.785398
