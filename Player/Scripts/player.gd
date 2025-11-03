@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 ##
+##
 ## Represents the controllable character in the game.
 ## Detailed Description: The Player node handles all core gameplay mechanics such as movement, 
 ## gravity inversion, mode switching, collision detection, and interactions with game modifiers. 
@@ -237,7 +238,7 @@ func _jump(jump_size: Enums.JUMPS = Enums.JUMPS.MEDIUM) -> void:
 		Enums.JUMPS.SMALL: velocity.y = (_active_rsc.jump_height * _gravity_dir) / 1.3
 		Enums.JUMPS.MEDIUM: velocity.y = _active_rsc.jump_height * _gravity_dir
 		Enums.JUMPS.MEDIUM_HIGH: velocity.y = _active_rsc.jump_height * _gravity_dir * 1.5
-		Enums.JUMPS.HIGH: velocity.y = _active_rsc.jump_height * _gravity_dir * 3
+		Enums.JUMPS.HIGH: velocity.y = _active_rsc.jump_height * _gravity_dir * 2
 #endregion
 
 #region ModeControl

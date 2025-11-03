@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://0kb8a7wtx023"]
+[gd_scene load_steps=10 format=3 uid="uid://0kb8a7wtx023"]
 
 [ext_resource type="Script" uid="uid://1uci4ho6honi" path="res://Ui/Menus/MainMenu/Scripts/main_menu.gd" id="1_e6g6g"]
 [ext_resource type="PackedScene" uid="uid://bcb3eiejfsr7" path="res://Ui/menu_title.tscn" id="2_dlym1"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://doi4ve4kgdlun" path="res://Ui/menu_background.tscn" id="5_gv5y6"]
 [ext_resource type="PackedScene" uid="uid://dcifpm4tuyoxu" path="res://Ui/Menus/OptionsMenu/Scenes/options_menu.tscn" id="6_4c4cw"]
 [ext_resource type="PackedScene" uid="uid://d2iy82hw0anrw" path="res://Ui/Menus/LevelsMenu/Scenes/levels_menu.tscn" id="8_n8w3n"]
+[ext_resource type="Texture2D" uid="uid://cup7yynpbqlr5" path="res://Assets/Ui/Texts/made_by.png" id="9_mglpj"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -20,6 +21,19 @@ script = ExtResource("1_e6g6g")
 
 [node name="ColorRect" parent="." instance=ExtResource("5_gv5y6")]
 layout_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -72.583374
+offset_top = 152.0
+offset_right = 72.583374
+offset_bottom = 219.0
+grow_horizontal = 2
+texture = ExtResource("9_mglpj")
+expand_mode = 1
 
 [node name="MenuTitle" parent="." instance=ExtResource("2_dlym1")]
 layout_mode = 1

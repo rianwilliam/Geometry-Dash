@@ -9,9 +9,6 @@ script = ExtResource("2_nxjx1")
 [node name="Sprite2D" parent="." index="0"]
 modulate = Color(0.222667, 0.0593736, 1, 1)
 
-[node name="CollisionShape2D" parent="." index="1"]
-visible = false
-
 [node name="CPUParticles2D" parent="." index="2"]
 color = Color(0.43094435, 0.8733763, 0.4660138, 1)
 
