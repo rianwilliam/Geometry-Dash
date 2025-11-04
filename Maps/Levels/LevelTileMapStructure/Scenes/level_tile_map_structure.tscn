@@ -8,6 +8,15 @@
 [node name="LevelTileMapStructure" type="TileMapLayer"]
 script = ExtResource("1_xo7ch")
 
+[node name="InclinatedBlocks" parent="." node_paths=PackedStringArray("tile_map_to_reset") instance=ExtResource("4_m82ov")]
+tile_map_to_reset = NodePath("Blocks")
+
+[node name="Blocks" parent="InclinatedBlocks" instance=ExtResource("1_4nr2x")]
+rotation = 0.785398
+
+[node name="Border" parent="InclinatedBlocks" instance=ExtResource("1_4nr2x")]
+rotation = 0.785398
+
 [node name="Ground" type="Node2D" parent="." node_paths=PackedStringArray("tile_map_to_reset")]
 script = ExtResource("1_7xpw8")
 tile_map_to_reset = NodePath("Blocks")
@@ -53,12 +62,3 @@ metadata/_custom_type_script = "uid://c2tp465lrxm1q"
 [node name="Spikes" parent="GroundSpikes" instance=ExtResource("1_4nr2x")]
 
 [node name="Base" parent="GroundSpikes" instance=ExtResource("1_4nr2x")]
-
-[node name="InclinatedBlocks" parent="." node_paths=PackedStringArray("tile_map_to_reset") instance=ExtResource("4_m82ov")]
-tile_map_to_reset = NodePath("Blocks")
-
-[node name="Blocks" parent="InclinatedBlocks" instance=ExtResource("1_4nr2x")]
-rotation = 0.785398
-
-[node name="Border" parent="InclinatedBlocks" instance=ExtResource("1_4nr2x")]
-rotation = 0.785398
