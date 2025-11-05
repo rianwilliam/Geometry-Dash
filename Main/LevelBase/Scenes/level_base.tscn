@@ -41,6 +41,9 @@ region_rect = Rect2(3, 10, 502, 498)
 position = Vector2(192, 64)
 metadata/_edit_lock_ = true
 
+[node name="Blocks" parent="LevelStructure/InclinatedBlocks" index="0"]
+modulate = Color(0.053024292, 0.08364582, 0.54296875, 1)
+
 [node name="Blocks" parent="LevelStructure/Ground" index="0"]
 modulate = Color(0.0214658, 0.0180054, 0.460938, 1)
 
@@ -49,9 +52,6 @@ modulate = Color(0, 0.0745098, 0.847059, 1)
 
 [node name="Blocks" parent="LevelStructure/Platforms" index="0"]
 modulate = Color(0.0340576, 0.116276, 0.96875, 1)
-
-[node name="Blocks" parent="LevelStructure/InclinatedBlocks" index="0"]
-modulate = Color(0.053024292, 0.08364582, 0.54296875, 1)
 
 [node name="Player" parent="." instance=ExtResource("2_feb5d")]
 position = Vector2(0, 54)
@@ -104,9 +104,9 @@ unique_name_in_owner = true
 process_mode = 3
 visible = false
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="LevelMusic" type="AudioStreamPlayer" parent="."]
 
 [node name="PlayMusicTrigger" parent="." node_paths=PackedStringArray("music") instance=ExtResource("6_wfujf")]
-music = NodePath("../AudioStreamPlayer")
+music = NodePath("../LevelMusic")
 
 [editable path="LevelStructure"]

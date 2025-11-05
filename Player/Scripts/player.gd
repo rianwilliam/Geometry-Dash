@@ -64,7 +64,7 @@ var _position_verified: bool = false
 var _mode: Enums.PLAYER_MODE
 var _active_mode: ModeBase
 
-# Action
+# Actions
 var _can_action: bool = true ## Checks if the player can perform an action
 var _action_pressed: bool
 var _action_clicked: bool
@@ -73,6 +73,12 @@ var _action_released: bool
 var _wave_trial: WaveTrial
 const _WAVE_TRIAL_SCENE_PATH: String = "res://Player/Modes/WaveMode/Scenes/wave_trial.tscn"
 const _WAVE_TRIAL_SCENE: PackedScene = preload(_WAVE_TRIAL_SCENE_PATH)
+
+# Player States
+var _is_alive: bool = true
+
+# Player's audios
+@onready var die_sound: AudioStreamPlayer = $DieSound
 
 #region Ready Func
 func _ready() -> void:
@@ -125,8 +131,9 @@ func _physics_process(delta: float) -> void:
 		Enums.PLAYER_MODE.UFO: _ufo_mode(delta)
 		Enums.PLAYER_MODE.SPACESHIP: _spaceship_mode(delta)
 		Enums.PLAYER_MODE.ROBOT: _robot_mode(delta)
-
-	velocity.x = _active_rsc.speed * _player_direction
+	
+	if _is_alive:
+		velocity.x = _active_rsc.speed * _player_direction
 	move_and_slide()
 
 #region Actions
@@ -290,7 +297,7 @@ func _set_mode_visual(node: ModeBase, be_visible: bool) -> void:
 
 ## Retrieves the [ModeBase] nodes and applies the value [code]false[/code] to the attribute [member ModeBase.visible]
 func _reset_modes_visibility() -> void:
-	for item: Node2D in get_children():
+	for item: Node in get_children():
 		if item is ModeBase:
 			_set_mode_visual(item, false)
 
@@ -305,7 +312,10 @@ func _disconnect_modes_events() -> void:
 
 #region Gravity
 func _apply_gravity(delta: float) -> void:
-	velocity.y += _active_rsc.gravity * _gravity_dir * delta * _gravity_force_multiplier
+	if _active_rsc.get("custom_gravity"):
+		velocity.y += _active_rsc.custom_gravity * _gravity_dir * delta * _gravity_force_multiplier
+	else:
+		velocity.y += _active_rsc.gravity * _gravity_dir * delta * _gravity_force_multiplier
 
 func invert_gravity() -> void:
 	if _gravity_dir == Enums.GRAVITY_DIR.NORMAL:
@@ -474,6 +484,9 @@ func _update_scale_x_by_direction() -> void:
 ## Resets gameplay-altered values to their default [br]
 ## This function is only triggered when the player dies
 func _reset_player() -> void:
+	# Player States
+	_is_alive = true
+	
 	# Transforms
 	global_position = spawn.global_position
 	_reset_transform()
@@ -519,7 +532,12 @@ func _kill_on_idle() -> void:
 			_old_x_position = 0
 		_position_verified = false
 
+## TODO Fazer com que o jogo demore um pouco para reiniciar através de um timer
+## TODO Fazer scene com explosões de partículas que vai ser executada quando o jogador morrer
+
 func _died() -> void:
+	_is_alive = false
+	die_sound.play()
 	Events.emit_signal("player_died")
 	_reset_player()
 #endregion
