@@ -36,6 +36,7 @@ folder_colors={
 "res://MechanicChangers/": "blue",
 "res://MechanicChangers/Portals/StatePortals/": "red",
 "res://Player/": "blue",
+"res://Player/Animations/DeathAnimation/": "red",
 "res://PlayerModifiers/": "blue",
 "res://PlayerModifiers/BasePlayerModifier/": "blue",
 "res://PlayerModifiers/Orbs/": "blue",

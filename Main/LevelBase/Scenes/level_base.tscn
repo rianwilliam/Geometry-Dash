@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6dmle3sl63cf"]
+[gd_scene load_steps=7 format=3 uid="uid://b6dmle3sl63cf"]
 
 [ext_resource type="Script" uid="uid://vjn7j4c5jhnu" path="res://Main/LevelBase/Scripts/level_base.gd" id="1_eow3j"]
 [ext_resource type="PackedScene" uid="uid://c2chvkyy457fn" path="res://Player/Scenes/player.tscn" id="2_feb5d"]
@@ -6,18 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dd1kbrrja7lp" path="res://Maps/PlayMusicTrigger/Scenes/play_music_trigger.tscn" id="6_wfujf"]
 [ext_resource type="Texture2D" uid="uid://bmj0v06xqhbnw" path="res://Assets/Background - 1.png" id="7_eow3j"]
 [ext_resource type="PackedScene" uid="uid://db73738h2jqkv" path="res://Ui/Menus/PauseMenu/Scenes/pause_menu.tscn" id="9_5us2q"]
-
-[sub_resource type="GDScript" id="GDScript_wuomk"]
-script/source = "extends Node2D
-
-var player_pos: Vector2
-
-func _ready() -> void:
-	Events.connect(\"player_pos\", _on_player_pos)
-
-func _on_player_pos(pos: Vector2) -> void:
-	player_pos = pos
-"
 
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_eow3j")
@@ -66,10 +54,6 @@ position = Vector2(-176, -10)
 
 [node name="WaveLines" type="Node2D" parent="PlayerElements"]
 unique_name_in_owner = true
-
-[node name="PlayerParticles" type="Node2D" parent="PlayerElements"]
-unique_name_in_owner = true
-script = SubResource("GDScript_wuomk")
 
 [node name="DieCounter" type="Label" parent="."]
 unique_name_in_owner = true

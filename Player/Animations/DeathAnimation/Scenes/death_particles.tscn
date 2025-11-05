@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3cy272bkw5lt"]
+
+[ext_resource type="Script" uid="uid://dsffdym1m6w1v" path="res://Player/Animations/DeathAnimation/Scripts/death_particles.gd" id="1_6aexv"]
+
+[sub_resource type="Curve" id="Curve_8qpbm"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, -360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_d78f0"]
+curve = SubResource("Curve_8qpbm")
+
+[sub_resource type="Curve" id="Curve_71kbg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.63587195, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_lqkcc"]
+curve = SubResource("Curve_71kbg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g7ny6"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+angle_min = 1.0728835e-05
+angle_max = 45.00001
+angle_curve = SubResource("CurveTexture_d78f0")
+spread = 180.0
+initial_velocity_max = 140.0
+gravity = Vector3(0, 0, 0)
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_lqkcc")
+
+[node name="DeathParticles" type="GPUParticles2D"]
+emitting = false
+amount = 80
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_g7ny6")
+script = ExtResource("1_6aexv")

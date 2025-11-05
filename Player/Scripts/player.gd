@@ -21,6 +21,9 @@ class_name Player
 @onready var robot_mode: RobotMode = $RobotMode
 @onready var spaceship_mode: SpaceshipMode = $SpaceshipMode
 
+# Death animation
+const DEATH_PARTICLES_SCENE: PackedScene = preload("uid://c3cy272bkw5lt") ## Are instantiated after the player death
+
 # Enums
 ## Variable that controls the active gravity direction of the player
 @export var _gravity_dir: Enums.GRAVITY_DIR = Enums.GRAVITY_DIR.NORMAL
@@ -134,7 +137,7 @@ func _physics_process(delta: float) -> void:
 	
 	if _is_alive:
 		velocity.x = _active_rsc.speed * _player_direction
-	move_and_slide()
+		move_and_slide()
 
 #region Actions
 
@@ -161,6 +164,7 @@ func _emit_player_regular_signals() -> void:
 
 func _connect_signals() -> void:
 	robot_mode.connect("robot_fly_timeout", _on_robot_fly_timeout)
+	die_sound.connect("finished", _on_die_sound_finished)
 
 #endregion
 
@@ -486,7 +490,8 @@ func _update_scale_x_by_direction() -> void:
 func _reset_player() -> void:
 	# Player States
 	_is_alive = true
-	
+	visible = true
+
 	# Transforms
 	global_position = spawn.global_position
 	_reset_transform()
@@ -526,7 +531,7 @@ func _kill_on_idle() -> void:
 		_old_x_position = int(position.x)
 		_position_verified = true
 	else:
-		if int(position.x) == _old_x_position:
+		if int(position.x) == _old_x_position and _is_alive:
 			_died()
 		else:
 			_old_x_position = 0
@@ -536,9 +541,18 @@ func _kill_on_idle() -> void:
 ## TODO Fazer scene com explosões de partículas que vai ser executada quando o jogador morrer
 
 func _died() -> void:
-	_is_alive = false
-	die_sound.play()
 	Events.emit_signal("player_died")
+	_is_alive = false
+	visible = false
+	_create_death_particles()
+	die_sound.play()
+
+func _create_death_particles() -> void:
+	var death_particles: GPUParticles2D = DEATH_PARTICLES_SCENE.instantiate()
+	player_elements.add_child(death_particles)
+
+func _on_die_sound_finished() -> void:
+	await get_tree().create_timer(0.5).timeout
 	_reset_player()
 #endregion
 
