@@ -1,32 +1,44 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6dmle3sl63cf"]
+[gd_scene load_steps=9 format=3 uid="uid://b6dmle3sl63cf"]
 
 [ext_resource type="Script" uid="uid://vjn7j4c5jhnu" path="res://Main/LevelBase/Scripts/level_base.gd" id="1_eow3j"]
 [ext_resource type="PackedScene" uid="uid://c2chvkyy457fn" path="res://Player/Scenes/player.tscn" id="2_feb5d"]
+[ext_resource type="Script" uid="uid://cv5s43rxn6hpj" path="res://Main/CameraTriggers/camera_triggers.gd" id="2_wfujf"]
 [ext_resource type="PackedScene" uid="uid://c5ki3qigdi27q" path="res://Maps/Levels/LevelTileMapStructure/Scenes/level_tile_map_structure.tscn" id="3_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://dd1kbrrja7lp" path="res://Maps/PlayMusicTrigger/Scenes/play_music_trigger.tscn" id="6_wfujf"]
-[ext_resource type="Texture2D" uid="uid://bmj0v06xqhbnw" path="res://Assets/Background - 1.png" id="7_eow3j"]
 [ext_resource type="PackedScene" uid="uid://db73738h2jqkv" path="res://Ui/Menus/PauseMenu/Scenes/pause_menu.tscn" id="9_5us2q"]
+
+[sub_resource type="Gradient" id="Gradient_owt2j"]
+offsets = PackedFloat32Array(0.40625, 0.78125)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wfujf"]
+gradient = SubResource("Gradient_owt2j")
+fill_from = Vector2(1, 1)
 
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_eow3j")
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="CameraTriggers" type="Node2D" parent="."]
+script = ExtResource("2_wfujf")
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(-160, -304)
-motion_scale = Vector2(0.2, 0.2)
+[node name="Start" type="Node2D" parent="CameraTriggers"]
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-modulate = Color(0.592157, 0.611765, 1, 0.788235)
-position = Vector2(0, 5)
-texture = ExtResource("7_eow3j")
-centered = false
-flip_v = true
-region_enabled = true
-region_rect = Rect2(3, 10, 502, 498)
+[node name="Stop" type="Node2D" parent="CameraTriggers"]
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="BackgroundTexture" type="TextureRect" parent="Background"]
+unique_name_in_owner = true
+z_index = -2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+texture = SubResource("GradientTexture2D_wfujf")
+metadata/_edit_lock_ = true
 
 [node name="LevelStructure" parent="." instance=ExtResource("3_fc0e3")]
-position = Vector2(192, 64)
 metadata/_edit_lock_ = true
 
 [node name="Blocks" parent="LevelStructure/InclinatedBlocks" index="0"]
@@ -42,11 +54,9 @@ modulate = Color(0, 0.0745098, 0.847059, 1)
 modulate = Color(0.0340576, 0.116276, 0.96875, 1)
 
 [node name="Player" parent="." instance=ExtResource("2_feb5d")]
-position = Vector2(0, 54)
 
 [node name="PlayerElements" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(192, 64)
 
 [node name="PlayerSpawn" type="Marker2D" parent="PlayerElements"]
 unique_name_in_owner = true
@@ -65,21 +75,17 @@ text = "Attemp 1"
 metadata/_edit_use_anchors_ = true
 
 [node name="MechanicChangers" type="Node2D" parent="."]
-position = Vector2(192, 64)
 metadata/_edit_lock_ = true
 
 [node name="PadsAndOrbs" type="Node2D" parent="."]
-position = Vector2(192, 64)
 metadata/_edit_lock_ = true
 
 [node name="Camera" type="Camera2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(32, 56)
 zoom = Vector2(3.5, 3.5)
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
-metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

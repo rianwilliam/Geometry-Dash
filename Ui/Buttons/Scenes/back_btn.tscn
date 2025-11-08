@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://nuov45k3it0w"]
 
-[ext_resource type="Theme" uid="uid://difkmoghwod51" path="res://Ui/Themes/main_menu_btn.tres" id="1_odkjm"]
+[ext_resource type="Theme" uid="uid://bayqxl27vkgbi" path="res://Ui/Themes/main_menu_btn.tres" id="1_odkjm"]
 [ext_resource type="Script" uid="uid://bsqxdp726ecqp" path="res://Ui/Buttons/Scripts/back_btn.gd" id="2_uguaa"]
 
 [node name="BackBtn" type="Button"]

@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://1uci4ho6honi" path="res://Ui/Menus/MainMenu/Scripts/main_menu.gd" id="1_e6g6g"]
 [ext_resource type="PackedScene" uid="uid://bcb3eiejfsr7" path="res://Ui/menu_title.tscn" id="2_dlym1"]
 [ext_resource type="Texture2D" uid="uid://c6lyef61jb2yw" path="res://Assets/Ui/Texts/logo - Geometry copy.png" id="2_gv5y6"]
-[ext_resource type="Theme" uid="uid://difkmoghwod51" path="res://Ui/Themes/main_menu_btn.tres" id="3_jhi0l"]
 [ext_resource type="PackedScene" uid="uid://s8hpa84v05uu" path="res://Ui/Menus/CustomizeMenu/Scenes/customize_menu.tscn" id="4_m6u6s"]
 [ext_resource type="PackedScene" uid="uid://doi4ve4kgdlun" path="res://Ui/menu_background.tscn" id="5_gv5y6"]
 [ext_resource type="PackedScene" uid="uid://dcifpm4tuyoxu" path="res://Ui/Menus/OptionsMenu/Scenes/options_menu.tscn" id="6_4c4cw"]
+[ext_resource type="Theme" uid="uid://bayqxl27vkgbi" path="res://Ui/Themes/main_menu_btn.tres" id="6_mglpj"]
 [ext_resource type="PackedScene" uid="uid://d2iy82hw0anrw" path="res://Ui/Menus/LevelsMenu/Scenes/levels_menu.tscn" id="8_n8w3n"]
 [ext_resource type="Texture2D" uid="uid://cup7yynpbqlr5" path="res://Assets/Ui/Texts/made_by.png" id="9_mglpj"]
 
@@ -78,7 +78,7 @@ columns = 3
 [node name="PlayBtn" type="Button" parent="Buttons/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("3_jhi0l")
+theme = ExtResource("6_mglpj")
 text = "Play"
 
 [node name="R1C2" type="MarginContainer" parent="Buttons/GridContainer"]
@@ -90,7 +90,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource("3_jhi0l")
+theme = ExtResource("6_mglpj")
 text = "Options"
 
 [node name="R2C1" type="MarginContainer" parent="Buttons/GridContainer"]
@@ -113,7 +113,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource("3_jhi0l")
+theme = ExtResource("6_mglpj")
 text = "Customize"
 
 [node name="R4C2" type="MarginContainer" parent="Buttons/GridContainer"]
@@ -126,7 +126,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource("3_jhi0l")
+theme = ExtResource("6_mglpj")
 text = "Quit"
 
 [node name="OptionsMenu" parent="." instance=ExtResource("6_4c4cw")]

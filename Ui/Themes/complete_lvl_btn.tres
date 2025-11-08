@@ -1,9 +1,9 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bayqxl27vkgbi"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://difkmoghwod51"]
 
-[ext_resource type="FontFile" uid="uid://dld8s4xkgcnau" path="res://Assets/Ui/Fonts/PUSAB___.otf" id="1_6ds8a"]
+[ext_resource type="FontFile" uid="uid://dld8s4xkgcnau" path="res://Assets/Ui/Fonts/PUSAB___.otf" id="1_40a1t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d74n5"]
-bg_color = Color(0, 0.24313726, 0.49019608, 1)
+bg_color = Color(0.028564453, 0.28125, 0, 1)
 border_width_left = 6
 border_width_top = 6
 border_width_right = 6
@@ -18,7 +18,7 @@ expand_margin_right = 15.0
 expand_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iukqc"]
-bg_color = Color(0, 0.24414063, 0.48828125, 1)
+bg_color = Color(0.02745098, 0.28235295, 0, 1)
 border_width_left = 6
 border_width_top = 6
 border_width_right = 6
@@ -33,7 +33,7 @@ expand_margin_right = 15.0
 expand_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sdvoj"]
-bg_color = Color(0, 0.4509804, 0.9019608, 1)
+bg_color = Color(0.048611045, 0.5, 0, 1)
 border_width_left = 6
 border_width_top = 6
 border_width_right = 6
@@ -49,7 +49,7 @@ expand_margin_bottom = 10.0
 
 [resource]
 Button/font_sizes/font_size = 35
-Button/fonts/font = ExtResource("1_6ds8a")
+Button/fonts/font = ExtResource("1_40a1t")
 Button/styles/focus = SubResource("StyleBoxFlat_d74n5")
 Button/styles/hover = SubResource("StyleBoxFlat_iukqc")
 Button/styles/normal = SubResource("StyleBoxFlat_sdvoj")
