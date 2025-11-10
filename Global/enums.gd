@@ -68,3 +68,10 @@ enum SCENES {
 	LEVEL_TWO,
 	LEVEL_THREE,
 }
+
+## Enum that represents the levels available in the game.
+enum LEVELSNUMBER {
+	LEVEL_ONE,
+	LEVEL_TWO,
+	LEVEL_THREE
+}
