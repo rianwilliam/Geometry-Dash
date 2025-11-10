@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://db73738h2jqkv"]
 
-[ext_resource type="Theme" uid="uid://difkmoghwod51" path="res://Ui/Themes/complete_lvl_btn.tres" id="1_8y0dy"]
 [ext_resource type="Script" uid="uid://bmay8ff018sv6" path="res://Ui/Menus/PauseMenu/Scripts/pause_menu.gd" id="1_culxe"]
+[ext_resource type="Theme" uid="uid://bayqxl27vkgbi" path="res://Ui/Themes/main_menu_btn.tres" id="2_kv26c"]
 [ext_resource type="PackedScene" uid="uid://dcifpm4tuyoxu" path="res://Ui/Menus/OptionsMenu/Scenes/options_menu.tscn" id="3_kv26c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_culxe"]
@@ -48,7 +48,7 @@ size_flags_horizontal = 3
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
-theme = ExtResource("1_8y0dy")
+theme = ExtResource("2_kv26c")
 text = "Resume"
 
 [node name="BoxContainer2" type="BoxContainer" parent="Panel/HBoxContainer"]
@@ -58,7 +58,7 @@ size_flags_horizontal = 6
 [node name="OptionsBtn" type="Button" parent="Panel/HBoxContainer/BoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("1_8y0dy")
+theme = ExtResource("2_kv26c")
 text = "Options"
 
 [node name="BoxContainer3" type="BoxContainer" parent="Panel/HBoxContainer"]
@@ -69,7 +69,7 @@ size_flags_horizontal = 3
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
-theme = ExtResource("1_8y0dy")
+theme = ExtResource("2_kv26c")
 text = "Quit"
 
 [node name="MarginContainer2" type="MarginContainer" parent="Panel/HBoxContainer"]
