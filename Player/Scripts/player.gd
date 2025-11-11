@@ -490,26 +490,7 @@ func _update_scale_x_by_direction() -> void:
 ## Resets gameplay-altered values to their default [br]
 ## This function is only triggered when the player dies
 func _reset_player() -> void:
-	# Player States
-	_is_alive = true
-	modes.visible = true
-
-	# Gravity
-	_gravity_dir = Enums.GRAVITY_DIR.NORMAL
-	
-	# Velocity
-	velocity = Vector2.ZERO
-
-	# Transforms
-	_set_spawn_position()
-	_reset_transform()
-
-	# Modes
-	change_mode(_initial_mode)
-	_reset_robot_fly_mode()
-	_erase_wave_lines()
-
-	Events.emit_signal("player_respawn")
+	get_tree().reload_current_scene()
 
 func _reset_transform() -> void:
 	rotation_degrees = 0

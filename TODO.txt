@@ -1,8 +1,8 @@
 Fazer níveis
 Restante da documentação
-Background do nivel, tem que ser branco
-Adicionar signal que altera cor do background de acordo com a cor dos elementos
 Fazer menu de tutorial
+Attempt counter global, reseta apos receber o signal de level complete ou de level quit
+
 
 Font generator: https://gdcolon.com/gdfont
 Inicío da música level one:

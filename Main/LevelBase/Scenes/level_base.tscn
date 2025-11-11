@@ -100,6 +100,9 @@ visible = false
 [node name="PlayMusicTrigger" parent="." node_paths=PackedStringArray("music") instance=ExtResource("6_wfujf")]
 music = NodePath("../LevelMusic")
 
+[node name="StopMusicTrigger" parent="." node_paths=PackedStringArray("music") instance=ExtResource("6_wfujf")]
+music = NodePath("../LevelMusic")
+
 [node name="LevelCompleteTrigger" parent="." instance=ExtResource("7_jb7b2")]
 
 [editable path="LevelStructure"]

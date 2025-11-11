@@ -27,7 +27,7 @@ func change_scene(scene: Enums.SCENES) -> void:
 			_open_scene(LEVEL_THREE)
 
 func _open_scene(path: String) -> void:
-	get_tree().change_scene_to_file(path)
+	get_tree().call_deferred("change_scene_to_file", path)
 
 func _unpause_game_process() -> void:
 	get_tree().paused = false

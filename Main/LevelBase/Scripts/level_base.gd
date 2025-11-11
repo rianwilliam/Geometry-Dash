@@ -69,9 +69,6 @@ func _on_quit_btn_pressed() -> void:
 ## using the [method _refresh_attemp_text]
 func _on_player_die() -> void:
 	level_music.stop()
-	attemp_counter += 1
-	_refresh_attemp_text()
-	_reset_background_color()
 
 ## Updates the [member die_counter] text with the current attempt number
 func _refresh_attemp_text() -> void:
@@ -86,6 +83,3 @@ func _on_player_pos(pos: Vector2) -> void:
 func _on_level_color_changed(new_color: Color, transition_time: float) -> void:
 	var tween: Tween = background_texture.create_tween()
 	tween.tween_property(background_texture, "modulate", new_color * 0.9, transition_time)
-
-func _reset_background_color() -> void:
-	background_texture.texture = default_background_color
