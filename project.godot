@@ -35,7 +35,7 @@ folder_colors={
 "res://Global/": "blue",
 "res://Main/": "blue",
 "res://Maps/": "blue",
-"res://Maps/LevelCompleteTrigger/": "red",
+"res://Maps/LevelCompleteTrigger/": "blue",
 "res://MechanicChangers/": "blue",
 "res://MechanicChangers/Portals/StatePortals/": "red",
 "res://Player/": "blue",
