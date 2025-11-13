@@ -247,4 +247,5 @@ position = Vector2(5728, -288)
 [node name="LevelCompleteTrigger" parent="." index="13"]
 position = Vector2(5968, -288)
 
+[editable path="CameraTriggers"]
 [editable path="LevelStructure"]

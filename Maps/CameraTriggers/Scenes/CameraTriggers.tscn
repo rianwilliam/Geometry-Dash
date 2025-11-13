@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://uvriqmn0m2hm"]
+
+[ext_resource type="Script" uid="uid://cv5s43rxn6hpj" path="res://Maps/CameraTriggers/Scripts/camera_triggers.gd" id="1_f6nqw"]
+
+[node name="CameraTriggers" type="Node2D"]
+script = ExtResource("1_f6nqw")
+
+[node name="Start" type="Node2D" parent="."]
+
+[node name="Stop" type="Node2D" parent="."]

@@ -12,15 +12,13 @@ class_name LevelManager
 @onready var pause_menu: PauseMenu = %PauseMenu ## Pause menu
 @onready var level_music: AudioStreamPlayer = $LevelMusic ## AudioStream responsible for playing the level music
 @onready var background_texture: TextureRect = %BackgroundTexture ## Level background
-@onready var camera_triggers: Node2D = $CameraTriggers
+@onready var camera_triggers: CameraTriggers = $CameraTriggers
 
 var attemp_counter: int = 1 ## Death counter
 var attemp_text: String = "Attempt" ## Text displayed in [member die_counter]
 var player_pos: Vector2 ## Stores the player's position to update [member camera_2d]
-var default_background_color: GradientTexture2D
 
 func _ready() -> void:
-	default_background_color = background_texture.texture
 	_connect_events()
 	_refresh_attemp_text()
 	pause_menu.visible = false
@@ -32,9 +30,6 @@ func _connect_events() -> void:
 	Events.connect("quit_btn_pressed", _on_quit_btn_pressed)
 	Events.connect("level_color_changed", _on_level_color_changed)
 
-#func _set_music_volume() -> void:
-	#audio_stream_player.volume_db = AudioController.get_main_volume()
-
 ## Checks if the pause button was pressed and continuously moves
 ## the [member camera_2d] to the current player position
 func _process(_delta: float) -> void:
@@ -42,6 +37,10 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Pause"):
 		_pause_game()
 
+## Function that updates the camera position relative to the player.
+## The update occurs when the [Player] passes the position returned by 
+## [method camera_triggers.start_position], and stops when the [Player] reaches 
+## the position returned by [method camera_triggers.stop_position].
 func _camera_logic() -> void:
 	var target: Vector2 = player_pos.round()
 	target.x = clamp(target.x,camera_triggers.start_position().x, camera_triggers.stop_position().x)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://vjn7j4c5jhnu" path="res://Main/LevelBase/Scripts/level_base.gd" id="1_eow3j"]
 [ext_resource type="PackedScene" uid="uid://c2chvkyy457fn" path="res://Player/Scenes/player.tscn" id="2_feb5d"]
-[ext_resource type="Script" uid="uid://cv5s43rxn6hpj" path="res://Main/CameraTriggers/camera_triggers.gd" id="2_wfujf"]
+[ext_resource type="PackedScene" uid="uid://uvriqmn0m2hm" path="res://Maps/CameraTriggers/Scenes/CameraTriggers.tscn" id="2_jb7b2"]
 [ext_resource type="PackedScene" uid="uid://c5ki3qigdi27q" path="res://Maps/Levels/LevelTileMapStructure/Scenes/level_tile_map_structure.tscn" id="3_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://dd1kbrrja7lp" path="res://Maps/PlayMusicTrigger/Scenes/play_music_trigger.tscn" id="6_wfujf"]
 [ext_resource type="PackedScene" uid="uid://bernfo1rhk86x" path="res://Maps/LevelCompleteTrigger/Scenes/level_complete_trigger.tscn" id="7_jb7b2"]
@@ -18,12 +18,7 @@ fill_from = Vector2(1, 1)
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_eow3j")
 
-[node name="CameraTriggers" type="Node2D" parent="."]
-script = ExtResource("2_wfujf")
-
-[node name="Start" type="Node2D" parent="CameraTriggers"]
-
-[node name="Stop" type="Node2D" parent="CameraTriggers"]
+[node name="CameraTriggers" parent="." instance=ExtResource("2_jb7b2")]
 
 [node name="Background" type="Node2D" parent="."]
 
