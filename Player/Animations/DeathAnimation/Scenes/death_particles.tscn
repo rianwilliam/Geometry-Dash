@@ -33,8 +33,10 @@ scale_curve = SubResource("CurveTexture_lqkcc")
 
 [node name="DeathParticles" type="GPUParticles2D"]
 emitting = false
-amount = 80
+amount = 150
 one_shot = true
 explosiveness = 1.0
+trail_enabled = true
+trail_lifetime = 0.05
 process_material = SubResource("ParticleProcessMaterial_g7ny6")
 script = ExtResource("1_6aexv")
