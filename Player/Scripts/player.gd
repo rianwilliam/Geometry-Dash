@@ -62,7 +62,8 @@ var _modifier_used: bool = false
 var _modifier_effect: Variant # Can be ENUM.(JUMP/GRAVITY)
 
 # Position Verifier
-var stopped_frames: int = 0
+var _previous_position: Vector2
+var _position_verified: bool = false
 
 # Mode
 ## Contains the [code]enum[/code] that represents the player's current mode
@@ -87,6 +88,7 @@ var _is_alive: bool = true
 
 #region Ready Func
 func _ready() -> void:
+	_previous_position = global_position
 	_connect_signals()
 	_setup_player_resources()
 	change_mode(_initial_mode)
@@ -404,7 +406,7 @@ func _change_wave_direction(new_dir: Enums.WAVE_DIR) -> void:
 
 ## Rotates the player according to the state of [WaveMode]
 func _apply_wave_rotation_by_state() -> void:
-	if is_on_floor() or is_on_ceiling(): rotation_degrees = _active_rsc.IN_SURFACE_ROTATE_DEG * _gravity_dir * _player_direction
+	if is_on_floor() or is_on_ceiling(): rotation_degrees = _active_rsc.IN_SURFACE_ROTATE_DEG * _gravity_dir
 	elif _action_pressed: rotation_degrees = _active_rsc.ACTION_ROTATE_DEG * _gravity_dir
 	else: rotation_degrees = _active_rsc.NOT_ACTION_ROTATE_DEG * _gravity_dir
 
@@ -512,13 +514,14 @@ func _erase_wave_lines() -> void:
 ## If so, it means the player is idle or colliding with something.
 ## When this happens the function [method _died] is triggered
 func _kill_on_idle() -> void:
-	if velocity.length() < 0.01:
-		stopped_frames += 1
-	else:
-		stopped_frames = 0
-	
-	if stopped_frames == 2:
-		_died()
+	if _position_verified and _is_alive:
+		if round(global_position) == round(_previous_position):
+			_died()
+		else:
+			_position_verified = false
+	elif _is_alive:
+		_previous_position = global_position
+		_position_verified = true
 
 func _died() -> void:
 	Events.emit_signal("player_died")
