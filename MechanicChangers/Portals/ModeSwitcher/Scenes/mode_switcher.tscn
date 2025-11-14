@@ -17,6 +17,7 @@ shape = SubResource("SegmentShape2D_ipvo5")
 
 [node name="Particles" parent="." index="1"]
 modulate = Color(0.031574205, 0.65078616, 0.95484024, 1)
+lifetime = 0.5
 
 [node name="Front" parent="." index="2"]
 modulate = Color(0.031574205, 0.65078616, 0.95484024, 1)

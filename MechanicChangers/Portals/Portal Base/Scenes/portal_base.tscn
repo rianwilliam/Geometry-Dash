@@ -17,7 +17,6 @@ shape = SubResource("RectangleShape2D_wrh7n")
 z_index = -6
 position = Vector2(1, -43)
 amount = 16
-lifetime = 2.0
 emission_shape = 2
 emission_sphere_radius = 21.32
 gravity = Vector2(0, -50)
