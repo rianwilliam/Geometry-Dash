@@ -1,13 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bernfo1rhk86x"]
+[gd_scene load_steps=2 format=3 uid="uid://bernfo1rhk86x"]
 
 [ext_resource type="Script" uid="uid://b0j4eixe5apd6" path="res://Maps/LevelCompleteTrigger/Scripts/level_complete_trigger.gd" id="1_3l4ih"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5uxfv"]
 
 [node name="LevelCompleteTrigger" type="Area2D"]
 collision_layer = 0
 script = ExtResource("1_3l4ih")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = -1.5707964
-shape = SubResource("WorldBoundaryShape2D_5uxfv")

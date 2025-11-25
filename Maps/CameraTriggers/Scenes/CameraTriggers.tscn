@@ -5,6 +5,6 @@
 [node name="CameraTriggers" type="Node2D"]
 script = ExtResource("1_f6nqw")
 
-[node name="Start" type="Node2D" parent="."]
+[node name="StartArea" type="Area2D" parent="."]
 
-[node name="Stop" type="Node2D" parent="."]
+[node name="StopArea" type="Area2D" parent="."]

@@ -42,9 +42,10 @@ func _process(_delta: float) -> void:
 ## [method camera_triggers.start_position], and stops when the [Player] reaches 
 ## the position returned by [method camera_triggers.stop_position].
 func _camera_logic() -> void:
-	var target: Vector2 = player_pos.round()
-	target.x = clamp(target.x,camera_triggers.start_position().x, camera_triggers.stop_position().x)
-	camera_2d.position = Vector2(target.x, player_pos.y)
+	#var target: Vector2 = player_pos.round()
+	#target.x = clamp(target.x,camera_triggers.start_position().x, camera_triggers.stop_position().x)
+	if camera_triggers.can_follow:
+		camera_2d.position = player_pos
 
 ## Pauses the game and displays the [PauseMenu]
 func _pause_game() -> void:

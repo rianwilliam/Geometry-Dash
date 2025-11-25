@@ -21,5 +21,6 @@ modulate = Color(0, 0.5294118, 0, 1)
 
 [node name="Back" parent="." index="3"]
 modulate = Color(0, 0.5294118, 0, 1)
+z_index = -1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
