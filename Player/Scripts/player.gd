@@ -541,6 +541,7 @@ func _on_die_sound_finished() -> void:
 #region Interations
 func _on_hurt_box_body_entered(_body: Node2D) -> void:
 	_died()
+	#pass
 
 ## Obtains the type of [PlayerModifier] and its effect
 func _on_modifier_sensor_area_entered(area: Area2D) -> void:
