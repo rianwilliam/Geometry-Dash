@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbfr7prwd633q"
-path="res://.godot/imported/Pads.png-ca69748e161f47ec71441f923319814f.ctex"
+uid="uid://barmcy1y7akeq"
+path="res://.godot/imported/ModeSwitcher.png-4304bd6e93a68fdc6b3b254448a12b79.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Pads.png"
-dest_files=["res://.godot/imported/Pads.png-ca69748e161f47ec71441f923319814f.ctex"]
+source_file="res://Assets/GameElements/ModeSwitcher.png"
+dest_files=["res://.godot/imported/ModeSwitcher.png-4304bd6e93a68fdc6b3b254448a12b79.ctex"]
 
 [params]
 

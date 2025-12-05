@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dcrj7b82ytawt" path="res://PlayerModifiers/Pads/PadBase/Scenes/pad.tscn" id="1_7l5k1"]
 [ext_resource type="Script" uid="uid://c24daaqymr7r7" path="res://PlayerModifiers/Pads/PinkPad/Scripts/pink_pad.gd" id="2_2tkic"]
-[ext_resource type="Texture2D" uid="uid://bbfr7prwd633q" path="res://Assets/Pads.png" id="2_sxxye"]
+[ext_resource type="Texture2D" uid="uid://bbfr7prwd633q" path="res://Assets/GameElements/Pads.png" id="2_sxxye"]
 
 [node name="PinkPad" instance=ExtResource("1_7l5k1")]
 script = ExtResource("2_2tkic")

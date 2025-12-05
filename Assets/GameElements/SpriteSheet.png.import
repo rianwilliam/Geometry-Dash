@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6iylcr3b5oqx"
-path="res://.godot/imported/controls_guide.png-21751da094d54869926a3e17683c5ed9.ctex"
+uid="uid://bu5riygluo31a"
+path="res://.godot/imported/SpriteSheet.png-25525cf5f52ed1e06d810279c67421ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/controls_guide.png"
-dest_files=["res://.godot/imported/controls_guide.png-21751da094d54869926a3e17683c5ed9.ctex"]
+source_file="res://Assets/GameElements/SpriteSheet.png"
+dest_files=["res://.godot/imported/SpriteSheet.png-25525cf5f52ed1e06d810279c67421ff.ctex"]
 
 [params]
 

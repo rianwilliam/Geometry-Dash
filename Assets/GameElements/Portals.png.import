@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c144thqgeu3xc"
-path="res://.godot/imported/SpriteSheetTest.png-d9b6191f012ec53adf0840325f63097b.ctex"
+uid="uid://dom5aon1d285t"
+path="res://.godot/imported/Portals.png-8d10d703184cf91693aad7627a9f3586.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/SpriteSheetTest.png"
-dest_files=["res://.godot/imported/SpriteSheetTest.png-d9b6191f012ec53adf0840325f63097b.ctex"]
+source_file="res://Assets/GameElements/Portals.png"
+dest_files=["res://.godot/imported/Portals.png-8d10d703184cf91693aad7627a9f3586.ctex"]
 
 [params]
 

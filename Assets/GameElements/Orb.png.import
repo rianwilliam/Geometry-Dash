@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://erv4xftu0fcf"
-path="res://.godot/imported/Comma.png-3748271c8ef96fa9042aee542ad1a81b.ctex"
+uid="uid://d2uponksm664l"
+path="res://.godot/imported/Orb.png-f3f306b284086b8e5f5151c69ed0402b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Comma.png"
-dest_files=["res://.godot/imported/Comma.png-3748271c8ef96fa9042aee542ad1a81b.ctex"]
+source_file="res://Assets/GameElements/Orb.png"
+dest_files=["res://.godot/imported/Orb.png-f3f306b284086b8e5f5151c69ed0402b.ctex"]
 
 [params]
 

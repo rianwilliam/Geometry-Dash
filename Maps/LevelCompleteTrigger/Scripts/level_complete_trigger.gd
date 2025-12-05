@@ -13,6 +13,5 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if not body is Player: return
-	print("here")
 	LevelStateHandler.level_completed(level_number)
 	SceneChanger.change_scene(Enums.SCENES.LEVELS_MENU)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu5riygluo31a"
-path="res://.godot/imported/SpriteSheet.png-fb15159d16bc8528b1ed09fa53650ff1.ctex"
+uid="uid://bbfr7prwd633q"
+path="res://.godot/imported/Pads.png-089dc6e96f7d73cf160febc3aadebe17.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/SpriteSheet.png"
-dest_files=["res://.godot/imported/SpriteSheet.png-fb15159d16bc8528b1ed09fa53650ff1.ctex"]
+source_file="res://Assets/GameElements/Pads.png"
+dest_files=["res://.godot/imported/Pads.png-089dc6e96f7d73cf160febc3aadebe17.ctex"]
 
 [params]
 

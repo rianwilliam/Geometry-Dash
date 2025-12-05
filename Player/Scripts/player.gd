@@ -124,8 +124,8 @@ func _set_player_colors() -> void:
 #endregion
 
 func _physics_process(delta: float) -> void:
+	if _is_alive: _refresh_input_states()
 	_emit_player_regular_signals()
-	_refresh_input_states()
 	_reset_gravity_force_if_on_surface()
 	_is_inside_player_modifier()
 	_is_player_in_action()
@@ -267,7 +267,6 @@ func change_mode(new_mode: Enums.PLAYER_MODE) -> void:
 
 ## Executes all necessary functions when switching [member _mode]
 func _on_mode_entered() -> void:
-	_disconnect_modes_events()
 	_reset_modes_visibility()
 	_set_active_resource()
 	_reset_transform()
@@ -314,8 +313,6 @@ func _reset_modes_visibility() -> void:
 func _set_mode_collision(mode: ModeBase) -> void:
 	Events.emit_signal("set_player_collision_shape", mode.get_collision_shape())
 
-func _disconnect_modes_events() -> void:
-	pass
 #endregion
 
 #region Gravity
@@ -541,7 +538,6 @@ func _on_die_sound_finished() -> void:
 #region Interations
 func _on_hurt_box_body_entered(_body: Node2D) -> void:
 	_died()
-	#pass
 
 ## Obtains the type of [PlayerModifier] and its effect
 func _on_modifier_sensor_area_entered(area: Area2D) -> void:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://barmcy1y7akeq"
-path="res://.godot/imported/ModeSwitcher.png-c72d8e96ba63ecf5aaf180a0d84edc69.ctex"
+uid="uid://pide5j86tj00"
+path="res://.godot/imported/geometry copy logo borderless.png-9c063b46d0d3292eb04a173e0f8bec90.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ModeSwitcher.png"
-dest_files=["res://.godot/imported/ModeSwitcher.png-c72d8e96ba63ecf5aaf180a0d84edc69.ctex"]
+source_file="res://Assets/geometry copy logo borderless.png"
+dest_files=["res://.godot/imported/geometry copy logo borderless.png-9c063b46d0d3292eb04a173e0f8bec90.ctex"]
 
 [params]
 
