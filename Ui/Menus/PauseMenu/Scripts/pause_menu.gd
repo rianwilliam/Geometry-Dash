@@ -22,6 +22,7 @@ func _resize_menu_to_viewport() -> void:
 ## Emits a signal indicating that the resume button was pressed
 func _on_resume_btn_pressed() -> void:
 	Events.emit_signal("resume_btn_pressed")
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 ## Emits a signal indicating that the quit button was pressed
 func _on_quit_btn_pressed() -> void:

@@ -61,15 +61,6 @@ position = Vector2(-176, -10)
 [node name="WaveLines" type="Node2D" parent="PlayerElements"]
 unique_name_in_owner = true
 
-[node name="DieCounter" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 40.0
-offset_top = -16.0
-offset_right = 111.0
-offset_bottom = 7.0
-text = "Attemp 1"
-metadata/_edit_use_anchors_ = true
-
 [node name="MechanicChangers" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 

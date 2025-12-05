@@ -144,7 +144,7 @@ tile_map_data = PackedByteArray("AAAVAfL/AAAIAAQAAAAWAfL/AAAHAAQAAAAXAfL/AAAKAAQ
 [node name="PlayerSpawn" parent="PlayerElements" index="0"]
 position = Vector2(-224, 16)
 
-[node name="MechanicChangers" parent="." index="6"]
+[node name="MechanicChangers" parent="." index="5"]
 position = Vector2(192, 64)
 
 [node name="ModeSwitcher" parent="MechanicChangers" index="0" instance=ExtResource("2_imrwu")]
@@ -169,7 +169,7 @@ transform_to = 4
 [node name="ModeSwitcher6" parent="MechanicChangers" index="5" instance=ExtResource("2_imrwu")]
 position = Vector2(5208, -320)
 
-[node name="PadsAndOrbs" parent="." index="7"]
+[node name="PadsAndOrbs" parent="." index="6"]
 position = Vector2(192, 64)
 
 [node name="BluePad" parent="PadsAndOrbs" index="0" instance=ExtResource("2_f4ba1")]
@@ -254,27 +254,27 @@ position = Vector2(5344, -352)
 [node name="PinkOrb4" parent="PadsAndOrbs" index="24" instance=ExtResource("6_766ps")]
 position = Vector2(5392, -352)
 
-[node name="Camera" parent="." index="8"]
+[node name="Camera" parent="." index="7"]
 position = Vector2(0, 54)
 
-[node name="LevelMusic" parent="." index="10"]
+[node name="LevelMusic" parent="." index="9"]
 stream = ExtResource("2_tu14v")
 
-[node name="PlayMusicTrigger" parent="." index="11"]
+[node name="PlayMusicTrigger" parent="." index="10"]
 position = Vector2(117, 64)
 rotation = -1.5707964
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayMusicTrigger" index="1"]
 shape = SubResource("WorldBoundaryShape2D_rjpll")
 
-[node name="StopMusicTrigger" parent="." index="12"]
+[node name="StopMusicTrigger" parent="." index="11"]
 position = Vector2(5728, -288)
 rotation = -1.5707964
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StopMusicTrigger" index="1"]
 shape = SubResource("WorldBoundaryShape2D_ot7rw")
 
-[node name="LevelCompleteTrigger" parent="." index="13"]
+[node name="LevelCompleteTrigger" parent="." index="12"]
 position = Vector2(5968, -288)
 rotation = -1.5707964
 

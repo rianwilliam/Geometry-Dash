@@ -7,7 +7,6 @@ class_name LevelManager
 ## handling the game's paused state, and resetting the player's position
 ## when they die.
 
-@onready var die_counter: Label = %DieCounter ## [Label] that displays the number of attempts
 @onready var camera_2d: Camera2D = %Camera ## Camera that follows the player's position
 @onready var pause_menu: PauseMenu = %PauseMenu ## Pause menu
 @onready var level_music: AudioStreamPlayer = $LevelMusic ## AudioStream responsible for playing the level music
@@ -17,10 +16,11 @@ class_name LevelManager
 var attemp_counter: int = 1 ## Death counter
 var attemp_text: String = "Attempt" ## Text displayed in [member die_counter]
 var player_pos: Vector2 ## Stores the player's position to update [member camera_2d]
+var _player_is_alive: bool = true
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	_connect_events()
-	_refresh_attemp_text()
 	pause_menu.visible = false
 
 func _connect_events() -> void:
@@ -34,7 +34,8 @@ func _connect_events() -> void:
 ## the [member camera_2d] to the current player position
 func _process(_delta: float) -> void:
 	_camera_logic()
-	if Input.is_action_just_pressed("Pause"):
+	if Input.is_action_just_pressed("Pause") and _player_is_alive:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		_pause_game()
 
 ## Function that updates the camera position relative to the player.
@@ -69,10 +70,7 @@ func _on_quit_btn_pressed() -> void:
 ## using the [method _refresh_attemp_text]
 func _on_player_die() -> void:
 	level_music.stop()
-
-## Updates the [member die_counter] text with the current attempt number
-func _refresh_attemp_text() -> void:
-	die_counter.text = attemp_text + " " + str(attemp_counter)
+	_player_is_alive = false
 
 ## Receives the player's position
 func _on_player_pos(pos: Vector2) -> void:

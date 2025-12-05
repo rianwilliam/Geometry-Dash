@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dm3tmqpuapy0c" path="res://PlayerModifiers/Orbs/OrbBase/Scripts/external_layer.gd" id="5_0ng1g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqcrr"]
-radius = 14.0
+radius = 21.0
 
 [sub_resource type="Animation" id="Animation_of2de"]
 resource_name = "MiddleRotation"
