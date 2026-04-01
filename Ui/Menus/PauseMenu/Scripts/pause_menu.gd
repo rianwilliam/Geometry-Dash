@@ -34,6 +34,7 @@ func _on_options_btn_pressed() -> void:
 ## Makes the pause menu visible
 func show_pause() -> void:
 	visible = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 ## Hides the pause menu
 func hide_pause() -> void:

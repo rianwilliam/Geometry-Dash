@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2iy82hw0anrw"]
+[gd_scene format=3 uid="uid://d2iy82hw0anrw"]
 
 [ext_resource type="PackedScene" uid="uid://doi4ve4kgdlun" path="res://Ui/menu_background.tscn" id="1_7q385"]
 [ext_resource type="Script" uid="uid://b7os3svittnpf" path="res://Ui/Menus/LevelsMenu/Scripts/levels_menu.gd" id="1_18m16"]
@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dgr5t7rsr0nmq" path="res://Assets/Ui/Controls Text.png" id="6_r4xuo"]
 [ext_resource type="Texture2D" uid="uid://6iylcr3b5oqx" path="res://Assets/Ui/controls_guide.png" id="7_vpmrr"]
 
-[node name="LevelsMenu" type="Control"]
+[node name="LevelsMenu" type="Control" unique_id=1688441648]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,16 +18,16 @@ grow_vertical = 2
 script = ExtResource("1_18m16")
 metadata/_edit_vertical_guides_ = [126.0]
 
-[node name="MenuBackground" parent="." instance=ExtResource("1_7q385")]
+[node name="MenuBackground" parent="." unique_id=632442297 instance=ExtResource("1_7q385")]
 layout_mode = 1
 
-[node name="MenuTitle" parent="." instance=ExtResource("2_psa83")]
+[node name="MenuTitle" parent="." unique_id=1746623621 instance=ExtResource("2_psa83")]
 layout_mode = 1
 
 [node name="TextureRect" parent="MenuTitle/CenterContainer" index="0"]
 texture = ExtResource("3_18m16")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1965750372]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.38117284
@@ -39,40 +39,40 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="BoxContainer" type="BoxContainer" parent="HBoxContainer"]
+[node name="BoxContainer" type="BoxContainer" parent="HBoxContainer" unique_id=500828138]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Lvl1Btn" type="Button" parent="HBoxContainer/BoxContainer"]
+[node name="Lvl1Btn" type="Button" parent="HBoxContainer/BoxContainer" unique_id=1390204681]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 theme = ExtResource("4_psa83")
 text = "Level 1"
 
-[node name="BoxContainer2" type="BoxContainer" parent="HBoxContainer"]
+[node name="BoxContainer2" type="BoxContainer" parent="HBoxContainer" unique_id=780042811]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Lvl2Btn" type="Button" parent="HBoxContainer/BoxContainer2"]
+[node name="Lvl2Btn" type="Button" parent="HBoxContainer/BoxContainer2" unique_id=639979108]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 theme = ExtResource("4_psa83")
 text = "Level 2"
 
-[node name="BoxContainer3" type="BoxContainer" parent="HBoxContainer"]
+[node name="BoxContainer3" type="BoxContainer" parent="HBoxContainer" unique_id=2056662267]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Lvl3Btn" type="Button" parent="HBoxContainer/BoxContainer3"]
+[node name="Lvl3Btn" type="Button" parent="HBoxContainer/BoxContainer3" unique_id=33006246]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 theme = ExtResource("4_psa83")
 text = "Level 3"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=47561695]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.60493827
@@ -86,27 +86,27 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 0.983613)
 
-[node name="BoxContainer" type="BoxContainer" parent="HBoxContainer2"]
+[node name="BoxContainer" type="BoxContainer" parent="HBoxContainer2" unique_id=890099286]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer2/BoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer2/BoxContainer" unique_id=314877764]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("6_r4xuo")
 expand_mode = 2
 
-[node name="BoxContainer2" type="BoxContainer" parent="HBoxContainer2"]
+[node name="BoxContainer2" type="BoxContainer" parent="HBoxContainer2" unique_id=1921509394]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect2" type="TextureRect" parent="HBoxContainer2/BoxContainer2"]
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer2/BoxContainer2" unique_id=81493952]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("7_vpmrr")
 expand_mode = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=758292238]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -119,7 +119,7 @@ offset_right = 50.5
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="BackToMenuBtn" type="Button" parent="CenterContainer"]
+[node name="BackToMenuBtn" type="Button" parent="CenterContainer" unique_id=91756150]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_psa83")

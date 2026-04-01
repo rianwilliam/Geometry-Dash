@@ -15,6 +15,7 @@ class_name MainMenu
 
 ## Performs the connection of required events through [method _connect_events]
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	_connect_events()
 
 ## Connects the necessary events for the menu to work properly

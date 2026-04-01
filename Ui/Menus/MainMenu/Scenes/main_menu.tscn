@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://0kb8a7wtx023"]
+[gd_scene format=3 uid="uid://0kb8a7wtx023"]
 
 [ext_resource type="Script" uid="uid://1uci4ho6honi" path="res://Ui/Menus/MainMenu/Scripts/main_menu.gd" id="1_e6g6g"]
 [ext_resource type="PackedScene" uid="uid://bcb3eiejfsr7" path="res://Ui/menu_title.tscn" id="2_dlym1"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://d2iy82hw0anrw" path="res://Ui/Menus/LevelsMenu/Scenes/levels_menu.tscn" id="8_n8w3n"]
 [ext_resource type="Texture2D" uid="uid://cup7yynpbqlr5" path="res://Assets/Ui/Texts/made_by.png" id="9_mglpj"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=281323874]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,10 +19,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_e6g6g")
 
-[node name="ColorRect" parent="." instance=ExtResource("5_gv5y6")]
+[node name="ColorRect" parent="." unique_id=1388423198 instance=ExtResource("5_gv5y6")]
 layout_mode = 1
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1936331973]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -35,7 +35,7 @@ grow_horizontal = 2
 texture = ExtResource("9_mglpj")
 expand_mode = 1
 
-[node name="MenuTitle" parent="." instance=ExtResource("2_dlym1")]
+[node name="MenuTitle" parent="." unique_id=1215378131 instance=ExtResource("2_dlym1")]
 layout_mode = 1
 
 [node name="CenterContainer" parent="MenuTitle" index="0"]
@@ -46,7 +46,7 @@ scale = Vector2(0.81810856, 0.81810856)
 [node name="TextureRect" parent="MenuTitle/CenterContainer" index="0"]
 texture = ExtResource("2_gv5y6")
 
-[node name="Buttons" type="Control" parent="."]
+[node name="Buttons" type="Control" parent="." unique_id=1218506814]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -60,7 +60,7 @@ offset_bottom = 321.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="Buttons"]
+[node name="GridContainer" type="GridContainer" parent="Buttons" unique_id=1515479976]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -75,17 +75,17 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 3
 
-[node name="PlayBtn" type="Button" parent="Buttons/GridContainer"]
+[node name="PlayBtn" type="Button" parent="Buttons/GridContainer" unique_id=876049554]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("6_mglpj")
 text = "Play"
 
-[node name="R1C2" type="MarginContainer" parent="Buttons/GridContainer"]
+[node name="R1C2" type="MarginContainer" parent="Buttons/GridContainer" unique_id=1415861034]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="OptionsBtn" type="Button" parent="Buttons/GridContainer"]
+[node name="OptionsBtn" type="Button" parent="Buttons/GridContainer" unique_id=1874731334]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -93,22 +93,22 @@ size_flags_vertical = 3
 theme = ExtResource("6_mglpj")
 text = "Options"
 
-[node name="R2C1" type="MarginContainer" parent="Buttons/GridContainer"]
+[node name="R2C1" type="MarginContainer" parent="Buttons/GridContainer" unique_id=310754340]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="R2C2" type="MarginContainer" parent="Buttons/GridContainer"]
+[node name="R2C2" type="MarginContainer" parent="Buttons/GridContainer" unique_id=1184961276]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="R3C3" type="MarginContainer" parent="Buttons/GridContainer"]
+[node name="R3C3" type="MarginContainer" parent="Buttons/GridContainer" unique_id=1646383808]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CustomizeBtn" type="Button" parent="Buttons/GridContainer"]
+[node name="CustomizeBtn" type="Button" parent="Buttons/GridContainer" unique_id=266143568]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -116,30 +116,31 @@ size_flags_vertical = 3
 theme = ExtResource("6_mglpj")
 text = "Customize"
 
-[node name="R4C2" type="MarginContainer" parent="Buttons/GridContainer"]
+[node name="R4C2" type="MarginContainer" parent="Buttons/GridContainer" unique_id=772989447]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="QuitBtn" type="Button" parent="Buttons/GridContainer"]
+[node name="QuitBtn" type="Button" parent="Buttons/GridContainer" unique_id=552904967]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("6_mglpj")
 text = "Quit"
 
-[node name="OptionsMenu" parent="." instance=ExtResource("6_4c4cw")]
+[node name="OptionsMenu" parent="." unique_id=282037169 instance=ExtResource("6_4c4cw")]
 visible = false
 layout_mode = 1
 offset_left = -1.0
 offset_right = -1.0
 
-[node name="CustomizeMenu" parent="." instance=ExtResource("4_m6u6s")]
+[node name="CustomizeMenu" parent="." unique_id=1809731111 instance=ExtResource("4_m6u6s")]
 visible = false
 layout_mode = 1
 
-[node name="LevelsMenu" parent="." instance=ExtResource("8_n8w3n")]
+[node name="LevelsMenu" parent="." unique_id=1865881060 instance=ExtResource("8_n8w3n")]
 visible = false
 layout_mode = 1
 

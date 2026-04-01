@@ -18,6 +18,7 @@ func _ready() -> void:
 	get_tree().paused = false
 	_connect_events()
 	_verify_level_states()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 ## Connects the button click events
 func _connect_events() -> void:
