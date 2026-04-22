@@ -12,7 +12,8 @@ The game features a variety of mechanics designed to provide a diverse and engag
 | **Spaceship** | <img src="./Assets/README%20Gifs/Spaceship.gif" width="80"> | **Square** | <img src="./Assets/README%20Gifs/Square.gif" width="80"> |
 | **Wave**      | <img src="./Assets/README%20Gifs/Wave.gif" width="80">      |            |                                                          |
 
-### My Itch.io
-<a href="https://tatsu-immortal.itch.io/">
+### Play now with any browser on Itch.io
+
+<a href="https://tatsu-immortal.itch.io/geometry-copy/">
   <img src="https://img.shields.io/badge/Itch.io-FA5C5C?style=for-the-badge&logo=itchdotio&logoColor=white">
 </a>
