@@ -6,7 +6,7 @@
 
 The game features a variety of mechanics designed to provide a diverse and engaging gameplay experience.
 
-| **Nome**      | **Visual**                                                  | **Nome**   | **Visual**                                               |
+| **Name**      | **Visual**                                                  | **Name**   | **Visual**                                               |
 | :---:         | :---:                                                       | :---:      | :---:                                                    |
 | **Robot**     | <img src="./Assets/README%20Gifs/Robot.gif" width="80">     | **UFO**    | <img src="./Assets/README%20Gifs/UFO.gif" width="80">    |
 | **Spaceship** | <img src="./Assets/README%20Gifs/Spaceship.gif" width="80"> | **Square** | <img src="./Assets/README%20Gifs/Square.gif" width="80"> |
